@@ -36,6 +36,7 @@ import codeu.chat.util.Time;
 import codeu.chat.util.Timeline;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.connections.Connection;
+import redis.clients.jedis.Jedis;
 
 public final class Server {
 
@@ -53,6 +54,8 @@ public final class Server {
   private final Controller controller;
 
   private final Relay relay;
+  //should have access to database
+  private Jedis db;
   private Uuid lastSeen = Uuid.NULL;
 
   public Server(final Uuid id, final byte[] secret, final Relay relay) {
