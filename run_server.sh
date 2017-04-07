@@ -24,14 +24,14 @@ if [[ "TEAM_ID" == "" || "$TEAM_SECRET" == "" || "$PORT" == "" ]] ; then
   exit 1
 fi
 
-cd './bin'
+# cd './bin'
 if [ "$RELAY_ADDRESS" == "" ] ; then
-  java codeu.chat.ServerMain \
+  java -cp ./third_party/jedis-2.9.0.jar:./bin codeu.chat.ServerMain \
       "$TEAM_ID" \
       "$TEAM_SECRET" \
       "$PORT"
 else
-  java codeu.chat.ServerMain \
+  java -cp ./third_party/jedis-2.9.0.jar:./bin codeu.chat.ServerMain \
       "$TEAM_ID" \
       "$TEAM_SECRET" \
       "$PORT" \
