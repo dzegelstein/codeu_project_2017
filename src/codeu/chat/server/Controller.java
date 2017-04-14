@@ -25,12 +25,15 @@ import codeu.chat.util.Logger;
 import codeu.chat.util.Time;
 import codeu.chat.util.Uuid;
 
+import redis.clients.jedis.Jedis;
+
 public final class Controller implements RawController, BasicController {
 
   private final static Logger.Log LOG = Logger.newLog(Controller.class);
 
   private final Model model;
   private final Uuid.Generator uuidGenerator;
+
 
   public Controller(Uuid serverId, Model model) {
     this.model = model;

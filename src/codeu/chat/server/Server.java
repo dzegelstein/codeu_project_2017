@@ -77,7 +77,7 @@ public final class Server {
             onBundle(bundle);
             lastSeen = bundle.id();
           }
-
+          db = new Jedis();
         } catch (Exception ex) {
 
           LOG.error(ex, "Failed to read update from relay.");
@@ -145,6 +145,16 @@ public final class Server {
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
+
+      // database call
+      LOG.info("ADDING A NEW USER");
+
+      final String id = Integer.toString(user.id.id());
+      db.hset("usernames", id, name);
+      LOG.info(id);
+
+      String res = db.hget("usernames", id);
+      LOG.info(res);
 
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
 
