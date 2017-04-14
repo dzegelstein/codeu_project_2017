@@ -146,16 +146,16 @@ public final class Server {
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
 
-      // database call
+/*
       LOG.info("ADDING A NEW USER");
 
       final String id = Integer.toString(user.id.id());
+      // hash table for storing ids, usernames
       db.hset("usernames", id, name);
       LOG.info(id);
-
       String res = db.hget("usernames", id);
       LOG.info(res);
-
+*/
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
 
       final String title = Serializers.STRING.read(in);

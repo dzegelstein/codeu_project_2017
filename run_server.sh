@@ -26,12 +26,12 @@ fi
 
 # cd './bin'
 if [ "$RELAY_ADDRESS" == "" ] ; then
-  java -cp ./third_party/jedis-2.9.0.jar:./bin codeu.chat.ServerMain \
+  java -cp ./bin:./third_party/*:./bin codeu.chat.ServerMain \
       "$TEAM_ID" \
       "$TEAM_SECRET" \
       "$PORT"
 else
-  java -cp ./third_party/jedis-2.9.0.jar:./bin codeu.chat.ServerMain \
+  java -cp ./bin:./third_party/*:./bin codeu.chat.ServerMain \
       "$TEAM_ID" \
       "$TEAM_SECRET" \
       "$PORT" \

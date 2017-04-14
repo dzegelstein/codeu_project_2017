@@ -14,7 +14,7 @@
 
 package codeu.chat.server;
 
-import java.util.Collection;
+import java.util.*;
 
 import codeu.chat.common.BasicController;
 import codeu.chat.common.Conversation;
@@ -34,10 +34,13 @@ public final class Controller implements RawController, BasicController {
   private final Model model;
   private final Uuid.Generator uuidGenerator;
 
+  private Jedis db;
 
   public Controller(Uuid serverId, Model model) {
     this.model = model;
     this.uuidGenerator = new RandomUuidGenerator(serverId, System.currentTimeMillis());
+
+    db = new Jedis();
   }
 
   @Override
@@ -109,10 +112,44 @@ public final class Controller implements RawController, BasicController {
 
     User user = null;
 
-    if (isIdFree(id)) {
+    if (db.sismember("usernameSet", name)) {
+      LOG.info(
+          "newUser fail - user in use (user.id=%s user.name=%s user.time=%s)",
+          id,
+          name,
+          creationTime);
+    } else if (isIdInUse(id)) {
+
+      LOG.info(
+          "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
+          id,
+          name,
+          creationTime);
+
+    } else {
 
       user = new User(id, name, creationTime);
       model.add(user);
+
+      // db.flushAll();
+
+      /* ------------------------------------- */
+      /* add user to database                  */
+      /* ------------------------------------- */
+      final String idStr = Integer.toString(id.id());
+
+      // hash table for storing ids, usernames
+      db.hset("usernameHash", idStr, name);
+      Map<String, String> res = db.hgetAll("usernames");
+      LOG.info("ADDING A NEW USER");
+      for (String value : res.values()) {
+          LOG.info(value);
+      }
+
+      // set for storing usernames -- has username been used yet?
+      db.sadd("usernameSet", name);
+      boolean resBool = db.sismember("usernameSet", name);
+      LOG.info(Boolean.toString(resBool));
 
       LOG.info(
           "newUser success (user.id=%s user.name=%s user.time=%s)",
@@ -120,13 +157,6 @@ public final class Controller implements RawController, BasicController {
           name,
           creationTime);
 
-    } else {
-
-      LOG.info(
-          "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
     }
 
     return user;
@@ -167,9 +197,8 @@ public final class Controller implements RawController, BasicController {
   }
 
   private boolean isIdInUse(Uuid id) {
-    return model.messageById().first(id) != null ||
-           model.conversationById().first(id) != null ||
-           model.userById().first(id) != null;
+    final String idStr = Integer.toString(id.id());
+    return db.hget("usernameHash", idStr) != null;
   }
 
   private boolean isIdFree(Uuid id) { return !isIdInUse(id); }
