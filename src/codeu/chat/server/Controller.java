@@ -15,6 +15,8 @@
 package codeu.chat.server;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Iterator;
 
 import codeu.chat.common.BasicController;
 import codeu.chat.common.Conversation;
@@ -50,6 +52,16 @@ public final class Controller implements RawController, BasicController {
   @Override
   public Conversation newConversation(String title, Uuid owner) {
     return newConversation(createId(), title, owner, Time.now());
+  }
+
+  public Conversation newConversation(String title, Uuid owner, List<String> pastConversationInfo) {
+    String[] parsedConversation = pastConversationInfo.get(0).split("\n");
+    //Get the Uuid based on Sherry's persistence
+    // String owner = parsedConversation[1];
+    // Figure out time issue
+    // Time creationTime = new Time(parsedConversation[1]);
+    Time creationTime = Time.now();
+    return newConversation(createId(), title, owner, creationTime, pastConversationInfo);
   }
 
   @Override
@@ -144,6 +156,91 @@ public final class Controller implements RawController, BasicController {
     }
 
     return conversation;
+  }
+
+  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime, List<String> oldMessages) {
+
+    final User foundOwner = model.userById().first(owner);
+
+    Conversation conversation = null;
+
+    if (foundOwner != null && isIdFree(id)) {
+      conversation = new Conversation(id, owner, creationTime, title);
+      model.add(conversation);
+
+      LOG.info("Conversation added: " + conversation.id);
+    }
+
+    addMessagesToConversation(conversation, oldMessages);
+
+    return conversation;
+  }
+
+  private void addMessagesToConversation(Conversation convo, List<String> oldMessages) {
+    //Starts at 1 because the first value in the array is info about conversation
+    for (int i = 1; i < oldMessages.size(); i++) {
+
+      String[] messageInfo = oldMessages.get(i).split("\n");
+      String authorName = messageInfo[0];
+      String messageBody = messageInfo[1];
+      String messageSentTime = messageInfo[2];
+
+      //Update with Sherry's user persistence
+      Iterator<User> authors = model.userByText().all().iterator();
+      User author = authors.next();
+
+      while (author != null) {
+        if (authorName.equals(author.name)) {
+          break;
+        }
+        if (authors.hasNext()) {
+          author = authors.next();
+        } else {
+          author = null;
+        }
+
+      }
+
+      if (author == null) {
+        author = newUser(authorName);
+      }
+
+      //Fix creationTime to use messageSentTime
+      Time creationTime = Time.now();
+
+      Message message = new Message(createId(), Uuid.NULL, Uuid.NULL, creationTime, author.id, messageBody);
+      model.add(message);
+
+      // Find and update the previous "last" message so that it's "next" value
+      // will point to the new message.
+      if (Uuid.equals(convo.lastMessage, Uuid.NULL)) {
+
+        // The conversation has no messages in it, that's why the last message is NULL (the first
+        // message should be NULL too. Since there is no last message, then it is not possible
+        // to update the last message's "next" value.
+
+      } else {
+        final Message lastMessage = model.messageById().first(convo.lastMessage);
+        lastMessage.next = message.id;
+      }
+
+      // If the first message points to NULL it means that the conversation was empty and that
+      // the first message should be set to the new message. Otherwise the message should
+      // not change.
+
+      convo.firstMessage =
+          Uuid.equals(convo.firstMessage, Uuid.NULL) ?
+          message.id :
+          convo.firstMessage;
+
+      // Update the conversation to point to the new last message as it has changed.
+
+      convo.lastMessage = message.id;
+
+      if (!convo.users.contains(author)) {
+        convo.users.add(author.id);
+      }
+    }
   }
 
   private Uuid createId() {

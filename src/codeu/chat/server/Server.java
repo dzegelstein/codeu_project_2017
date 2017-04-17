@@ -22,6 +22,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
 
 import codeu.chat.common.Conversation;
 import codeu.chat.common.ConversationSummary;
@@ -37,6 +38,8 @@ import codeu.chat.util.Timeline;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.connections.Connection;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public final class Server {
 
@@ -54,9 +57,10 @@ public final class Server {
   private final Controller controller;
 
   private final Relay relay;
-  //should have access to database
-  private Jedis db;
   private Uuid lastSeen = Uuid.NULL;
+
+  private Jedis db;
+  private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
 
   public Server(final Uuid id, final byte[] secret, final Relay relay) {
 
@@ -65,6 +69,18 @@ public final class Server {
 
     this.controller = new Controller(id, model);
     this.relay = relay;
+
+    // Need to create a persistent instance of Jedis
+    // In other words, where does it write to?
+    // Close the instance of jedis when the server shuts down
+    // Open Jedis when server starts
+
+    try {
+      db = pool.getResource();
+      reloadPastConversations();
+    } catch (Exception e) {
+      LOG.error(e, "Could not load Jedis database");
+    }
 
     timeline.scheduleNow(new Runnable() {
       @Override
@@ -117,6 +133,22 @@ public final class Server {
     });
   }
 
+  private void reloadPastConversations() {
+    Set<String> keys = db.keys("*");
+    for (String key: keys) {
+      if (db.exists(key)) {
+        System.out.println("**************************");
+        System.out.println("LOADING PAST CONVERSATION FROM DB");
+        System.out.println("**************************");
+        String[] convoDetails = db.lindex(key, 0).split("\n");
+        //Update the next line with Sherry's user persistence
+        Uuid owner = controller.newUser(convoDetails[0]).id;
+        String creationTime = convoDetails[1];
+        controller.newConversation(key, owner, db.lrange(key, 0, db.llen(key)));
+      }
+    }
+  }
+
   private boolean onMessage(InputStream in, OutputStream out) throws IOException {
 
     final int type = Serializers.INTEGER.read(in);
@@ -137,6 +169,14 @@ public final class Server {
           conversation,
           message.id));
 
+      /*
+        Adds to Jedis database. Key = conversation title, Value = List of all messages
+        Each message has an author, message content, time (all separated on different lines)
+      */
+      String authorName = model.userById().at(author).iterator().next().name;
+      String conversationTitle = model.conversationById().at(conversation).iterator().next().title;
+      db.rpush(conversationTitle, authorName + "\n" + content + "\n" + message.creation + "\n");
+
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
       final String name = Serializers.STRING.read(in);
@@ -152,6 +192,7 @@ public final class Server {
       final Uuid owner = Uuid.SERIALIZER.read(in);
 
       final Conversation conversation = controller.newConversation(title, owner);
+      db.rpush(title, owner + "\n" + conversation.creation.toString());
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_CONVERSATION_RESPONSE);
       Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);
