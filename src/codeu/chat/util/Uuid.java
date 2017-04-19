@@ -106,6 +106,10 @@ public final class Uuid {
     return id;
   }
 
+  public String toStrippedString() {
+    return toStrippedString(this);
+  }
+
   @Override
   public boolean equals(Object other) {
     return other instanceof Uuid && equals(this, (Uuid) other);
@@ -123,9 +127,9 @@ public final class Uuid {
   public static boolean related(Uuid a, Uuid b) {
     return equals(a.root(), b.root());
   }
-
   // Check if two Uuids represent the same value even if they are different refereces. This
   // means that all ids from the tail to the root have the same ids.
+
   public static boolean equals(Uuid a, Uuid b) {
 
     // First check if 'a' and 'b' refer to the same instance. This also
@@ -169,6 +173,12 @@ public final class Uuid {
     final StringBuilder build = new StringBuilder();
     buildString(id, build);
     return String.format("[UUID:%s]", build.substring(1));  // index of 1 to skip initial '.'
+  }
+
+  private static String toStrippedString(Uuid id) {
+    final StringBuilder build = new StringBuilder();
+    buildString(id, build);
+    return build.substring(1);  // index of 1 to skip initial '.'
   }
 
   private static void buildString(Uuid current, StringBuilder build) {

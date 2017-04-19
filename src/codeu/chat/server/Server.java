@@ -54,8 +54,7 @@ public final class Server {
   private final Controller controller;
 
   private final Relay relay;
-  //should have access to database
-  private Jedis db;
+
   private Uuid lastSeen = Uuid.NULL;
 
   public Server(final Uuid id, final byte[] secret, final Relay relay) {
@@ -77,7 +76,7 @@ public final class Server {
             onBundle(bundle);
             lastSeen = bundle.id();
           }
-          db = new Jedis();
+
         } catch (Exception ex) {
 
           LOG.error(ex, "Failed to read update from relay.");
@@ -146,16 +145,6 @@ public final class Server {
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
 
-/*
-      LOG.info("ADDING A NEW USER");
-
-      final String id = Integer.toString(user.id.id());
-      // hash table for storing ids, usernames
-      db.hset("usernames", id, name);
-      LOG.info(id);
-      String res = db.hget("usernames", id);
-      LOG.info(res);
-*/
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
 
       final String title = Serializers.STRING.read(in);

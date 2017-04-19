@@ -26,6 +26,8 @@ import codeu.chat.util.Time;
 import codeu.chat.util.Uuid;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public final class Controller implements RawController, BasicController {
 
@@ -35,12 +37,20 @@ public final class Controller implements RawController, BasicController {
   private final Uuid.Generator uuidGenerator;
 
   private Jedis db;
+  private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
 
   public Controller(Uuid serverId, Model model) {
     this.model = model;
     this.uuidGenerator = new RandomUuidGenerator(serverId, System.currentTimeMillis());
 
-    db = new Jedis();
+    // create persistent instance of Jedis
+    try {
+      db = pool.getResource();
+      loadUsers();
+    }
+    catch (Exception ex) {
+        LOG.error(ex, "Failed to load Jedis database");
+    }
   }
 
   @Override
@@ -107,59 +117,54 @@ public final class Controller implements RawController, BasicController {
     return message;
   }
 
-  @Override
   public User newUser(Uuid id, String name, Time creationTime) {
 
-    User user = null;
+     User user = null;
 
-    if (db.sismember("usernameSet", name)) {
-      LOG.info(
-          "newUser fail - user in use (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-    } else if (isIdInUse(id)) {
+     if (isIdInUse(id)) {
+       LOG.info(
+           "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
+           id,
+           name,
+           creationTime);
+     }
+     else {
 
-      LOG.info(
-          "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-
-    } else {
-
-      user = new User(id, name, creationTime);
-      model.add(user);
-
-      // db.flushAll();
+       user = new User(id, name, creationTime);
+       model.add(user);
 
       /* ------------------------------------- */
       /* add user to database                  */
       /* ------------------------------------- */
-      final String idStr = Integer.toString(id.id());
+      final String idStr = id.toStrippedString();
+      final long timeInMs = creationTime.inMs();
+      final String timeStr = Long.toString(timeInMs);
+
+      LOG.info("ADDING A NEW USER");
 
       // hash table for storing ids, usernames
-      db.hset("usernameHash", idStr, name);
-      Map<String, String> res = db.hgetAll("usernames");
-      LOG.info("ADDING A NEW USER");
-      for (String value : res.values()) {
-          LOG.info(value);
+      db.hset("nameHash", idStr, name);
+      // hash table for storing ids, creation times
+      db.hset("timeHash", idStr, timeStr);
+
+      Map<String, String> resName = db.hgetAll("nameHash");
+      for (String value : resName.values()) {
+           LOG.info(value);
       }
 
-      // set for storing usernames -- has username been used yet?
-      db.sadd("usernameSet", name);
-      boolean resBool = db.sismember("usernameSet", name);
-      LOG.info(Boolean.toString(resBool));
+      Map<String, String> resTime = db.hgetAll("timeHash");
+      for (String value : resTime.values()) {
+           LOG.info(value);
+      }
 
       LOG.info(
-          "newUser success (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
+           "newUser success (user.id=%s user.name=%s user.time=%s)",
+           id,
+           name,
+           creationTime);
+     }
 
-    }
-
-    return user;
+     return user;
   }
 
   @Override
@@ -177,6 +182,28 @@ public final class Controller implements RawController, BasicController {
     }
 
     return conversation;
+  }
+
+  // add previously stored users to model
+  private void loadUsers() {
+    Set<String> idKeys = db.hkeys("nameHash");
+
+    for (String key : idKeys) {
+        String name = db.hget("nameHash", key);
+        String timeStr = db.hget("timeHash", key);
+
+        if (timeStr == null)
+          LOG.info("Error: user id with no creation time");
+        else {
+
+          Uuid id = Uuid.fromString(key);
+          long timeInMs = Long.parseLong(timeStr);
+          Time creationTime = new Time(timeInMs);
+
+          User user = new User(id, name, creationTime);
+          model.add(user);
+        }
+    }
   }
 
   private Uuid createId() {
@@ -197,8 +224,9 @@ public final class Controller implements RawController, BasicController {
   }
 
   private boolean isIdInUse(Uuid id) {
-    final String idStr = Integer.toString(id.id());
-    return db.hget("usernameHash", idStr) != null;
+    return model.messageById().first(id) != null ||
+           model.conversationById().first(id) != null ||
+           model.userById().first(id) != null;
   }
 
   private boolean isIdFree(Uuid id) { return !isIdInUse(id); }
