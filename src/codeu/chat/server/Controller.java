@@ -33,7 +33,7 @@ public final class Controller implements RawController, BasicController {
 
   private final static Logger.Log LOG = Logger.newLog(Controller.class);
 
-  private final Model model;
+  private Model model;
   private final Uuid.Generator uuidGenerator;
 
   private Jedis db;
@@ -165,6 +165,40 @@ public final class Controller implements RawController, BasicController {
      }
 
      return user;
+  }
+
+  // delete user from model, database
+  public void deleteUser(User user) {
+    final String idStr = user.id.toStrippedString();
+    final String name = user.name;
+    final long timeInMs = user.creation.inMs();
+    final String timeStr = Long.toString(timeInMs);
+
+    LOG.info("DELETING USER");
+
+    // remove from database
+    if (!db.hget("nameHash", idStr).equals(name)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+        user.id,
+        user.name,
+        user.creation);
+    }
+    else if (!db.hget("timeHash", idStr).equals(timeStr)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+        user.id,
+        user.name,
+        user.creation);
+    }
+    else {
+        db.hdel("nameHash", idStr);
+        db.hdel("timeHash", idStr);
+    }
+
+    // update model
+    model = new Model();
+    loadUsers();
   }
 
   @Override

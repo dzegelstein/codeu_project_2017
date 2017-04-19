@@ -46,7 +46,6 @@ public final class RawControllerTest {
 
   @Test
   public void testAddUser() {
-
     final User user = controller.newUser(userId, "user", Time.now());
 
     assertFalse(
@@ -55,11 +54,12 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the user has the correct id",
         Uuid.equals(user.id, userId));
+
+    controller.deleteUser(user);
   }
 
   @Test
   public void testAddConversation() {
-
     final User user = controller.newUser(userId, "user", Time.now());
 
     assertFalse(
@@ -81,11 +81,12 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the conversation has the correct id",
         Uuid.equals(conversation.id, conversationId));
+
+    controller.deleteUser(user);
   }
 
   @Test
   public void testAddMessage() {
-
     final User user = controller.newUser(userId, "user", Time.now());
 
     assertFalse(
@@ -121,5 +122,7 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the message has the correct id",
         Uuid.equals(message.id, messageId));
+
+    controller.deleteUser(user);
   }
 }
