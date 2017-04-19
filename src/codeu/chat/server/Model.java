@@ -39,7 +39,7 @@ public final class Model {
 
       if (a != null && b == null) { return 1; }
 
-      final int order = Integer.compare(a.id(), b.id());
+      final int order = Long.compare(a.id(), b.id());
       return order == 0 ? compare(a.root(), b.root()) : order;
     }
   };
