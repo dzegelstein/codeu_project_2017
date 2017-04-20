@@ -243,6 +243,12 @@ public final class Server {
       Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE);
       Serializers.collection(Message.SERIALIZER).write(out, messages);
 
+    } else if (type == NetworkCode.DELETE_USER_REQUEST) {
+
+      final String idStr = Serializers.STRING.read(in);
+
+      controller.deleteUser(idStr);
+
     } else {
 
       // In the case that the message was not handled make a dummy message with

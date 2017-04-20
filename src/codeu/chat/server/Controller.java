@@ -167,7 +167,33 @@ public final class Controller implements RawController, BasicController {
      return user;
   }
 
+  @Override
+  public void deleteUser(String idStr) {
+    Uuid id = Uuid.fromString(idStr);
+
+    if (db.hget("nameHash", idStr).equals(null)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.name=NULL)",
+        id);
+    }
+    else if (db.hget("timeHash", idStr).equals(null)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.time=NULL)",
+        id);
+    }
+    else {
+      String name = db.hget("nameHash", idStr);
+      long timeInMs = Long.parseLong(db.hget("timeHash", idStr));
+      Time creationTime = new Time(timeInMs);
+
+      User user = new User(id, name, creationTime);
+
+      deleteUser(user);
+    }
+  }
+
   // delete user from model, database
+  @Override
   public void deleteUser(User user) {
     final String idStr = user.id.toStrippedString();
     final String name = user.name;
@@ -176,7 +202,7 @@ public final class Controller implements RawController, BasicController {
 
     LOG.info("DELETING USER");
 
-    // remove from database
+    // remove from database\
     if (!db.hget("nameHash", idStr).equals(name)) {
       LOG.info(
         "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",

@@ -90,6 +90,11 @@ public class Controller implements BasicController {
   }
 
   @Override
+  public void deleteUser(String idStr) {
+    
+  }
+
+  @Override
   public Conversation newConversation(String title, Uuid owner)  {
 
     Conversation response = null;
