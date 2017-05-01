@@ -147,9 +147,25 @@ public final class Chat {
         if (!tokenScanner.hasNext()) {
           System.out.println("ERROR: Message body not supplied.");
         } else {
+        	//check to see if it's a multi-line message.
+        	String current_message = tokenScanner.nextLine().trim();
+        	String whole_message = "";
+        	if((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()) == "\\")){
+        		//It is a multiline message. 
+        		while ((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()) == "\\")){
+        			//Append the next line to the message.
+        			whole_message += current_message;
+        			//Grab next line
+        			current_message = tokenScanner.nextLine().trim();
+        		}
+ 
+        	}else{
+        		whole_message = current_message;
+        	}
+   
           clientContext.message.addMessage(clientContext.user.getCurrent().id,
               clientContext.conversation.getCurrentId(),
-              tokenScanner.nextLine().trim());
+              whole_message);
         }
       }
 
