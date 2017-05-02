@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="third_party/commons-pool2-2.2.jar"/>
+	<classpathentry kind="lib" path="third_party/commons-pool2-2.4.2.jar"/>
+	<classpathentry kind="lib" path="third_party/hamcrest-core-1.3.jar"/>
+	<classpathentry kind="lib" path="third_party/hamcrest-core.jar"/>
+	<classpathentry kind="lib" path="third_party/jedis-2.9.0.jar"/>
+	<classpathentry kind="lib" path="third_party/junit4-4.11.jar"/>
+	<classpathentry kind="lib" path="third_party/junit4.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

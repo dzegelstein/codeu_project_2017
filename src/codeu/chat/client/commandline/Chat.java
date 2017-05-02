@@ -149,17 +149,20 @@ public final class Chat {
         } else {
         	//check to see if it's a multi-line message.
         	String current_message = tokenScanner.nextLine().trim();
+        	String slashes = "\\\\";
         	String whole_message = "";
-        	if((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()) == "\\")){
+        	if((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()).equals(slashes))){
         		//It is a multiline message. 
-        		while ((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()) == "\\")){
+        		while ((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()).equals(slashes))){
         			//Append the next line to the message.
+        			System.out.println("Write the next line of the message. End with \\\\ to add an additional line.");
         			whole_message += current_message;
-        			//Grab next line
-        			current_message = tokenScanner.nextLine().trim();
+        			//Grab next line. 
+        			current_message = lineScanner.nextLine().trim();
         		}
- 
-        	}else{
+        		whole_message += current_message;
+        	}
+        	else{
         		whole_message = current_message;
         	}
    
