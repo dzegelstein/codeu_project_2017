@@ -102,6 +102,20 @@ public final class ClientUser {
     }
   }
 
+  public void deleteUser(String name) {
+    final boolean validInputs = isValidName(name);
+
+    final User user = (validInputs) ? controller.deleteUser(name) : null;
+
+    if (user == null) {
+      System.out.format("Error: user not deleted - %s.\n",
+          (validInputs) ? "server failure" : "bad input value");
+    } else {
+      LOG.info("User deleted, Name= \"%s\" UUID=%s", user.name, user.id);
+      updateUsers();
+    }
+  }
+
   public void showAllUsers() {
     updateUsers();
     for (final User u : usersByName.all()) {

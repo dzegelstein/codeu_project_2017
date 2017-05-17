@@ -46,7 +46,7 @@ public interface BasicController {
   //
   // Remove a specific user from the database.  If the user does not match
   // a user in the database, the call will fail.
-  void deleteUser(String idStr);
+  User deleteUser(String name);
 
   // NEW CONVERSATION
   //

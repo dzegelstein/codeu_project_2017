@@ -53,8 +53,8 @@ public final class Server {
   private final Uuid id;
   private final byte[] secret;
 
-  private final Model model = new Model();
-  private final View view = new View(model);
+  private Model model = new Model();
+  private View view = new View(model);
   private final Controller controller;
 
   private final Relay relay;
@@ -223,7 +223,7 @@ public final class Server {
 
       LOG.info("DELETING USER");
 
-      if (db.hget("nameHashRev", name).equals(null)) {
+      if (!db.hexists("nameHashRev", name)) {
         LOG.info(
           "deleteUser fail - user not in database (user.id=NULL user.name=%s)",
           name);
@@ -257,10 +257,13 @@ public final class Server {
       db.hdel("timeHash", idStr);
       db.hdel("nameHashRev", name);
 
-      controller.deleteUser(idStr);
+      final User user = controller.deleteUser(id, name, creationTime);
+      model = new Model();
       loadUsers();
+      view = new View(model);
 
       Serializers.INTEGER.write(out, NetworkCode.DELETE_USER_RESPONSE);
+      Serializers.nullable(User.SERIALIZER).write(out, user);
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
 
       final String title = Serializers.STRING.read(in);

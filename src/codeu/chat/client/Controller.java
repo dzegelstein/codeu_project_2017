@@ -90,8 +90,27 @@ public class Controller implements BasicController {
   }
 
   @Override
-  public void deleteUser(String idStr) {
-    
+  public User deleteUser(String name) {
+    User response = null;
+
+    try (final Connection connection = source.connect()) {
+
+      Serializers.INTEGER.write(connection.out(), NetworkCode.DELETE_USER_REQUEST);
+      Serializers.STRING.write(connection.out(), name);
+      LOG.info("deleteUser: Request completed.");
+
+      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.DELETE_USER_RESPONSE) {
+        response = Serializers.nullable(User.SERIALIZER).read(connection.in());
+        LOG.info("deleteUser: Response completed.");
+      } else {
+        LOG.error("Response from server failed.");
+      }
+    } catch (Exception ex) {
+      System.out.println("ERROR: Exception during call on server. Check log for details.");
+      LOG.error(ex, "Exception during call on server.");
+    }
+
+    return response;
   }
 
   @Override

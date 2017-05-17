@@ -25,10 +25,6 @@ import codeu.chat.util.Logger;
 import codeu.chat.util.Time;
 import codeu.chat.util.Uuid;
 
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
-
 public final class Controller implements RawController, BasicController {
 
   private final static Logger.Log LOG = Logger.newLog(Controller.class);
@@ -36,20 +32,9 @@ public final class Controller implements RawController, BasicController {
   private Model model;
   private final Uuid.Generator uuidGenerator;
 
-  private Jedis db;
-  private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
-
   public Controller(Uuid serverId, Model model) {
     this.model = model;
     this.uuidGenerator = new RandomUuidGenerator(serverId, System.currentTimeMillis());
-
-    // create persistent instance of Jedis
-    try {
-      db = pool.getResource();
-    }
-    catch (Exception ex) {
-        LOG.error(ex, "Failed to load Jedis database");
-    }
   }
 
   @Override
@@ -136,16 +121,17 @@ public final class Controller implements RawController, BasicController {
   }
 
   @Override
-  public void deleteUser(String idStr) {
-    // update model
-    model = new Model();
+  public User deleteUser(String name) {
+    // NOT IMPLEMENTED
+    return null;
   }
 
   // delete user from model, database
   @Override
-  public void deleteUser(Uuid id, String name, Time creationTime){
+  public User deleteUser(Uuid id, String name, Time creationTime){
     // update model
-    model = new Model();
+    User user = new User(id, name, creationTime);
+    return user;
   }
 
   @Override
