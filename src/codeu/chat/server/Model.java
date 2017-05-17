@@ -77,11 +77,13 @@ public final class Model {
   }
 
   public void delete(User user) {
-    currentUserGeneration = userGenerations.make();
-
     userById.delete(user.id);
     userByTime.delete(user.creation);
     userByText.delete(user.name);
+  }
+
+  public User getUserByName(String name) {
+    return userByText.first(name);
   }
 
   public StoreAccessor<Uuid, User> userById() {

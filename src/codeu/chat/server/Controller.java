@@ -122,8 +122,9 @@ public final class Controller implements RawController, BasicController {
 
   @Override
   public User deleteUser(String name) {
-    // NOT IMPLEMENTED
-    return null;
+    User user = model.getUserByName(name);
+    user = deleteUser(user.id, user.name, user.creation);
+    return user;
   }
 
   // delete user from model, database

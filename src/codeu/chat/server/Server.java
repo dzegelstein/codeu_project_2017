@@ -255,7 +255,7 @@ public final class Server {
       db.hdel("timeHash", idStr);
       db.hdel("nameHashRev", name);
 
-      final User user = controller.deleteUser(id, name, creationTime);
+      final User user = controller.deleteUser(name);
 
       Serializers.INTEGER.write(out, NetworkCode.DELETE_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
