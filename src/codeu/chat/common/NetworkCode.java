@@ -49,5 +49,6 @@ public final class NetworkCode {
       RELAY_WRITE_REQUEST = 29,
       RELAY_WRITE_RESPONSE = 30,
 
-      DELETE_USER_REQUEST = 31;
+      DELETE_USER_REQUEST = 31,
+      DELETE_USER_RESPONSE = 32;
 }

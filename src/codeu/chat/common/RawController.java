@@ -38,9 +38,9 @@ public interface RawController {
 
   // DELETE USER
   //
-  // Remove a specific user from the database.  If the user does not match
-  // a user in the database, the call will fail.
-  void deleteUser(User user);
+  // Remove a specific user from the database with a specific id.
+  // If the user does not match a user in the database, the call will fail.
+  void deleteUser(Uuid id, String name, Time creationTime);
 
   // NEW CONVERSATION
   //

@@ -46,7 +46,6 @@ public final class Controller implements RawController, BasicController {
     // create persistent instance of Jedis
     try {
       db = pool.getResource();
-      loadUsers();
     }
     catch (Exception ex) {
         LOG.error(ex, "Failed to load Jedis database");
@@ -129,39 +128,8 @@ public final class Controller implements RawController, BasicController {
            creationTime);
      }
      else {
-
        user = new User(id, name, creationTime);
        model.add(user);
-
-      /* ------------------------------------- */
-      /* add user to database                  */
-      /* ------------------------------------- */
-      final String idStr = id.toStrippedString();
-      final long timeInMs = creationTime.inMs();
-      final String timeStr = Long.toString(timeInMs);
-
-      LOG.info("ADDING A NEW USER");
-
-      // hash table for storing ids, usernames
-      db.hset("nameHash", idStr, name);
-      // hash table for storing ids, creation times
-      db.hset("timeHash", idStr, timeStr);
-
-      Map<String, String> resName = db.hgetAll("nameHash");
-      for (String value : resName.values()) {
-           LOG.info(value);
-      }
-
-      Map<String, String> resTime = db.hgetAll("timeHash");
-      for (String value : resTime.values()) {
-           LOG.info(value);
-      }
-
-      LOG.info(
-           "newUser success (user.id=%s user.name=%s user.time=%s)",
-           id,
-           name,
-           creationTime);
      }
 
      return user;
@@ -169,62 +137,15 @@ public final class Controller implements RawController, BasicController {
 
   @Override
   public void deleteUser(String idStr) {
-    Uuid id = Uuid.fromString(idStr);
-
-    if (db.hget("nameHash", idStr).equals(null)) {
-      LOG.info(
-        "deleteUser fail - user not in database (user.id=%s user.name=NULL)",
-        id);
-    }
-    else if (db.hget("timeHash", idStr).equals(null)) {
-      LOG.info(
-        "deleteUser fail - user not in database (user.id=%s user.time=NULL)",
-        id);
-    }
-    else {
-      String name = db.hget("nameHash", idStr);
-      long timeInMs = Long.parseLong(db.hget("timeHash", idStr));
-      Time creationTime = new Time(timeInMs);
-
-      User user = new User(id, name, creationTime);
-
-      deleteUser(user);
-    }
+    // update model
+    model = new Model();
   }
 
   // delete user from model, database
   @Override
-  public void deleteUser(User user) {
-    final String idStr = user.id.toStrippedString();
-    final String name = user.name;
-    final long timeInMs = user.creation.inMs();
-    final String timeStr = Long.toString(timeInMs);
-
-    LOG.info("DELETING USER");
-
-    // remove from database\
-    if (!db.hget("nameHash", idStr).equals(name)) {
-      LOG.info(
-        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
-        user.id,
-        user.name,
-        user.creation);
-    }
-    else if (!db.hget("timeHash", idStr).equals(timeStr)) {
-      LOG.info(
-        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
-        user.id,
-        user.name,
-        user.creation);
-    }
-    else {
-        db.hdel("nameHash", idStr);
-        db.hdel("timeHash", idStr);
-    }
-
+  public void deleteUser(Uuid id, String name, Time creationTime){
     // update model
     model = new Model();
-    loadUsers();
   }
 
   @Override
@@ -242,28 +163,6 @@ public final class Controller implements RawController, BasicController {
     }
 
     return conversation;
-  }
-
-  // add previously stored users to model
-  private void loadUsers() {
-    Set<String> idKeys = db.hkeys("nameHash");
-
-    for (String key : idKeys) {
-        String name = db.hget("nameHash", key);
-        String timeStr = db.hget("timeHash", key);
-
-        if (timeStr == null)
-          LOG.info("Error: user id with no creation time");
-        else {
-
-          Uuid id = Uuid.fromString(key);
-          long timeInMs = Long.parseLong(timeStr);
-          Time creationTime = new Time(timeInMs);
-
-          User user = new User(id, name, creationTime);
-          model.add(user);
-        }
-    }
   }
 
   private Uuid createId() {

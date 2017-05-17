@@ -1,0 +1,288 @@
+May 16, 2017 7:49:17 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:49:17 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:49:17 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:49:17 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 7:49:20 PM codeu.chat.client.View getAllConversations
+SEVERE: Exception during call on server.
+java.net.SocketException: Invalid argument or cannot assign requested address
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:208)
+	at codeu.chat.util.connections.ClientConnectionSource.connect(ClientConnectionSource.java:39)
+	at codeu.chat.client.View.getAllConversations(View.java:78)
+	at codeu.chat.client.ClientConversation.updateAllConversations(ClientConversation.java:164)
+	at codeu.chat.client.ClientConversation.showAllConversations(ClientConversation.java:109)
+	at codeu.chat.client.commandline.Chat.doOneCommand(Chat.java:134)
+	at codeu.chat.client.commandline.Chat.handleCommand(Chat.java:282)
+	at codeu.chat.ClientMain.main(ClientMain.java:57)
+
+May 16, 2017 7:54:06 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:54:06 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:54:06 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:54:06 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 7:54:08 PM codeu.chat.client.View getAllConversations
+SEVERE: Exception during call on server.
+java.net.SocketException: Invalid argument or cannot assign requested address
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:208)
+	at codeu.chat.util.connections.ClientConnectionSource.connect(ClientConnectionSource.java:39)
+	at codeu.chat.client.View.getAllConversations(View.java:78)
+	at codeu.chat.client.ClientConversation.updateAllConversations(ClientConversation.java:164)
+	at codeu.chat.client.ClientConversation.showAllConversations(ClientConversation.java:109)
+	at codeu.chat.client.commandline.Chat.doOneCommand(Chat.java:134)
+	at codeu.chat.client.commandline.Chat.handleCommand(Chat.java:282)
+	at codeu.chat.ClientMain.main(ClientMain.java:57)
+
+May 16, 2017 7:54:41 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:54:41 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:54:41 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:54:42 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 7:54:45 PM codeu.chat.client.View getAllConversations
+SEVERE: Exception during call on server.
+java.net.SocketException: Invalid argument or cannot assign requested address
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at java.net.Socket.connect(Socket.java:528)
+	at java.net.Socket.<init>(Socket.java:425)
+	at java.net.Socket.<init>(Socket.java:208)
+	at codeu.chat.util.connections.ClientConnectionSource.connect(ClientConnectionSource.java:39)
+	at codeu.chat.client.View.getAllConversations(View.java:78)
+	at codeu.chat.client.ClientConversation.updateAllConversations(ClientConversation.java:164)
+	at codeu.chat.client.ClientConversation.showAllConversations(ClientConversation.java:109)
+	at codeu.chat.client.commandline.Chat.doOneCommand(Chat.java:134)
+	at codeu.chat.client.commandline.Chat.handleCommand(Chat.java:282)
+	at codeu.chat.ClientMain.main(ClientMain.java:57)
+
+May 16, 2017 7:55:03 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:55:03 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:55:03 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:55:03 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 7:56:20 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:56:20 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:56:20 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:56:20 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 7:56:27 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 7:56:27 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 7:56:27 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.3189760604]
+May 16, 2017 7:56:31 PM codeu.chat.ClientMain main
+INFO: chat client has exited.
+May 16, 2017 7:56:37 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:56:37 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:56:37 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:56:37 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 7:57:28 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:57:28 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:57:28 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:57:28 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 7:57:33 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 7:57:33 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 7:57:33 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.2426342165]
+May 16, 2017 7:57:43 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 7:57:43 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 7:57:43 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 7:57:43 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:04:16 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:04:16 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:04:16 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:04:16 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:04:24 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:04:24 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 8:04:24 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user2" UUID=[UUID:33.1044659603]
+May 16, 2017 8:04:34 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:04:34 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:04:34 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:04:34 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:04:59 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:04:59 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:04:59 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:04:59 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:06:57 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:06:57 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:06:57 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:06:57 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:06:59 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:07:00 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 8:07:00 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user3" UUID=[UUID:33.3203732513]
+May 16, 2017 8:09:50 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:09:50 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:09:50 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:09:50 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:09:53 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:09:53 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 8:09:53 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.1133443009]
+May 16, 2017 8:16:26 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:16:26 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:16:26 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:16:26 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:16:32 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:16:32 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 8:16:32 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.1091476899]
+May 16, 2017 8:20:08 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:20:08 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:20:08 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:20:08 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:20:10 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:20:10 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 8:20:10 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.1317045379]
+May 16, 2017 8:21:16 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:21:16 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:21:16 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:21:16 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:21:21 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:21:21 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 8:21:21 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.1595911711]
+May 16, 2017 8:21:54 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:21:54 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:21:54 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:21:54 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:34:58 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:34:58 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:34:58 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:34:58 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:35:13 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:35:13 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:35:13 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:35:13 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:35:21 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:35:21 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 16, 2017 8:35:21 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.2181473822]
+May 16, 2017 8:35:24 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:35:24 PM codeu.chat.client.Controller newUser
+SEVERE: Response from server failed.
+May 16, 2017 8:35:42 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:35:42 PM codeu.chat.client.Controller newUser
+SEVERE: Response from server failed.
+May 16, 2017 8:35:50 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 16, 2017 8:35:50 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 16, 2017 8:35:50 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 16, 2017 8:35:50 PM codeu.chat.ClientMain main
+INFO: Created client
+May 16, 2017 8:35:52 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 16, 2017 8:35:52 PM codeu.chat.client.Controller newUser
+SEVERE: Response from server failed.

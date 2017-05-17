@@ -22,6 +22,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
+import java.util.Map;
 
 import codeu.chat.common.Conversation;
 import codeu.chat.common.ConversationSummary;
@@ -37,6 +39,8 @@ import codeu.chat.util.Timeline;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.connections.Connection;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public final class Server {
 
@@ -54,8 +58,10 @@ public final class Server {
   private final Controller controller;
 
   private final Relay relay;
-
   private Uuid lastSeen = Uuid.NULL;
+
+  private Jedis db;
+  private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
 
   public Server(final Uuid id, final byte[] secret, final Relay relay) {
 
@@ -64,6 +70,18 @@ public final class Server {
 
     this.controller = new Controller(id, model);
     this.relay = relay;
+
+    // Need to create a persistent instance of Jedis
+    // In other words, where does it write to?
+    // Close the instance of jedis when the server shuts down
+    // Open Jedis when server starts
+    try {
+      db = pool.getResource();
+
+      loadUsers();
+    } catch (Exception e) {
+      LOG.error(e, "Could not load Jedis database");
+    }
 
     timeline.scheduleNow(new Runnable() {
       @Override
@@ -86,6 +104,28 @@ public final class Server {
         timeline.scheduleIn(RELAY_REFRESH_MS, this);
       }
     });
+  }
+
+  // add previously stored users to model
+  private void loadUsers() {
+    Set<String> idKeys = db.hkeys("nameHash");
+
+    for (String key : idKeys) {
+        String name = db.hget("nameHash", key);
+        String timeStr = db.hget("timeHash", key);
+
+        if (timeStr == null)
+          LOG.info("Error: user id with no creation time");
+        else {
+
+          Uuid id = Uuid.fromString(key);
+          long timeInMs = Long.parseLong(timeStr);
+          Time creationTime = new Time(timeInMs);
+
+          User user = controller.newUser(id, name, creationTime);
+          model.add(user);
+        }
+    }
   }
 
   public void handleConnection(final Connection connection) {
@@ -111,6 +151,7 @@ public final class Server {
           connection.close();
         } catch (Exception ex) {
           LOG.error(ex, "Exception while closing connection.");
+
         }
       }
     });
@@ -121,7 +162,6 @@ public final class Server {
     final int type = Serializers.INTEGER.read(in);
 
     if (type == NetworkCode.NEW_MESSAGE_REQUEST) {
-
       final Uuid author = Uuid.SERIALIZER.read(in);
       final Uuid conversation = Uuid.SERIALIZER.read(in);
       final String content = Serializers.STRING.read(in);
@@ -138,13 +178,89 @@ public final class Server {
 
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
+
       final String name = Serializers.STRING.read(in);
 
+      if (db.hexists("nameHashRev", name)) {
+        LOG.info(
+          "addUser fail - username taken (user.name = %s)",
+          name);
+        return false;
+      }
+
       final User user = controller.newUser(name);
+
+      /* ------------------------------------- */
+      /* add user to database                  */
+      /* ------------------------------------- */
+      final Time creationTime = user.creation;
+      final Uuid id = user.id;
+      final String idStr = id.toStrippedString();
+      System.out.println(idStr);
+      final long timeInMs = creationTime.inMs();
+      final String timeStr = Long.toString(timeInMs);
+
+      LOG.info("ADDING A NEW USER");
+
+      // hash table for storing ids, creation times
+      db.hset("timeHash", idStr, timeStr);
+      // hash table with ids for keys, usernames for values
+      db.hset("nameHash", idStr, name);
+      // hash table with usernames for keys, ids for values
+      db.hset("nameHashRev", name, idStr);
+
+      LOG.info(
+           "newUser success (user.id=%s user.name=%s user.time=%s)",
+           id,
+           name,
+           creationTime);
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
 
+    } else if (type == NetworkCode.DELETE_USER_REQUEST) {
+      final String name = Serializers.STRING.read(in);
+
+      LOG.info("DELETING USER");
+
+      if (db.hget("nameHashRev", name).equals(null)) {
+        LOG.info(
+          "deleteUser fail - user not in database (user.id=NULL user.name=%s)",
+          name);
+        return false;
+      }
+
+      final String idStr = db.hget("nameHashRev", name);
+      Uuid id = Uuid.fromString(idStr);
+
+      if (!db.hget("nameHash", idStr).equals(name)) {
+        LOG.info(
+          "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
+          id, name);
+        return false;
+      }
+
+      String timeStr = db.hget("timeHash", idStr);
+      long timeInMs = Long.parseLong(timeStr);
+      Time creationTime = new Time(timeInMs);
+
+      if (!db.hget("timeHash", idStr).equals(timeStr)) {
+        LOG.info(
+          "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+          id,
+          name,
+          creationTime);
+          return false;
+      }
+
+      db.hdel("nameHash", idStr);
+      db.hdel("timeHash", idStr);
+      db.hdel("nameHashRev", name);
+
+      controller.deleteUser(idStr);
+      loadUsers();
+
+      Serializers.INTEGER.write(out, NetworkCode.DELETE_USER_RESPONSE);
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
 
       final String title = Serializers.STRING.read(in);
@@ -242,12 +358,6 @@ public final class Server {
 
       Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE);
       Serializers.collection(Message.SERIALIZER).write(out, messages);
-
-    } else if (type == NetworkCode.DELETE_USER_REQUEST) {
-
-      final String idStr = Serializers.STRING.read(in);
-
-      controller.deleteUser(idStr);
 
     } else {
 

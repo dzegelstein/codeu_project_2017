@@ -54,8 +54,6 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the user has the correct id",
         Uuid.equals(user.id, userId));
-
-    controller.deleteUser(user);
   }
 
   @Test
@@ -81,8 +79,6 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the conversation has the correct id",
         Uuid.equals(conversation.id, conversationId));
-
-    controller.deleteUser(user);
   }
 
   @Test
@@ -122,7 +118,5 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the message has the correct id",
         Uuid.equals(message.id, messageId));
-
-    controller.deleteUser(user);
   }
 }

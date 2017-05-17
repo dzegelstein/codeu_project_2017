@@ -43,9 +43,6 @@ public final class BasicControllerTest {
     assertFalse(
         "Check that user has a valid reference",
         user == null);
-
-    controller.deleteUser(user.id.toStrippedString());
-
   }
 
   @Test
@@ -64,9 +61,6 @@ public final class BasicControllerTest {
     assertFalse(
         "Check that conversation has a valid reference",
         conversation == null);
-
-    controller.deleteUser(user.id.toStrippedString());
-
   }
 
   @Test
@@ -94,8 +88,5 @@ public final class BasicControllerTest {
     assertFalse(
         "Check that the message has a valid reference",
         message == null);
-
-    controller.deleteUser(user.id.toStrippedString());
-
   }
 }
