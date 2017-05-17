@@ -178,7 +178,6 @@ public final class Server {
 
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
-
       final String name = Serializers.STRING.read(in);
 
       if (db.hexists("nameHashRev", name)) {
@@ -196,7 +195,6 @@ public final class Server {
       final Time creationTime = user.creation;
       final Uuid id = user.id;
       final String idStr = id.toStrippedString();
-      System.out.println(idStr);
       final long timeInMs = creationTime.inMs();
       final String timeStr = Long.toString(timeInMs);
 
@@ -258,9 +256,6 @@ public final class Server {
       db.hdel("nameHashRev", name);
 
       final User user = controller.deleteUser(id, name, creationTime);
-      model = new Model();
-      loadUsers();
-      view = new View(model);
 
       Serializers.INTEGER.write(out, NetworkCode.DELETE_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);

@@ -111,6 +111,13 @@ public final class ClientUser {
       System.out.format("Error: user not deleted - %s.\n",
           (validInputs) ? "server failure" : "bad input value");
     } else {
+      if (hasCurrent() && user.id.equals(current.id)) {
+        System.out.println("You are currently signed in as this user." +
+                            "You will now be signed out.");
+        if (!signOutUser()) {
+          System.out.println("Error: sign out failed (not signed in?)");
+        }
+      }
       LOG.info("User deleted, Name= \"%s\" UUID=%s", user.name, user.id);
       updateUsers();
     }

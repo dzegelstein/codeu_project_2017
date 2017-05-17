@@ -131,6 +131,7 @@ public final class Controller implements RawController, BasicController {
   public User deleteUser(Uuid id, String name, Time creationTime){
     // update model
     User user = new User(id, name, creationTime);
+    model.delete(user);
     return user;
   }
 
