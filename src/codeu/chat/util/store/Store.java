@@ -68,6 +68,13 @@ public final class Store<KEY, VALUE> implements StoreAccessor<KEY, VALUE> {
   }
 
   public void delete(KEY key) {
+    StoreLink<KEY, VALUE> current = rootLink;
+    while(current != null && current.next != null) {
+      if (comparator.compare(current.next.key, key) == 0) {
+          current.next = current.next.next;
+      }
+      current = current.next;
+    }
     index.remove(key);
   }
 
