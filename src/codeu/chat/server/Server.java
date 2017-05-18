@@ -259,6 +259,11 @@ public final class Server {
 
       Serializers.INTEGER.write(out, NetworkCode.DELETE_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
+
+    } else if (type == NetworkCode.CHANGE_USERNAME_REQUEST){
+
+      Serializers.INTEGER.write(out, NetworkCode.CHANGE_USERNAME_RESPONSE);
+      
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
 
       final String title = Serializers.STRING.read(in);

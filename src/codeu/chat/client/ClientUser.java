@@ -118,6 +118,27 @@ public final class ClientUser {
           System.out.println("Error: sign out failed (not signed in?)");
         }
       }
+      LOG.info("User name changed, Name= \"%s\" UUID=%s", user.name, user.id);
+      updateUsers();
+    }
+  }
+
+  public void changeUserName(String newName, String oldName) {
+    final boolean validInputs = isValidName(newName) && isValidName(oldName);
+
+    final User user = (validInputs) ? controller.deleteUser(oldName) : null;
+
+    if (user == null) {
+      System.out.format("Error: username not changed - %s.\n",
+          (validInputs) ? "server failure" : "bad input value");
+    } else {
+      if (hasCurrent() && user.id.equals(current.id)) {
+        System.out.println("You are currently signed in as this user." +
+                            "You will now be signed out.");
+        if (!signOutUser()) {
+          System.out.println("Error: sign out failed (not signed in?)");
+        }
+      }
       LOG.info("User deleted, Name= \"%s\" UUID=%s", user.name, user.id);
       updateUsers();
     }

@@ -51,6 +51,7 @@ public final class Chat {
     System.out.println("User commands:");
     System.out.println("   u-add <name>  - add a new user.");
     System.out.println("   u-del <name>  - delete a user.");
+    System.out.println("   u-change-name <new name> <old name> - change the name of a user.");
     System.out.println("   u-list-all    - list all users known to system.");
     System.out.println("Conversation commands:");
     System.out.println("   c-add <title>    - add a new conversation.");
@@ -119,6 +120,21 @@ public final class Chat {
       } else {
         deleteUser(tokenScanner.nextLine().trim());
       }
+    } else if (token.equals("u-change-name")){
+      if (!tokenScanner.hasNext()) {
+        tokenScanner.close();
+        System.out.println("ERROR: New username not supplied.");
+        return;
+      }
+      String newName = tokenScanner.next();
+      if (!tokenScanner.hasNext()) {
+        System.out.println("ERROR: Old username not supplied.");
+        tokenScanner.close();
+        return;
+      }
+      String oldName = tokenScanner.nextLine().trim();
+      changeUserName(newName, oldName);
+
     } else if (token.equals("u-list-all")) {
 
       showAllUsers();
@@ -280,6 +296,11 @@ public final class Chat {
   // Delete a user.
   private void deleteUser(String name) {
     clientContext.user.deleteUser(name);
+  }
+
+  // Change the name of a user.
+  private void changeUserName(String newName, String oldName) {
+    clientContext.user.changeUserName(newName, oldName);
   }
 
   // Display all users known to server.
