@@ -132,8 +132,29 @@ public final class Controller implements RawController, BasicController {
   public User deleteUser(Uuid id, String name, Time creationTime){
     // update model
     User user = new User(id, name, creationTime);
-    model.delete(user);
+    boolean deleteSuccess = model.delete(user);
+    if (!deleteSuccess) return null;
     return user;
+  }
+
+  @Override
+  public User changeUserName(String oldName, String newName) {
+    User user = model.getUserByName(oldName);
+    if (user != null) user = changeUserName(user.id, user.name, newName, user.creation);
+    return user;
+  }
+
+  @Override
+  public User changeUserName(Uuid id, String oldName, String newName, Time creationTime) {
+    // update model
+    User oldUser = new User(id, oldName, creationTime);
+    User newUser = new User(id, newName, creationTime);
+
+    boolean deleteSuccess = model.delete(oldUser);
+    if (!deleteSuccess) return null;
+    model.add(newUser);
+
+    return newUser;
   }
 
   @Override

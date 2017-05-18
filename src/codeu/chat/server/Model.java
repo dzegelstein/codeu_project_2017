@@ -76,10 +76,10 @@ public final class Model {
     userByText.insert(user.name, user);
   }
 
-  public void delete(User user) {
-    userById.delete(user.id);
-    userByTime.delete(user.creation);
-    userByText.delete(user.name);
+  public boolean delete(User user) {
+      return userById.delete(user.id) &&
+             userByTime.delete(user.creation) &&
+             userByText.delete(user.name);
   }
 
   public User getUserByName(String name) {

@@ -187,31 +187,12 @@ public final class Server {
         return false;
       }
 
+      LOG.info("ADDING USER");
+
       final User user = controller.newUser(name);
 
-      /* ------------------------------------- */
-      /* add user to database                  */
-      /* ------------------------------------- */
-      final Time creationTime = user.creation;
-      final Uuid id = user.id;
-      final String idStr = id.toStrippedString();
-      final long timeInMs = creationTime.inMs();
-      final String timeStr = Long.toString(timeInMs);
-
-      LOG.info("ADDING A NEW USER");
-
-      // hash table for storing ids, creation times
-      db.hset("timeHash", idStr, timeStr);
-      // hash table with ids for keys, usernames for values
-      db.hset("nameHash", idStr, name);
-      // hash table with usernames for keys, ids for values
-      db.hset("nameHashRev", name, idStr);
-
-      LOG.info(
-           "newUser success (user.id=%s user.name=%s user.time=%s)",
-           id,
-           name,
-           creationTime);
+      boolean addSuccess = addToDatabase(name, user);
+      if (!addSuccess) return false;
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
@@ -221,39 +202,8 @@ public final class Server {
 
       LOG.info("DELETING USER");
 
-      if (!db.hexists("nameHashRev", name)) {
-        LOG.info(
-          "deleteUser fail - user not in database (user.id=NULL user.name=%s)",
-          name);
-        return false;
-      }
-
-      final String idStr = db.hget("nameHashRev", name);
-      Uuid id = Uuid.fromString(idStr);
-
-      if (!db.hget("nameHash", idStr).equals(name)) {
-        LOG.info(
-          "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
-          id, name);
-        return false;
-      }
-
-      String timeStr = db.hget("timeHash", idStr);
-      long timeInMs = Long.parseLong(timeStr);
-      Time creationTime = new Time(timeInMs);
-
-      if (!db.hget("timeHash", idStr).equals(timeStr)) {
-        LOG.info(
-          "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-          return false;
-      }
-
-      db.hdel("nameHash", idStr);
-      db.hdel("timeHash", idStr);
-      db.hdel("nameHashRev", name);
+      boolean deleteSuccess = deleteFromDatabase(name);
+      if (!deleteSuccess) return false;
 
       final User user = controller.deleteUser(name);
 
@@ -261,9 +211,31 @@ public final class Server {
       Serializers.nullable(User.SERIALIZER).write(out, user);
 
     } else if (type == NetworkCode.CHANGE_USERNAME_REQUEST){
+      final String oldName = Serializers.STRING.read(in);
+      final String newName = Serializers.STRING.read(in);
+
+      if (db.hexists("nameHashRev", newName)) {
+        LOG.info(
+          "changeUserName fail - username taken (user.name = %s)",
+          newName);
+        return false;
+      }
+
+      LOG.info("DELETING OLD USER");
+
+      boolean deleteSuccess = deleteFromDatabase(oldName);
+      if (!deleteSuccess) return false;
+
+      final User user = controller.changeUserName(oldName, newName);
+
+      LOG.info("ADDING NEW USER");
+
+      boolean addSuccess = addToDatabase(newName, user);
+      if (!addSuccess) return false;
 
       Serializers.INTEGER.write(out, NetworkCode.CHANGE_USERNAME_RESPONSE);
-      
+      Serializers.nullable(User.SERIALIZER).write(out, user);
+
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
 
       final String title = Serializers.STRING.read(in);
@@ -360,16 +332,76 @@ public final class Server {
       final Collection<Message> messages = view.getMessages(rootMessage, range);
 
       Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE);
+      // the type "NO_MESSAGE" so that the client still gets something.
       Serializers.collection(Message.SERIALIZER).write(out, messages);
 
     } else {
 
       // In the case that the message was not handled make a dummy message with
-      // the type "NO_MESSAGE" so that the client still gets something.
 
       Serializers.INTEGER.write(out, NetworkCode.NO_MESSAGE);
 
     }
+
+    return true;
+  }
+
+  private boolean addToDatabase(String name, User user) {
+    final Time creationTime = user.creation;
+    final Uuid id = user.id;
+    final String idStr = id.toStrippedString();
+    final long timeInMs = creationTime.inMs();
+    final String timeStr = Long.toString(timeInMs);
+
+    // hash table for storing ids, creation times
+    db.hset("timeHash", idStr, timeStr);
+    // hash table with ids for keys, usernames for values
+    db.hset("nameHash", idStr, name);
+    // hash table with usernames for keys, ids for values
+    db.hset("nameHashRev", name, idStr);
+
+    LOG.info(
+         "newUser success (user.id=%s user.name=%s user.time=%s)",
+         id,
+         name,
+         creationTime);
+    return true;
+  }
+
+  private boolean deleteFromDatabase(String name) {
+    if (!db.hexists("nameHashRev", name)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=NULL user.name=%s)",
+        name);
+      return false;
+    }
+
+    final String idStr = db.hget("nameHashRev", name);
+    Uuid id = Uuid.fromString(idStr);
+
+    if (!db.hget("nameHash", idStr).equals(name)) {
+      LOG.info(
+        "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
+        id, name);
+      return false;
+    }
+
+    String timeStr = db.hget("timeHash", idStr);
+    long timeInMs = Long.parseLong(timeStr);
+    Time creationTime = new Time(timeInMs);
+
+    if (!db.hget("timeHash", idStr).equals(timeStr)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+        id,
+        name,
+        creationTime);
+        return false;
+    }
+
+    db.hdel("nameHash", idStr);
+    db.hdel("timeHash", idStr);
+    db.hdel("nameHashRev", name);
 
     return true;
   }
@@ -427,4 +459,5 @@ public final class Server {
       }
     };
   }
+
 }

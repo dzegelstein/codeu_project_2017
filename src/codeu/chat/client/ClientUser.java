@@ -123,10 +123,11 @@ public final class ClientUser {
     }
   }
 
-  public void changeUserName(String newName, String oldName) {
+  public void changeUserName(String oldName,String newName) {
     final boolean validInputs = isValidName(newName) && isValidName(oldName);
 
-    final User user = (validInputs) ? controller.deleteUser(oldName) : null;
+    final User user =
+      (validInputs) ? controller.changeUserName(oldName, newName) : null;
 
     if (user == null) {
       System.out.format("Error: username not changed - %s.\n",
@@ -139,7 +140,8 @@ public final class ClientUser {
           System.out.println("Error: sign out failed (not signed in?)");
         }
       }
-      LOG.info("User deleted, Name= \"%s\" UUID=%s", user.name, user.id);
+      LOG.info("Username changed, New name= \"%s\" Old name = \"%s\" UUID=%s",
+                user.name, oldName, user.id);
       updateUsers();
     }
   }

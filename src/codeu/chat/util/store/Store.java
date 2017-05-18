@@ -67,7 +67,9 @@ public final class Store<KEY, VALUE> implements StoreAccessor<KEY, VALUE> {
     }
   }
 
-  public void delete(KEY key) {
+  public boolean delete(KEY key) {
+    if (!index.containsKey(key)) return false;
+
     StoreLink<KEY, VALUE> current = rootLink;
     while(current != null && current.next != null) {
       if (comparator.compare(current.next.key, key) == 0) {
@@ -76,6 +78,7 @@ public final class Store<KEY, VALUE> implements StoreAccessor<KEY, VALUE> {
       current = current.next;
     }
     index.remove(key);
+    return true;
   }
 
   @Override
