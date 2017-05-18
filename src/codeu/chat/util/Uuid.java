@@ -44,7 +44,7 @@ public final class Uuid {
       }
 
       for (Uuid current = value; current != null; current = current.root()) {
-        Serializers.INTEGER.write(out, current.id());
+        Serializers.LONG.write(out, current.id());
       }
     }
 
@@ -54,10 +54,10 @@ public final class Uuid {
       // "input.read" can only return one by of data so there is no need
       // to check that the bounds of 0 to 255 is respected.
       final int length = in.read();
-      final int[] chain = new int[length];
+      final long[] chain = new long[length];
 
       for (int i = 0; i < length; i++) {
-        chain[i] = Serializers.INTEGER.read(in);
+        chain[i] = Serializers.LONG.read(in);
       }
 
       Uuid head = null;
@@ -86,14 +86,14 @@ public final class Uuid {
   }
 
   private final Uuid root;
-  private final int id;
+  private final long id;
 
-  public Uuid(Uuid root, int id) {
+  public Uuid(Uuid root, long id) {
     this.root = root;
     this.id = id;
   }
 
-  public Uuid(int id) {
+  public Uuid(long id) {
     this.root = null;
     this.id = id;
   }
@@ -102,7 +102,7 @@ public final class Uuid {
     return root;
   }
 
-  public int id() {
+  public long id() {
     return id;
   }
 
@@ -188,7 +188,7 @@ public final class Uuid {
 
   private static Uuid fromString(final Uuid root, String[] tokens, int index) {
 
-    final int id = Integer.parseInt(tokens[index]);
+    final long id = Long.parseLong(tokens[index]);
 
     final Uuid link = new Uuid(root, id);
 

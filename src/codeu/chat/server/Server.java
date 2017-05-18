@@ -61,6 +61,7 @@ public final class Server {
 
   private Jedis db;
   private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+  private final String CONVERSATION_HASH = "CONVERSATION_HASH";
 
   public Server(final Uuid id, final byte[] secret, final Relay relay) {
 
@@ -70,13 +71,9 @@ public final class Server {
     this.controller = new Controller(id, model);
     this.relay = relay;
 
-    // Need to create a persistent instance of Jedis
-    // In other words, where does it write to?
-    // Close the instance of jedis when the server shuts down
-    // Open Jedis when server starts
-
     try {
       db = pool.getResource();
+      // db.flushAll();
       reloadPastConversations();
     } catch (Exception e) {
       LOG.error(e, "Could not load Jedis database");
@@ -134,18 +131,10 @@ public final class Server {
   }
 
   private void reloadPastConversations() {
-    Set<String> keys = db.keys("*");
-    for (String key: keys) {
-      if (db.exists(key)) {
-        System.out.println("**************************");
-        System.out.println("LOADING PAST CONVERSATION FROM DB");
-        System.out.println("**************************");
-        String[] convoDetails = db.lindex(key, 0).split("\n");
-        //Update the next line with Sherry's user persistence
-        Uuid owner = controller.newUser(convoDetails[0]).id;
-        String creationTime = convoDetails[1];
-        controller.newConversation(key, owner, db.lrange(key, 0, db.llen(key)));
-      }
+    Set<String> idList = db.smembers(CONVERSATION_HASH);
+    for (String convoId: idList) {
+        String[] convoDetails = db.lindex(convoId, 0).split("\n");
+        controller.newConversation(convoId, db.lrange(convoId, 0, db.llen(convoId)));
     }
   }
 
@@ -173,9 +162,13 @@ public final class Server {
         Adds to Jedis database. Key = conversation title, Value = List of all messages
         Each message has an author, message content, time (all separated on different lines)
       */
-      String authorName = model.userById().at(author).iterator().next().name;
-      String conversationTitle = model.conversationById().at(conversation).iterator().next().title;
-      db.rpush(conversationTitle, authorName + "\n" + content + "\n" + message.creation + "\n");
+      final String authorName = model.userById().at(author).iterator().next().name;
+      final long timeInMs = message.creation.inMs();
+      final String timeStr = Long.toString(timeInMs);
+      final String id = conversation.id() + "";
+
+      //Update db (Conversation id -> author, creation time, message id, message body)
+      db.rpush(id, authorName + "\n" + author + "\n" + timeStr + "\n" + message.id.id() + "\n" + content + "\n");
 
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
@@ -192,7 +185,13 @@ public final class Server {
       final Uuid owner = Uuid.SERIALIZER.read(in);
 
       final Conversation conversation = controller.newConversation(title, owner);
-      db.rpush(title, owner + "\n" + conversation.creation.toString());
+      final long timeInMs = Time.now().inMs();
+      final String timeStr = Long.toString(timeInMs);
+      final String conversationId = conversation.id.id() + "";
+
+      //UPDATE DB
+      db.sadd(CONVERSATION_HASH, conversationId);
+      db.rpush(conversationId, owner + "\n" + timeStr + "\n" + title);
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_CONVERSATION_RESPONSE);
       Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);
