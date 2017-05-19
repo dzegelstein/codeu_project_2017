@@ -24,9 +24,9 @@ public final class Store<KEY, VALUE> implements StoreAccessor<KEY, VALUE> {
   // To make the code simpler - use a dummy link for the first link in this
   // list. The root link is never read from. To avoid reading from this link
   // the "next" value is used more than the "this" or "current" reference.
-  private StoreLink<KEY, VALUE> rootLink = new StoreLink<>(null, null, null);
+  private final StoreLink<KEY, VALUE> rootLink = new StoreLink<>(null, null, null);
 
-  private NavigableMap<KEY, StoreLink<KEY, VALUE>> index;
+  private final NavigableMap<KEY, StoreLink<KEY, VALUE>> index;
 
   private final Comparator<KEY> comparator;
 

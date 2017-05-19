@@ -46,7 +46,26 @@ public final class RawControllerTest {
 
   @Test
   public void testAddUser() {
-    final User user = controller.newUser(userId, "user", Time.now());
+    Time time = Time.now();
+    User user = controller.newUser(userId, "user", time);
+
+    assertFalse(
+        "Check that user has a valid reference",
+        user == null);
+    assertTrue(
+        "Check that the user has the correct id",
+        Uuid.equals(user.id, userId));
+
+    user = controller.changeUserName(userId, "user", "user2", time);
+
+    assertFalse(
+        "Check that user has a valid reference",
+        user == null);
+    assertTrue(
+        "Check that the user has the correct id",
+        Uuid.equals(user.id, userId));
+
+    user = controller.deleteUser(userId, "user2", time);
 
     assertFalse(
         "Check that user has a valid reference",
@@ -58,7 +77,8 @@ public final class RawControllerTest {
 
   @Test
   public void testAddConversation() {
-    final User user = controller.newUser(userId, "user", Time.now());
+    Time time = Time.now();
+    User user = controller.newUser(userId, "user", time);
 
     assertFalse(
         "Check that user has a valid reference",
@@ -79,11 +99,21 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the conversation has the correct id",
         Uuid.equals(conversation.id, conversationId));
+
+    user = controller.deleteUser(userId, "user", time);
+
+    assertFalse(
+        "Check that user has a valid reference",
+        user == null);
+    assertTrue(
+        "Check that the user has the correct id",
+        Uuid.equals(user.id, userId));
   }
 
   @Test
   public void testAddMessage() {
-    final User user = controller.newUser(userId, "user", Time.now());
+    Time time = Time.now();
+    User user = controller.newUser(userId, "user", time);
 
     assertFalse(
         "Check that user has a valid reference",
@@ -118,5 +148,14 @@ public final class RawControllerTest {
     assertTrue(
         "Check that the message has the correct id",
         Uuid.equals(message.id, messageId));
+
+    user = controller.deleteUser(userId, "user", time);
+
+    assertFalse(
+        "Check that user has a valid reference",
+        user == null);
+    assertTrue(
+        "Check that the user has the correct id",
+        Uuid.equals(user.id, userId));
   }
 }

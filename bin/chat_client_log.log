@@ -3496,3 +3496,89 @@ May 18, 2017 1:37:58 PM codeu.chat.ClientMain main
 INFO: Creating client...
 May 18, 2017 1:37:58 PM codeu.chat.ClientMain main
 INFO: Created client
+May 19, 2017 12:10:08 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:10:08 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:10:08 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:10:08 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:10:15 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Request completed.
+May 19, 2017 12:10:15 PM codeu.chat.client.Controller deleteUser
+SEVERE: Response from server failed.
+May 19, 2017 12:10:27 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:10:27 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:10:27 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:10:27 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:10:42 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Request completed.
+May 19, 2017 12:10:42 PM codeu.chat.client.Controller deleteUser
+SEVERE: Response from server failed.
+May 19, 2017 12:10:46 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Request completed.
+May 19, 2017 12:10:46 PM codeu.chat.client.Controller deleteUser
+SEVERE: Response from server failed.
+May 19, 2017 12:11:29 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:11:30 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:11:30 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:11:30 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:11:51 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:11:51 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:11:51 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:11:51 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:17:49 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:17:49 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:17:49 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:17:49 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:18:35 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:18:35 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:18:35 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:18:35 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:21:22 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:21:22 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:21:22 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:21:22 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:21:41 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:21:41 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:21:41 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:21:41 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:25:17 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:25:17 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:25:17 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:25:17 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:25:21 PM codeu.chat.ClientMain main
+INFO: chat client has exited.
