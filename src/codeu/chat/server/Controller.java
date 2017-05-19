@@ -14,7 +14,7 @@
 
 package codeu.chat.server;
 
-import java.util.*;
+import java.util.Collection;
 
 import codeu.chat.common.BasicController;
 import codeu.chat.common.Conversation;

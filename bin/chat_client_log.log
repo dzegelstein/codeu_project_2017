@@ -3582,3 +3582,53 @@ May 19, 2017 12:25:17 PM codeu.chat.ClientMain main
 INFO: Created client
 May 19, 2017 12:25:21 PM codeu.chat.ClientMain main
 INFO: chat client has exited.
+May 19, 2017 12:28:48 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:28:48 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:28:48 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:28:48 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:28:52 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 19, 2017 12:28:52 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 19, 2017 12:28:52 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.2947945313]
+May 19, 2017 12:28:57 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Request completed.
+May 19, 2017 12:28:57 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Response completed.
+May 19, 2017 12:28:57 PM codeu.chat.client.ClientUser deleteUser
+INFO: User name changed, Name= "user" UUID=[UUID:33.2947945313]
+May 19, 2017 12:29:03 PM codeu.chat.client.Controller newUser
+INFO: newUser: Request completed.
+May 19, 2017 12:29:03 PM codeu.chat.client.Controller newUser
+INFO: newUser: Response completed.
+May 19, 2017 12:29:03 PM codeu.chat.client.ClientUser addUser
+INFO: New user complete, Name= "user" UUID=[UUID:33.374081442]
+May 19, 2017 12:29:07 PM codeu.chat.client.Controller changeUserName
+INFO: changeUserName: Request completed.
+May 19, 2017 12:29:07 PM codeu.chat.client.Controller changeUserName
+INFO: changeUserName: Response completed.
+May 19, 2017 12:29:07 PM codeu.chat.client.ClientUser changeUserName
+INFO: Username changed, New name= "user2" Old name = "user" UUID=[UUID:33.374081442]
+May 19, 2017 12:29:15 PM codeu.chat.ClientMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 12:29:15 PM codeu.chat.ClientMain main
+INFO: Starting chat client...
+May 19, 2017 12:29:15 PM codeu.chat.ClientMain main
+INFO: Creating client...
+May 19, 2017 12:29:15 PM codeu.chat.ClientMain main
+INFO: Created client
+May 19, 2017 12:29:19 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Request completed.
+May 19, 2017 12:29:19 PM codeu.chat.client.Controller deleteUser
+SEVERE: Response from server failed.
+May 19, 2017 12:29:22 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Request completed.
+May 19, 2017 12:29:22 PM codeu.chat.client.Controller deleteUser
+INFO: deleteUser: Response completed.
+May 19, 2017 12:29:22 PM codeu.chat.client.ClientUser deleteUser
+INFO: User name changed, Name= "user2" UUID=[UUID:33.374081442]

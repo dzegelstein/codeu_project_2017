@@ -53,8 +53,8 @@ public final class Server {
   private final Uuid id;
   private final byte[] secret;
 
-  private Model model = new Model();
-  private View view = new View(model);
+  private final Model model = new Model();
+  private final View view = new View(model);
   private final Controller controller;
 
   private final Relay relay;
