@@ -16,8 +16,6 @@ package codeu.chat.server;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Iterator;
-import java.util.Date;
 
 import codeu.chat.common.BasicController;
 import codeu.chat.common.Conversation;
@@ -56,16 +54,20 @@ public final class Controller implements RawController, BasicController {
     return newConversation(createId(), title, owner, Time.now());
   }
 
-  public Conversation newConversation(String convoId, List<String> pastConversationInfo) {
-    String[] parsedConversation = pastConversationInfo.get(0).split("\n");
-    //Get the Uuid based on Sherry's persistence
-    String owner = parsedConversation[1];
-    Uuid ownerId = Uuid.fromString(owner);
-    Long time = Long.parseLong(parsedConversation[1]);
-    Time creationTime = Time.fromMs(time);
-    String title = parsedConversation[2];
-    Uuid id = Uuid.fromString(convoId);
-    return newConversation(id, title, ownerId, creationTime, pastConversationInfo);
+  public Conversation newConversation(String convoId, List<String> pastConversationInfo) throws Exception {
+    try {
+      String[] parsedConversation = pastConversationInfo.get(0).split("\n");
+      String owner = parsedConversation[0];
+      Uuid ownerId = Uuid.parse(owner);
+      Long time = Long.parseLong(parsedConversation[1]);
+      Time creationTime = Time.fromMs(time);
+      String title = parsedConversation[2];
+      Uuid id = Uuid.parse(convoId);
+      return newConversation(id, title, ownerId, creationTime, pastConversationInfo);
+    } catch (Exception ex) {
+      LOG.error(ex, "Couldn't load messages in past conversation");
+      throw new Exception("Couldn't load past conversation");
+    }
   }
 
   @Override
@@ -204,36 +206,30 @@ public final class Controller implements RawController, BasicController {
     for (int i = 1; i < oldMessages.size(); i++) {
 
       String[] messageInfo = oldMessages.get(i).split("\n");
-      String authorName = messageInfo[0];
-      String authorId = messageInfo[1];
-      String messageSentTime = messageInfo[2];
-      String messageId = messageInfo[3];
-      String messageBody = messageInfo[4];
-
-      //Update with Sherry's user persistence
-      Iterator<User> authors = model.userByText().all().iterator();
-      User author = authors.next();
-
-      while (author != null) {
-        if (authorName.equals(author.name)) {
-          break;
-        }
-        if (authors.hasNext()) {
-          author = authors.next();
-        } else {
-          author = null;
-        }
-
-      }
-
-      if (author == null) {
-        author = newUser(authorName);
-      }
+      String authorIdString = messageInfo[0];
+      String messageSentTime = messageInfo[1];
+      String messageId = messageInfo[2];
+      String messageBody = messageInfo[3];
 
       Time creationTime = Time.fromMs(Long.parseLong(messageSentTime));
+      Uuid id, authorId;
 
-      Uuid id = Uuid.fromString(messageId);
-      newMessage(id, author.id, conversation.id, messageBody, creationTime);
+      try {
+        id = Uuid.parse(messageId);
+      } catch (Exception ex) {
+        LOG.error(ex, "Couldn't load message id while loading past conversation");
+        break;
+      }
+
+      try {
+        authorId = Uuid.parse(authorIdString);
+      } catch (Exception ex) {
+        LOG.error(ex, "Couldn't load message author while loading past convesation");
+        break;
+      }
+
+      newMessage(id, authorId, conversation.id, messageBody, creationTime);
+
     }
   }
 

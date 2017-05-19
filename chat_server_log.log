@@ -38674,3 +38674,2488 @@ INFO: Connection handled: ACCEPTED
 May 19, 2017 12:29:23 PM codeu.chat.server.Server$1 run
 INFO: Reading update from relay...
 >>>>>>> user-persistence
+May 19, 2017 11:10:42 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:18:58 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:18:59 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:18:59 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:18:59 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:18:59 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:19:07 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:19:07 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:19:07 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:19:07 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:19:07 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:19:12 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:19:17 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:19:22 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:17 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:25:17 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:25:17 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:25:17 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:17 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:22 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:27 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:32 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:34 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:34 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:34 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:34 PM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 19, 2017 11:25:34 PM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.2138259088] user.name=dani user.time=19-May-2017 23:25:34.347)
+May 19, 2017 11:25:34 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:34 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:34 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:34 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:34 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:37 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:41 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:41 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:41 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:41 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:42 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.2870652794]
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:44 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:44 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:47 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:48 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:48 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:48 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:48 PM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.4270981833]
+May 19, 2017 11:25:48 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:48 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:48 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:48 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:48 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:48 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:48 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:48 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:48 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.4270981833] range=5
+May 19, 2017 11:25:48 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:52 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:25:57 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:57 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:57 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:57 PM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 19, 2017 11:25:57 PM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.4182035919] user.name=destiny user.time=19-May-2017 23:25:57.449)
+May 19, 2017 11:25:57 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:57 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:25:57 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:25:57 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:25:57 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:25:57 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:03 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:04 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:04 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:04 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:04 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:08 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:11 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:11 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:11 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:11 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.4270981833] range=5
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:12 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:12 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.4270981833] range=5
+May 19, 2017 11:26:12 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:13 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:18 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:23 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:28 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:32 PM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.2494083008]
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:32 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.4270981833] range=1
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:32 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:32 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2494083008] range=5
+May 19, 2017 11:26:32 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:33 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:38 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:39 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:39 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:39 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:39 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:43 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:48 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:53 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:55 PM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.599183943]
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:55 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2494083008] range=1
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:26:55 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:26:55 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.599183943] range=5
+May 19, 2017 11:26:55 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:26:58 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:27:03 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:27:07 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:27:07 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:27:08 PM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NumberFormatException: For input string: "[UUID:33"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at java.lang.Long.parseLong(Long.java:631)
+	at codeu.chat.util.Uuid.parse(Uuid.java:201)
+	at codeu.chat.util.Uuid.parse(Uuid.java:196)
+	at codeu.chat.server.Controller.newConversation(Controller.java:61)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 19, 2017 11:27:08 PM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1424314502
+java.lang.Exception: Couldn't load past convesation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 19, 2017 11:27:08 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:27:08 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:27:08 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:30:38 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:30:38 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:30:38 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:30:38 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:30:38 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:34:36 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:34:36 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:34:37 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:34:37 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:34:37 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:34:42 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:34:47 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:34:52 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:34:57 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:02 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:07 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:07 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:07 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:07 PM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 19, 2017 11:35:07 PM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.2305052932] user.name=dani user.time=19-May-2017 23:35:07.182)
+May 19, 2017 11:35:07 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:07 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:07 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:07 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:07 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:07 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:11 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:11 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:11 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:11 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:12 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.1283982698]
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:13 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:13 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:17 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:17 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:17 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:17 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:17 PM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.2005194664]
+May 19, 2017 11:35:17 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:17 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:17 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:17 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:17 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:17 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:17 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:17 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:17 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2005194664] range=5
+May 19, 2017 11:35:17 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:21 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:21 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:21 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:21 PM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 19, 2017 11:35:21 PM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.1785251585] user.name=destiny user.time=19-May-2017 23:35:21.837)
+May 19, 2017 11:35:21 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:21 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:21 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:21 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:21 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:22 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:24 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:24 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:24 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:24 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:27 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:32 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:37 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:42 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:47 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:52 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:56 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:56 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:56 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:56 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:57 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2005194664] range=5
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:35:58 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:35:58 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2005194664] range=5
+May 19, 2017 11:35:58 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:36:02 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:07 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:12 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:17 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:22 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:27 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:32 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.4108652022]
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2005194664] range=1
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:36:34 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:36:34 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.4108652022] range=5
+May 19, 2017 11:36:34 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:36:37 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:42 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:47 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:52 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:36:57 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:02 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:07 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:12 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:17 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:22 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:27 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:32 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:37 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:42 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:46 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:37:46 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:37:46 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:37:46 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:37:47 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:52 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:37:54 PM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.1851387844]
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:37:54 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.4108652022] range=1
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:37:54 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:37:54 PM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.1851387844] range=5
+May 19, 2017 11:37:54 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:37:57 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:02 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:04 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:38:04 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:38:04 PM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.io.IOException: ID value '-1989914364' is too large to be an unsigned 32 bit integer
+	at codeu.chat.util.Uuid.parse(Uuid.java:204)
+	at codeu.chat.util.Uuid.parse(Uuid.java:196)
+	at codeu.chat.server.Controller.newConversation(Controller.java:61)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 19, 2017 11:38:04 PM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation 1283982698
+java.lang.Exception: Couldn't load past convesation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 19, 2017 11:38:04 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:38:04 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:04 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:38:09 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:14 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:19 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:24 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:29 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:34 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:39 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:44 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:49 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:54 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:38:59 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:04 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:09 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:14 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:19 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:24 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:29 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:34 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:39 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:44 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:49 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:54 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:39:59 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:53:17 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:53:17 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:53:17 PM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.io.IOException: ID value '-1989914364' is too large to be an unsigned 32 bit integer
+	at codeu.chat.util.Uuid.parse(Uuid.java:204)
+	at codeu.chat.util.Uuid.parse(Uuid.java:196)
+	at codeu.chat.server.Controller.newConversation(Controller.java:61)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 19, 2017 11:53:17 PM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation 1283982698
+java.lang.Exception: Couldn't load past convesation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 19, 2017 11:53:17 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:53:17 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:53:17 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:59:28 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:59:28 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:59:28 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:59:28 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:59:28 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:59:48 PM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 19, 2017 11:59:48 PM codeu.chat.ServerMain main
+INFO: Starting server...
+May 19, 2017 11:59:48 PM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 19, 2017 11:59:48 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:59:48 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:59:53 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 19, 2017 11:59:57 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:59:57 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:59:57 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:59:57 PM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 19, 2017 11:59:57 PM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.555143771] user.name=dani user.time=19-May-2017 23:59:57.851)
+May 19, 2017 11:59:57 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:59:57 PM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 19, 2017 11:59:57 PM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 19, 2017 11:59:57 PM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 19, 2017 11:59:57 PM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 19, 2017 11:59:58 PM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:02 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:02 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:02 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:02 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:03 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.2756390861]
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:06 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:06 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:08 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:09 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:09 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:09 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:09 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.2963594305]
+May 20, 2017 12:00:09 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:09 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:09 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:09 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:09 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:09 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:09 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:09 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:09 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2963594305] range=5
+May 20, 2017 12:00:09 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:13 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:15 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:15 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:15 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:15 AM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 20, 2017 12:00:15 AM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.4066372599] user.name=destiny user.time=20-May-2017 00:00:15.812)
+May 20, 2017 12:00:15 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:15 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:15 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:15 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:15 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:18 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2963594305] range=5
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:19 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2963594305] range=5
+May 20, 2017 12:00:19 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:23 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.2954982705]
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2963594305] range=1
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:24 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:24 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2954982705] range=5
+May 20, 2017 12:00:24 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:28 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:33 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:36 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:36 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:36 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:36 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:38 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:43 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.1665320227]
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2954982705] range=1
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:00:47 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:00:47 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.1665320227] range=5
+May 20, 2017 12:00:47 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:00:48 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:53 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:00:53 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:00:53 AM codeu.chat.server.Controller addMessagesToConversation
+SEVERE: Couldn't load message author while loading past convesation
+java.lang.NumberFormatException: For input string: "[UUID:33"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at java.lang.Long.parseLong(Long.java:631)
+	at codeu.chat.util.Uuid.fromString(Uuid.java:221)
+	at codeu.chat.util.Uuid.parse(Uuid.java:196)
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:225)
+	at codeu.chat.server.Controller.newConversation(Controller.java:200)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:00:53 AM codeu.chat.server.Controller addMessagesToConversation
+SEVERE: Couldn't load message author while loading past convesation
+java.lang.NumberFormatException: For input string: "[UUID:33"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at java.lang.Long.parseLong(Long.java:631)
+	at codeu.chat.util.Uuid.fromString(Uuid.java:221)
+	at codeu.chat.util.Uuid.parse(Uuid.java:196)
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:225)
+	at codeu.chat.server.Controller.newConversation(Controller.java:200)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:00:53 AM codeu.chat.server.Controller addMessagesToConversation
+SEVERE: Couldn't load message author while loading past convesation
+java.lang.NumberFormatException: For input string: "[UUID:33"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at java.lang.Long.parseLong(Long.java:631)
+	at codeu.chat.util.Uuid.fromString(Uuid.java:221)
+	at codeu.chat.util.Uuid.parse(Uuid.java:196)
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:225)
+	at codeu.chat.server.Controller.newConversation(Controller.java:200)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:00:53 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:00:53 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:00:53 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:02:58 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:02:58 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:02:58 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:02:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:02:58 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:10 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:03:10 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:03:11 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:03:11 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:11 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:16 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:21 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:26 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:31 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:32 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:32 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:32 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:32 AM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 20, 2017 12:03:32 AM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.3786404596] user.name=dani user.time=20-May-2017 00:03:32.631)
+May 20, 2017 12:03:32 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:32 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:32 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:32 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:32 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:36 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:37 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:37 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:37 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:37 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.3151923490]
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:40 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:40 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:41 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:03:42 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:42 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:42 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:42 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.3011205509]
+May 20, 2017 12:03:42 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:42 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:42 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:42 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:42 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:42 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:03:42 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:42 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:03:42 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3011205509] range=5
+May 20, 2017 12:03:42 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:03:48 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:03:48 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:03:48 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:231)
+	at codeu.chat.server.Controller.newConversation(Controller.java:200)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:03:48 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1143043806
+java.lang.Exception: Couldn't load past convesation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:03:48 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:03:48 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:03:48 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:05:31 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:05:31 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:05:31 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:231)
+	at codeu.chat.server.Controller.newConversation(Controller.java:200)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:05:31 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1143043806
+java.lang.Exception: Couldn't load past convesation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:05:31 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:05:31 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:05:31 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:05:36 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:12:18 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:12:19 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:12:19 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:12:19 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:12:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:12:40 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:12:40 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:12:40 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:12:40 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:12:40 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:12:45 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:12:50 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:12:53 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:12:53 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:12:53 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:12:53 AM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 20, 2017 12:12:53 AM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.3813515975] user.name=dani user.time=20-May-2017 00:12:53.992)
+May 20, 2017 12:12:53 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:12:54 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:12:54 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:12:54 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:12:54 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:12:55 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:12:58 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:12:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:12:58 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:12:58 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:00 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.2949701408]
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:13:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:13:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:05 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:13:05 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:13:05 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:13:05 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.2739963538]
+May 20, 2017 12:13:05 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:05 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:13:05 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:13:05 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:13:05 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:05 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:13:05 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:13:05 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:13:05 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.2739963538] range=5
+May 20, 2017 12:13:05 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:13:06 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:13:10 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:13:10 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:13:10 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:232)
+	at codeu.chat.server.Controller.newConversation(Controller.java:201)
+	at codeu.chat.server.Controller.newConversation(Controller.java:67)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:13:10 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:70)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:13:10 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:13:10 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:13:10 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:15:26 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:15:26 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:15:26 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:232)
+	at codeu.chat.server.Controller.newConversation(Controller.java:201)
+	at codeu.chat.server.Controller.newConversation(Controller.java:67)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:15:26 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:70)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:15:26 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:15:26 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:15:26 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:15:36 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:15:36 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:15:36 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:15:36 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:15:36 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:15:41 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:17:12 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:17:12 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:17:13 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:232)
+	at codeu.chat.server.Controller.newConversation(Controller.java:200)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:17:13 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:17:13 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:17:13 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:17:13 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:19:29 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:19:29 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:19:30 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:235)
+	at codeu.chat.server.Controller.newConversation(Controller.java:200)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:19:30 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:19:30 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:19:30 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:19:30 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:20:58 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:20:58 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:20:58 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:238)
+	at codeu.chat.server.Controller.newConversation(Controller.java:203)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:20:58 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:20:58 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:20:58 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:20:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:24:39 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:24:39 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:24:39 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.newConversationHelper(Controller.java:183)
+	at codeu.chat.server.Controller.newConversation(Controller.java:201)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:24:39 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:24:39 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:24:39 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:24:39 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:24:44 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:27:17 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:27:17 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:27:17 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.newConversationHelper(Controller.java:184)
+	at codeu.chat.server.Controller.newConversation(Controller.java:202)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:27:17 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:166)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:27:17 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:27:17 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:27:17 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:27:22 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:27:27 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:35:50 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:35:50 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:35:50 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.newConversationHelper(Controller.java:183)
+	at codeu.chat.server.Controller.newConversation(Controller.java:201)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:167)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:35:50 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:167)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:35:50 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:35:50 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:35:50 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:35:55 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:36:00 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:36:05 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:36:10 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:36:15 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:36:20 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:36:25 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:37:17 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:37:17 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:37:17 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:240)
+	at codeu.chat.server.Controller.newConversation(Controller.java:205)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:167)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:37:17 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:167)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:37:17 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:37:17 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:37:17 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:43:45 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:43:45 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:43:45 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:240)
+	at codeu.chat.server.Controller.newConversation(Controller.java:205)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:167)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:43:45 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:167)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:43:45 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:43:45 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:43:45 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:44:38 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:44:38 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:44:39 AM codeu.chat.server.Controller newConversation
+SEVERE: Couldn't load messages in past conversation
+java.lang.NullPointerException
+	at codeu.chat.server.Controller.addMessagesToConversation(Controller.java:240)
+	at codeu.chat.server.Controller.newConversation(Controller.java:205)
+	at codeu.chat.server.Controller.newConversation(Controller.java:66)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:168)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:44:39 AM codeu.chat.server.Server reloadPastConversations
+SEVERE: Could not load conversation -1345265888
+java.lang.Exception: Couldn't load past conversation
+	at codeu.chat.server.Controller.newConversation(Controller.java:69)
+	at codeu.chat.server.Server.reloadPastConversations(Server.java:168)
+	at codeu.chat.server.Server.<init>(Server.java:79)
+	at codeu.chat.ServerMain.runServer(ServerMain.java:92)
+	at codeu.chat.ServerMain.main(ServerMain.java:74)
+
+May 20, 2017 12:44:39 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:44:39 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:44:39 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:48:47 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:48:47 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:48:47 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:48:47 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:48:47 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:48:58 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:48:58 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:48:58 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:48:58 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:48:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:08 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:49:08 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:49:08 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:49:08 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:08 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:13 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:18 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:23 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:28 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:33 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:38 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:43 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:48 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:53 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:53 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:49:53 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:53 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:49:53 AM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 20, 2017 12:49:53 AM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.2081223480] user.name=dani user.time=20-May-2017 00:49:53.730)
+May 20, 2017 12:49:53 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:49:53 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:49:53 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:53 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:49:53 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:49:55 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:49:55 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:55 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:49:55 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.2522523879]
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:49:58 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:49:58 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:50:00 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:50:00 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:50:00 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:50:00 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.3178005964]
+May 20, 2017 12:50:00 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:50:00 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:50:00 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:50:00 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:50:00 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:50:00 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:50:00 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:50:00 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:50:00 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3178005964] range=5
+May 20, 2017 12:50:00 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:50:03 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:50:03 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:50:04 AM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.2522523879]
+May 20, 2017 12:50:04 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.3178005964]
+May 20, 2017 12:50:04 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:50:04 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:50:04 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:50:09 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:18 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:51:19 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:51:19 AM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.2522523879]
+May 20, 2017 12:51:19 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.3178005964]
+May 20, 2017 12:51:19 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:51:19 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:19 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:24 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:29 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:34 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:39 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:44 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:47 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:51:47 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:47 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:51:47 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:51:49 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:50 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:51:50 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:50 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:51:50 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:51:53 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:51:53 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:53 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:51:53 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:51:54 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:51:54 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3178005964] range=5
+May 20, 2017 12:51:54 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:51:59 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:01 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.1156103234]
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:01 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3178005964] range=1
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:01 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.1156103234] range=5
+May 20, 2017 12:52:01 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:04 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:09 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:14 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:19 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:24 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:24 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:24 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:24 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:24 AM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 20, 2017 12:52:24 AM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.3698127309] user.name=destiny user.time=20-May-2017 00:52:24.637)
+May 20, 2017 12:52:24 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:24 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:24 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:24 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:24 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:27 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:27 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:27 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:27 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3178005964] range=5
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:28 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:28 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3178005964] range=5
+May 20, 2017 12:52:28 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:29 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.3588522855]
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.1156103234] range=1
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:32 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:32 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3588522855] range=5
+May 20, 2017 12:52:32 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:34 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:39 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:40 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:40 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:40 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:40 AM codeu.chat.server.Server onMessage
+INFO: ADDING USER
+May 20, 2017 12:52:40 AM codeu.chat.server.Server addToDatabase
+INFO: newUser success (user.id=[UUID:33.3187355175] user.name=sherry user.time=20-May-2017 00:52:40.632)
+May 20, 2017 12:52:40 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:40 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:40 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:40 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:40 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:44 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:46 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:46 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:46 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:46 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:49 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:49 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:49 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:49 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:49 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:50 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:50 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3178005964] range=5
+May 20, 2017 12:52:50 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:54 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:56 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.1461450133]
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:56 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3588522855] range=1
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:52:56 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:52:56 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.1461450133] range=5
+May 20, 2017 12:52:56 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:01 AM codeu.chat.ServerMain main
+INFO: ============================= START OF LOG =============================
+May 20, 2017 12:53:01 AM codeu.chat.ServerMain main
+INFO: Starting server...
+May 20, 2017 12:53:01 AM codeu.chat.server.Controller newConversationHelper
+INFO: Conversation added: [UUID:33.2522523879]
+May 20, 2017 12:53:01 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.3178005964]
+May 20, 2017 12:53:01 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.1156103234]
+May 20, 2017 12:53:01 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.3588522855]
+May 20, 2017 12:53:01 AM codeu.chat.server.Controller newMessage
+INFO: Message added: [UUID:33.1461450133]
+May 20, 2017 12:53:01 AM codeu.chat.ServerMain runServer
+INFO: Created server.
+May 20, 2017 12:53:01 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:53:01 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:06 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:53:11 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:53:11 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:53:11 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:11 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:53:11 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:16 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:53:16 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:53:16 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:16 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:53:16 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:20 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:53:20 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:20 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:53:20 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Connection established.
+May 20, 2017 12:53:21 AM codeu.chat.ServerMain runServer
+INFO: Established connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Handling connection...
+May 20, 2017 12:53:21 AM codeu.chat.server.View getMessages
+INFO: in getMessage: UUID=[UUID:33.3178005964] range=5
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$2 run
+INFO: Connection handled: ACCEPTED
+May 20, 2017 12:53:21 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
+May 20, 2017 12:53:26 AM codeu.chat.server.Server$1 run
+INFO: Reading update from relay...
