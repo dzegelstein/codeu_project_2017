@@ -50,6 +50,8 @@ public final class Chat {
     System.out.println("   current   - show current user, conversation, message.");
     System.out.println("User commands:");
     System.out.println("   u-add <name>  - add a new user.");
+    System.out.println("   u-del <name>  - delete a user.");
+    System.out.println("   u-change-name <old name> <new name> - change the name of a user.");
     System.out.println("   u-list-all    - list all users known to system.");
     System.out.println("Conversation commands:");
     System.out.println("   c-add <title>    - add a new conversation.");
@@ -111,6 +113,27 @@ public final class Chat {
       } else {
         addUser(tokenScanner.nextLine().trim());
       }
+    } else if (token.equals("u-del")) {
+
+      if (!tokenScanner.hasNext()) {
+        System.out.println("ERROR: Username not supplied.");
+      } else {
+        deleteUser(tokenScanner.nextLine().trim());
+      }
+    } else if (token.equals("u-change-name")){
+      if (!tokenScanner.hasNext()) {
+        tokenScanner.close();
+        System.out.println("ERROR: Old username not supplied.");
+        return;
+      }
+      String oldName = tokenScanner.next();
+      if (!tokenScanner.hasNext()) {
+        System.out.println("ERROR: New username not supplied.");
+        tokenScanner.close();
+        return;
+      }
+      String newName = tokenScanner.nextLine().trim();
+      changeUserName(oldName, newName);
 
     } else if (token.equals("u-list-all")) {
 
@@ -268,6 +291,16 @@ public final class Chat {
   // Add a new user.
   private void addUser(String name) {
     clientContext.user.addUser(name);
+  }
+
+  // Delete a user.
+  private void deleteUser(String name) {
+    clientContext.user.deleteUser(name);
+  }
+
+  // Change the name of a user.
+  private void changeUserName(String oldName, String newName) {
+    clientContext.user.changeUserName(oldName, newName);
   }
 
   // Display all users known to server.

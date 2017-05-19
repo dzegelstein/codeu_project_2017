@@ -90,6 +90,56 @@ public class Controller implements BasicController {
   }
 
   @Override
+  public User deleteUser(String name) {
+    User response = null;
+
+    try (final Connection connection = source.connect()) {
+
+      Serializers.INTEGER.write(connection.out(), NetworkCode.DELETE_USER_REQUEST);
+      Serializers.STRING.write(connection.out(), name);
+      LOG.info("deleteUser: Request completed.");
+
+      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.DELETE_USER_RESPONSE) {
+        response = Serializers.nullable(User.SERIALIZER).read(connection.in());
+        LOG.info("deleteUser: Response completed.");
+      } else {
+        LOG.error("Response from server failed.");
+      }
+    } catch (Exception ex) {
+      System.out.println("ERROR: Exception during call on server. Check log for details.");
+      LOG.error(ex, "Exception during call on server.");
+    }
+
+    return response;
+  }
+
+  @Override
+  public User changeUserName(String oldName, String newName) {
+    User response = null;
+
+    try (final Connection connection = source.connect()) {
+
+      Serializers.INTEGER.write(connection.out(), NetworkCode.CHANGE_USERNAME_REQUEST);
+      Serializers.STRING.write(connection.out(), oldName);
+      Serializers.STRING.write(connection.out(), newName);
+      LOG.info("changeUserName: Request completed.");
+
+      if (Serializers.INTEGER.read(connection.in()) == NetworkCode.CHANGE_USERNAME_RESPONSE) {
+        response = Serializers.nullable(User.SERIALIZER).read(connection.in());
+        LOG.info("changeUserName: Response completed.");
+      } else {
+        LOG.error("Response from server failed.");
+      }
+    } catch (Exception ex) {
+      System.out.println("ERROR: Exception during call on server. Check log for details.");
+      LOG.error(ex, "Exception during call on server.");
+    }
+
+    return response;
+  }
+
+
+  @Override
   public Conversation newConversation(String title, Uuid owner)  {
 
     Conversation response = null;

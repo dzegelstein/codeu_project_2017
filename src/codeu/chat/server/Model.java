@@ -39,7 +39,7 @@ public final class Model {
 
       if (a != null && b == null) { return 1; }
 
-      final int order = Integer.compare(a.id(), b.id());
+      final int order = Long.compare(a.id(), b.id());
       return order == 0 ? compare(a.root(), b.root()) : order;
     }
   };
@@ -74,6 +74,16 @@ public final class Model {
     userById.insert(user.id, user);
     userByTime.insert(user.creation, user);
     userByText.insert(user.name, user);
+  }
+
+  public boolean delete(User user) {
+      return userById.delete(user.id) &&
+             userByTime.delete(user.creation) &&
+             userByText.delete(user.name);
+  }
+
+  public User getUserByName(String name) {
+    return userByText.first(name);
   }
 
   public StoreAccessor<Uuid, User> userById() {

@@ -102,6 +102,50 @@ public final class ClientUser {
     }
   }
 
+  public void deleteUser(String name) {
+    final boolean validInputs = isValidName(name);
+
+    final User user = (validInputs) ? controller.deleteUser(name) : null;
+
+    if (user == null) {
+      System.out.format("Error: user not deleted - %s.\n",
+          (validInputs) ? "server failure" : "bad input value");
+    } else {
+      if (hasCurrent() && user.id.equals(current.id)) {
+        System.out.println("You are currently signed in as this user." +
+                            "You will now be signed out.");
+        if (!signOutUser()) {
+          System.out.println("Error: sign out failed (not signed in?)");
+        }
+      }
+      LOG.info("User name changed, Name= \"%s\" UUID=%s", user.name, user.id);
+      updateUsers();
+    }
+  }
+
+  public void changeUserName(String oldName,String newName) {
+    final boolean validInputs = isValidName(newName) && isValidName(oldName);
+
+    final User user =
+      (validInputs) ? controller.changeUserName(oldName, newName) : null;
+
+    if (user == null) {
+      System.out.format("Error: username not changed - %s.\n",
+          (validInputs) ? "server failure" : "bad input value");
+    } else {
+      if (hasCurrent() && user.id.equals(current.id)) {
+        System.out.println("You are currently signed in as this user." +
+                            "You will now be signed out.");
+        if (!signOutUser()) {
+          System.out.println("Error: sign out failed (not signed in?)");
+        }
+      }
+      LOG.info("Username changed, New name= \"%s\" Old name = \"%s\" UUID=%s",
+                user.name, oldName, user.id);
+      updateUsers();
+    }
+  }
+
   public void showAllUsers() {
     updateUsers();
     for (final User u : usersByName.all()) {

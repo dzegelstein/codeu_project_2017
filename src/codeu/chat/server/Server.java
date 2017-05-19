@@ -23,6 +23,7 @@ import java.net.Socket;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
+import java.util.Map;
 
 import codeu.chat.common.Conversation;
 import codeu.chat.common.ConversationSummary;
@@ -73,6 +74,7 @@ public final class Server {
 
     try {
       db = pool.getResource();
+      loadUsers();
       // db.flushAll();
       reloadPastConversations();
     } catch (Exception e) {
@@ -102,6 +104,28 @@ public final class Server {
     });
   }
 
+  // add previously stored users to model
+  private void loadUsers() {
+    Set<String> idKeys = db.hkeys("nameHash");
+
+    for (String key : idKeys) {
+        String name = db.hget("nameHash", key);
+        String timeStr = db.hget("timeHash", key);
+
+        if (timeStr == null)
+          LOG.info("Error: user id with no creation time");
+        else {
+
+          Uuid id = Uuid.fromString(key);
+          long timeInMs = Long.parseLong(timeStr);
+          Time creationTime = new Time(timeInMs);
+
+          User user = controller.newUser(id, name, creationTime);
+          model.add(user);
+        }
+    }
+  }
+
   public void handleConnection(final Connection connection) {
     timeline.scheduleNow(new Runnable() {
       @Override
@@ -125,6 +149,7 @@ public final class Server {
           connection.close();
         } catch (Exception ex) {
           LOG.error(ex, "Exception while closing connection.");
+
         }
       }
     });
@@ -143,7 +168,6 @@ public final class Server {
     final int type = Serializers.INTEGER.read(in);
 
     if (type == NetworkCode.NEW_MESSAGE_REQUEST) {
-
       final Uuid author = Uuid.SERIALIZER.read(in);
       final Uuid conversation = Uuid.SERIALIZER.read(in);
       final String content = Serializers.STRING.read(in);
@@ -174,9 +198,60 @@ public final class Server {
 
       final String name = Serializers.STRING.read(in);
 
+      if (db.hexists("nameHashRev", name)) {
+        LOG.info(
+          "addUser fail - username taken (user.name = %s)",
+          name);
+        return false;
+      }
+
+      LOG.info("ADDING USER");
+
       final User user = controller.newUser(name);
 
+      boolean addSuccess = addToDatabase(name, user);
+      if (!addSuccess) return false;
+
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
+      Serializers.nullable(User.SERIALIZER).write(out, user);
+
+    } else if (type == NetworkCode.DELETE_USER_REQUEST) {
+      final String name = Serializers.STRING.read(in);
+
+      LOG.info("DELETING USER");
+
+      boolean deleteSuccess = deleteFromDatabase(name);
+      if (!deleteSuccess) return false;
+
+      final User user = controller.deleteUser(name);
+
+      Serializers.INTEGER.write(out, NetworkCode.DELETE_USER_RESPONSE);
+      Serializers.nullable(User.SERIALIZER).write(out, user);
+
+    } else if (type == NetworkCode.CHANGE_USERNAME_REQUEST){
+      final String oldName = Serializers.STRING.read(in);
+      final String newName = Serializers.STRING.read(in);
+
+      if (db.hexists("nameHashRev", newName)) {
+        LOG.info(
+          "changeUserName fail - username taken (user.name = %s)",
+          newName);
+        return false;
+      }
+
+      LOG.info("DELETING OLD USER");
+
+      boolean deleteSuccess = deleteFromDatabase(oldName);
+      if (!deleteSuccess) return false;
+
+      final User user = controller.changeUserName(oldName, newName);
+
+      LOG.info("ADDING NEW USER");
+
+      boolean addSuccess = addToDatabase(newName, user);
+      if (!addSuccess) return false;
+
+      Serializers.INTEGER.write(out, NetworkCode.CHANGE_USERNAME_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
 
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
@@ -282,16 +357,76 @@ public final class Server {
       final Collection<Message> messages = view.getMessages(rootMessage, range);
 
       Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE);
+      // the type "NO_MESSAGE" so that the client still gets something.
       Serializers.collection(Message.SERIALIZER).write(out, messages);
 
     } else {
 
       // In the case that the message was not handled make a dummy message with
-      // the type "NO_MESSAGE" so that the client still gets something.
 
       Serializers.INTEGER.write(out, NetworkCode.NO_MESSAGE);
 
     }
+
+    return true;
+  }
+
+  private boolean addToDatabase(String name, User user) {
+    final Time creationTime = user.creation;
+    final Uuid id = user.id;
+    final String idStr = id.toStrippedString();
+    final long timeInMs = creationTime.inMs();
+    final String timeStr = Long.toString(timeInMs);
+
+    // hash table for storing ids, creation times
+    db.hset("timeHash", idStr, timeStr);
+    // hash table with ids for keys, usernames for values
+    db.hset("nameHash", idStr, name);
+    // hash table with usernames for keys, ids for values
+    db.hset("nameHashRev", name, idStr);
+
+    LOG.info(
+         "newUser success (user.id=%s user.name=%s user.time=%s)",
+         id,
+         name,
+         creationTime);
+    return true;
+  }
+
+  private boolean deleteFromDatabase(String name) {
+    if (!db.hexists("nameHashRev", name)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=NULL user.name=%s)",
+        name);
+      return false;
+    }
+
+    final String idStr = db.hget("nameHashRev", name);
+    Uuid id = Uuid.fromString(idStr);
+
+    if (!db.hget("nameHash", idStr).equals(name)) {
+      LOG.info(
+        "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
+        id, name);
+      return false;
+    }
+
+    String timeStr = db.hget("timeHash", idStr);
+    long timeInMs = Long.parseLong(timeStr);
+    Time creationTime = new Time(timeInMs);
+
+    if (!db.hget("timeHash", idStr).equals(timeStr)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+        id,
+        name,
+        creationTime);
+        return false;
+    }
+
+    db.hdel("nameHash", idStr);
+    db.hdel("timeHash", idStr);
+    db.hdel("nameHashRev", name);
 
     return true;
   }
@@ -349,4 +484,5 @@ public final class Server {
       }
     };
   }
+
 }

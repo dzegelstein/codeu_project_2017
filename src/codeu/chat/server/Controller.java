@@ -33,7 +33,7 @@ public final class Controller implements RawController, BasicController {
 
   private final static Logger.Log LOG = Logger.newLog(Controller.class);
 
-  private final Model model;
+  private Model model;
   private final Uuid.Generator uuidGenerator;
 
   public Controller(Uuid serverId, Model model) {
@@ -117,32 +117,60 @@ public final class Controller implements RawController, BasicController {
     return message;
   }
 
-  @Override
   public User newUser(Uuid id, String name, Time creationTime) {
 
-    User user = null;
+     User user = null;
 
-    if (isIdFree(id)) {
+     if (isIdInUse(id)) {
+       LOG.info(
+           "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
+           id,
+           name,
+           creationTime);
+     }
+     else {
+       user = new User(id, name, creationTime);
+       model.add(user);
+     }
 
-      user = new User(id, name, creationTime);
-      model.add(user);
+     return user;
+  }
 
-      LOG.info(
-          "newUser success (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-
-    } else {
-
-      LOG.info(
-          "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-    }
-
+  @Override
+  public User deleteUser(String name) {
+    User user = model.getUserByName(name);
+    user = deleteUser(user.id, user.name, user.creation);
     return user;
+  }
+
+  // delete user from model, database
+  @Override
+  public User deleteUser(Uuid id, String name, Time creationTime){
+    // update model
+    User user = new User(id, name, creationTime);
+    boolean deleteSuccess = model.delete(user);
+    if (!deleteSuccess) return null;
+    return user;
+  }
+
+  @Override
+  public User changeUserName(String oldName, String newName) {
+    User user = model.getUserByName(oldName);
+    if (user != null) user = changeUserName(user.id, user.name, newName, user.creation);
+    return user;
+  }
+
+  @Override
+  public User changeUserName(Uuid id, String oldName, String newName, Time creationTime) {
+    // update model
+    User oldUser = new User(id, oldName, creationTime);
+    User newUser = new User(id, newName, creationTime);
+
+    boolean deleteSuccess = model.delete(oldUser);
+    if (!deleteSuccess) return null;
+    model.add(newUser);
+
+    return newUser;
   }
 
   private Conversation newConversationHelper(Uuid id, String title, Uuid owner, Time creationTime) {

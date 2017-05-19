@@ -36,6 +36,18 @@ public interface RawController {
   // use, the call will fail and null will be returned.
   User newUser(Uuid id, String name, Time creationTime);
 
+  // CHANGE USER NAME
+  //
+  // Change the name of a user in the database.  If the old user does not match
+  // a user in the database, the call will fail.
+  User changeUserName(Uuid id, String oldName, String newName, Time creationTime);
+
+  // DELETE USER
+  //
+  // Remove a specific user from the database with a specific id.
+  // If the user does not match a user in the database, the call will fail.
+  User deleteUser(Uuid id, String name, Time creationTime);
+
   // NEW CONVERSATION
   //
   // Add a new conversation to the model with a specific if. If the id is

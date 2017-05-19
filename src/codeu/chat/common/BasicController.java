@@ -42,6 +42,18 @@ public interface BasicController {
   //   is undefined.
   User newUser(String name);
 
+  // DELETE USER
+  //
+  // Remove a specific user from the database.  If the user does not match
+  // a user in the database, the call will fail.
+  User deleteUser(String name);
+
+  // CHANGE USERNAME
+  //
+  // Change the name of a user in the database.  If the old user does not match
+  // a user in the database, the call will fail.
+  User changeUserName(String oldName, String newName);
+
   // NEW CONVERSATION
   //
   //  Create a new conversation on the server. All parameters must be
