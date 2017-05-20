@@ -113,16 +113,19 @@ public final class Server {
     for (String key : idKeys) {
         String name = db.hget("nameHash", key);
         String timeStr = db.hget("timeHash", key);
+        String password = db.hget("passwordHash", key);
 
         if (timeStr == null)
           LOG.info("Error: user id with no creation time");
+        else if (password == null)
+          LOG.info("Error: user id with no password");
         else {
 
           Uuid id = Uuid.fromString(key);
           long timeInMs = Long.parseLong(timeStr);
           Time creationTime = new Time(timeInMs);
 
-          User user = controller.newUser(id, name, creationTime);
+          User user = controller.newUser(id, name, creationTime, password);
           model.add(user);
         }
     }
@@ -179,6 +182,7 @@ public final class Server {
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
       final String name = Serializers.STRING.read(in);
+      final String password = Serializers.STRING.read(in);
 
       if (db.hexists("nameHashRev", name)) {
         LOG.info(
@@ -187,11 +191,9 @@ public final class Server {
         return false;
       }
 
-      LOG.info("ADDING USER");
+      final User user = controller.newUser(name, password);
 
-      final User user = controller.newUser(name);
-
-      boolean addSuccess = addToDatabase(name, user);
+      boolean addSuccess = addToDatabase(name, user, password);
       if (!addSuccess) return false;
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
@@ -199,8 +201,6 @@ public final class Server {
 
     } else if (type == NetworkCode.DELETE_USER_REQUEST) {
       final String name = Serializers.STRING.read(in);
-
-      LOG.info("DELETING USER");
 
       boolean deleteSuccess = deleteFromDatabase(name);
       if (!deleteSuccess) return false;
@@ -214,24 +214,10 @@ public final class Server {
       final String oldName = Serializers.STRING.read(in);
       final String newName = Serializers.STRING.read(in);
 
-      if (db.hexists("nameHashRev", newName)) {
-        LOG.info(
-          "changeUserName fail - username taken (user.name = %s)",
-          newName);
-        return false;
-      }
-
-      LOG.info("DELETING OLD USER");
-
-      boolean deleteSuccess = deleteFromDatabase(oldName);
-      if (!deleteSuccess) return false;
+      boolean changeSuccess = changeNameInDatabase(oldName, newName);
+      if (!changeSuccess) return false;
 
       final User user = controller.changeUserName(oldName, newName);
-
-      LOG.info("ADDING NEW USER");
-
-      boolean addSuccess = addToDatabase(newName, user);
-      if (!addSuccess) return false;
 
       Serializers.INTEGER.write(out, NetworkCode.CHANGE_USERNAME_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
@@ -325,8 +311,8 @@ public final class Server {
       Serializers.collection(Message.SERIALIZER).write(out, messages);
 
     } else if (type == NetworkCode.GET_MESSAGES_BY_RANGE_REQUEST) {
-
       final Uuid rootMessage = Uuid.SERIALIZER.read(in);
+
       final int range = Serializers.INTEGER.read(in);
 
       final Collection<Message> messages = view.getMessages(rootMessage, range);
@@ -346,7 +332,7 @@ public final class Server {
     return true;
   }
 
-  private boolean addToDatabase(String name, User user) {
+  private boolean addToDatabase(String name, User user, String password) {
     final Time creationTime = user.creation;
     final Uuid id = user.id;
     final String idStr = id.toStrippedString();
@@ -359,6 +345,8 @@ public final class Server {
     db.hset("nameHash", idStr, name);
     // hash table with usernames for keys, ids for values
     db.hset("nameHashRev", name, idStr);
+    // hash table for storing ids, passwords
+    db.hset("passwordHash", idStr, password);
 
     LOG.info(
          "newUser success (user.id=%s user.name=%s user.time=%s)",
@@ -402,6 +390,40 @@ public final class Server {
     db.hdel("nameHash", idStr);
     db.hdel("timeHash", idStr);
     db.hdel("nameHashRev", name);
+    db.hdel("passwordHash", idStr);
+
+    return true;
+  }
+
+  private boolean changeNameInDatabase(String oldName, String newName) {
+    if (db.hexists("nameHashRev", newName)) {
+      LOG.info(
+        "changeUserName fail - username taken (user.name = %s)",
+        newName);
+      return false;
+    }
+
+    if (!db.hexists("nameHashRev", oldName)) {
+      LOG.info(
+        "changeUserName fail - old user not in database (user.id=NULL user.name=%s)",
+        oldName);
+      return false;
+    }
+
+    final String idStr = db.hget("nameHashRev", oldName);
+    Uuid id = Uuid.fromString(idStr);
+
+    if (!db.hget("nameHash", idStr).equals(oldName)) {
+      LOG.info(
+        "changeUserName fail - database mismatch error (user.id=%s user.name=%s)",
+        id, oldName);
+      return false;
+    }
+
+    db.hdel("nameHashRev", oldName);
+    db.hset("nameHashRev", newName, idStr);
+
+    db.hset("nameHash", idStr, newName);
 
     return true;
   }
@@ -415,7 +437,7 @@ public final class Server {
     User user = model.userById().first(relayUser.id());
 
     if (user == null) {
-      user = controller.newUser(relayUser.id(), relayUser.text(), relayUser.time());
+      user = controller.newUser(relayUser.id(), relayUser.text(), relayUser.time(), "");
     }
 
     Conversation conversation = model.conversationById().first(relayConversation.id());

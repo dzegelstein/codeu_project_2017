@@ -35,9 +35,12 @@ public final class Chat {
 
   private final ClientContext clientContext;
 
+  private final PasswordReader passwordReader;
+
   // Constructor - sets up the Chat Application
   public Chat(Controller controller, View view) {
     clientContext = new ClientContext(controller, view);
+    passwordReader = new PasswordReader();
   }
 
   // Print help message.
@@ -91,7 +94,10 @@ public final class Chat {
       if (!tokenScanner.hasNext()) {
         System.out.println("ERROR: No user name supplied.");
       } else {
-        signInUser(tokenScanner.nextLine().trim());
+        String name = tokenScanner.nextLine().trim();
+        String pwd = passwordReader.read("Enter password: ");
+
+        signInUser(name, pwd);
       }
 
     } else if (token.equals("sign-out")) {
@@ -111,7 +117,16 @@ public final class Chat {
       if (!tokenScanner.hasNext()) {
         System.out.println("ERROR: Username not supplied.");
       } else {
-        addUser(tokenScanner.nextLine().trim());
+        String name = tokenScanner.nextLine().trim();
+
+        String pwd = passwordReader.read("Enter a new password: ");
+        String confirmPwd = passwordReader.read("Please confirm your password: ");
+
+        if (!confirmPwd.equals(pwd))
+          System.out.println("ERROR: " +
+                             "Password and confirmed password do not match.");
+        else
+          addUser(name, pwd);
       }
     } else if (token.equals("u-del")) {
 
@@ -216,9 +231,9 @@ public final class Chat {
   }
 
   // Sign in a user.
-  private void signInUser(String name) {
-    if (!clientContext.user.signInUser(name)) {
-      System.out.println("Error: sign in failed (invalid name?)");
+  private void signInUser(String name, String password) {
+    if (!clientContext.user.signInUser(name, password)) {
+      System.out.println("Error: sign in failed (invalid name/password?)");
     }
   }
 
@@ -289,8 +304,8 @@ public final class Chat {
   }
 
   // Add a new user.
-  private void addUser(String name) {
-    clientContext.user.addUser(name);
+  private void addUser(String name, String password) {
+    clientContext.user.addUser(name, password);
   }
 
   // Delete a user.

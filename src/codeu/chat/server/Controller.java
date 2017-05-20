@@ -43,8 +43,8 @@ public final class Controller implements RawController, BasicController {
   }
 
   @Override
-  public User newUser(String name) {
-    return newUser(createId(), name, Time.now());
+  public User newUser(String name, String password) {
+    return newUser(createId(), name, Time.now(), password);
   }
 
   @Override
@@ -101,7 +101,7 @@ public final class Controller implements RawController, BasicController {
     return message;
   }
 
-  public User newUser(Uuid id, String name, Time creationTime) {
+  public User newUser(Uuid id, String name, Time creationTime, String password) {
 
      User user = null;
 
@@ -113,7 +113,7 @@ public final class Controller implements RawController, BasicController {
            creationTime);
      }
      else {
-       user = new User(id, name, creationTime);
+       user = new User(id, name, creationTime, password);
        model.add(user);
      }
 
@@ -123,15 +123,14 @@ public final class Controller implements RawController, BasicController {
   @Override
   public User deleteUser(String name) {
     User user = model.getUserByName(name);
-    user = deleteUser(user.id, user.name, user.creation);
+    user = deleteUser(user);
     return user;
   }
 
   // delete user from model, database
   @Override
-  public User deleteUser(Uuid id, String name, Time creationTime){
+  public User deleteUser(User user){
     // update model
-    User user = new User(id, name, creationTime);
     boolean deleteSuccess = model.delete(user);
     if (!deleteSuccess) return null;
     return user;
@@ -139,16 +138,20 @@ public final class Controller implements RawController, BasicController {
 
   @Override
   public User changeUserName(String oldName, String newName) {
-    User user = model.getUserByName(oldName);
-    if (user != null) user = changeUserName(user.id, user.name, newName, user.creation);
-    return user;
+    User oldUser = model.getUserByName(oldName);
+    User newUser = null;
+    if (oldUser != null)
+      newUser = changeUserName(oldUser, newName);
+    return newUser;
   }
 
   @Override
-  public User changeUserName(Uuid id, String oldName, String newName, Time creationTime) {
+  public User changeUserName(User oldUser, String newName) {
     // update model
-    User oldUser = new User(id, oldName, creationTime);
-    User newUser = new User(id, newName, creationTime);
+    User newUser = new User(oldUser.id,
+                            newName,
+                            oldUser.creation,
+                            oldUser.password);
 
     boolean deleteSuccess = model.delete(oldUser);
     if (!deleteSuccess) return null;

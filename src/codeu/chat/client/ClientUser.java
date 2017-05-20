@@ -65,13 +65,13 @@ public final class ClientUser {
     return current;
   }
 
-  public boolean signInUser(String name) {
+  public boolean signInUser(String name, String password) {
     updateUsers();
 
     final User prev = current;
     if (name != null) {
       final User newCurrent = usersByName.first(name);
-      if (newCurrent != null) {
+      if (newCurrent != null && password.equals(newCurrent.password)) {
         current = newCurrent;
       }
     }
@@ -88,10 +88,10 @@ public final class ClientUser {
     printUser(current);
   }
 
-  public void addUser(String name) {
+  public void addUser(String name, String password) {
     final boolean validInputs = isValidName(name);
 
-    final User user = (validInputs) ? controller.newUser(name) : null;
+    final User user = (validInputs) ? controller.newUser(name, password) : null;
 
     if (user == null) {
       System.out.format("Error: user not created - %s.\n",
@@ -112,7 +112,7 @@ public final class ClientUser {
           (validInputs) ? "server failure" : "bad input value");
     } else {
       if (hasCurrent() && user.id.equals(current.id)) {
-        System.out.println("You are currently signed in as this user." +
+        System.out.println("You are currently signed in as this user. " +
                             "You will now be signed out.");
         if (!signOutUser()) {
           System.out.println("Error: sign out failed (not signed in?)");
