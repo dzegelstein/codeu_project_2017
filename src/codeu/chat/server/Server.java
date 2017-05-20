@@ -62,6 +62,7 @@ public final class Server {
 
   private Jedis db;
   private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+  private final String CONVERSATION_HASH = "CONVERSATION_HASH";
 
   public Server(final Uuid id, final byte[] secret, final Relay relay) {
 
@@ -71,14 +72,10 @@ public final class Server {
     this.controller = new Controller(id, model);
     this.relay = relay;
 
-    // Need to create a persistent instance of Jedis
-    // In other words, where does it write to?
-    // Close the instance of jedis when the server shuts down
-    // Open Jedis when server starts
     try {
       db = pool.getResource();
-
       loadUsers();
+      reloadPastConversations();
     } catch (Exception e) {
       LOG.error(e, "Could not load Jedis database");
     }
@@ -120,13 +117,16 @@ public final class Server {
         else if (password == null)
           LOG.info("Error: user id with no password");
         else {
+          try {
+            Uuid id = Uuid.parse(key);
+            long timeInMs = Long.parseLong(timeStr);
+            Time creationTime = new Time(timeInMs);
 
-          Uuid id = Uuid.fromString(key);
-          long timeInMs = Long.parseLong(timeStr);
-          Time creationTime = new Time(timeInMs);
-
-          User user = controller.newUser(id, name, creationTime, password);
-          model.add(user);
+            User user = controller.newUser(id, name, creationTime, password);
+            model.add(user);
+          } catch (Exception ex) {
+            LOG.error(ex, "Failed to load user");
+          }
         }
     }
   }
@@ -160,6 +160,19 @@ public final class Server {
     });
   }
 
+  private void reloadPastConversations() {
+    Set<String> idList = db.smembers(CONVERSATION_HASH);
+    for (String convoId: idList) {
+        String[] convoDetails = db.lindex(convoId, 0).split("\n");
+        try {
+          controller.newConversation(convoId, db.lrange(convoId, 0, db.llen(convoId)));
+        } catch (Exception ex) {
+          LOG.error(ex, "Could not load conversation " + convoId);
+        }
+
+    }
+  }
+
   private boolean onMessage(InputStream in, OutputStream out) throws IOException {
 
     final int type = Serializers.INTEGER.read(in);
@@ -178,6 +191,18 @@ public final class Server {
           author,
           conversation,
           message.id));
+
+      /*
+        Adds to Jedis database. Key = conversation title, Value = List of all messages
+        Each message has an author, message content, time (all separated on different lines)
+      */
+      // final String authorName = model.userById().at(author).iterator().next().name;
+      final long timeInMs = message.creation.inMs();
+      final String timeStr = Long.toString(timeInMs);
+      final String id = conversation.toStrippedString();
+
+      //Update db (Conversation id -> author, creation time, message id, message body)
+      db.rpush(id, author.toStrippedString() + "\n" + timeStr + "\n" + message.id.toStrippedString() + "\n" + content + "\n");
 
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
@@ -228,6 +253,13 @@ public final class Server {
       final Uuid owner = Uuid.SERIALIZER.read(in);
 
       final Conversation conversation = controller.newConversation(title, owner);
+      final long timeInMs = Time.now().inMs();
+      final String timeStr = Long.toString(timeInMs);
+      final String conversationId = conversation.id.toStrippedString() + "";
+
+      //UPDATE DB
+      db.sadd(CONVERSATION_HASH, conversationId);
+      db.rpush(conversationId, owner.toStrippedString() + "\n" + timeStr + "\n" + title);
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_CONVERSATION_RESPONSE);
       Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);
@@ -365,32 +397,38 @@ public final class Server {
     }
 
     final String idStr = db.hget("nameHashRev", name);
-    Uuid id = Uuid.fromString(idStr);
+    try {
+      Uuid id = Uuid.parse(idStr);
 
-    if (!db.hget("nameHash", idStr).equals(name)) {
-      LOG.info(
-        "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
-        id, name);
+      if (!db.hget("nameHash", idStr).equals(name)) {
+        LOG.info(
+          "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
+          id, name);
+        return false;
+      }
+
+      String timeStr = db.hget("timeHash", idStr);
+      long timeInMs = Long.parseLong(timeStr);
+      Time creationTime = new Time(timeInMs);
+
+      if (!db.hget("timeHash", idStr).equals(timeStr)) {
+        LOG.info(
+          "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+          id,
+          name,
+          creationTime);
+          return false;
+      }
+
+      db.hdel("nameHash", idStr);
+      db.hdel("timeHash", idStr);
+      db.hdel("nameHashRev", name);
+      db.hdel("passwordHash", idStr);
+
+    } catch (Exception ex) {
+      LOG.error(ex, "Exception in deleting user.");
       return false;
     }
-
-    String timeStr = db.hget("timeHash", idStr);
-    long timeInMs = Long.parseLong(timeStr);
-    Time creationTime = new Time(timeInMs);
-
-    if (!db.hget("timeHash", idStr).equals(timeStr)) {
-      LOG.info(
-        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
-        id,
-        name,
-        creationTime);
-        return false;
-    }
-
-    db.hdel("nameHash", idStr);
-    db.hdel("timeHash", idStr);
-    db.hdel("nameHashRev", name);
-    db.hdel("passwordHash", idStr);
 
     return true;
   }
@@ -424,8 +462,6 @@ public final class Server {
     db.hset("nameHashRev", newName, idStr);
 
     db.hset("nameHash", idStr, newName);
-
-    return true;
   }
 
   private void onBundle(Relay.Bundle bundle) {

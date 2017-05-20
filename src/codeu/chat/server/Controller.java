@@ -15,10 +15,12 @@
 package codeu.chat.server;
 
 import java.util.Collection;
+import java.util.List;
 
 import codeu.chat.common.BasicController;
 import codeu.chat.common.Conversation;
 import codeu.chat.common.Message;
+import codeu.chat.common.RandomUuidGenerator;
 import codeu.chat.common.RawController;
 import codeu.chat.common.User;
 import codeu.chat.util.Logger;
@@ -50,6 +52,22 @@ public final class Controller implements RawController, BasicController {
   @Override
   public Conversation newConversation(String title, Uuid owner) {
     return newConversation(createId(), title, owner, Time.now());
+  }
+
+  public Conversation newConversation(String convoId, List<String> pastConversationInfo) throws Exception {
+    try {
+      String[] parsedConversation = pastConversationInfo.get(0).split("\n");
+      String owner = parsedConversation[0];
+      Uuid ownerId = Uuid.parse(owner);
+      Long time = Long.parseLong(parsedConversation[1]);
+      Time creationTime = Time.fromMs(time);
+      String title = parsedConversation[2];
+      Uuid id = Uuid.parse(convoId);
+      return newConversation(id, title, ownerId, creationTime, pastConversationInfo);
+    } catch (Exception ex) {
+      LOG.error(ex, "Couldn't load messages in past conversation");
+      throw new Exception("Couldn't load past conversation");
+    }
   }
 
   @Override
@@ -160,9 +178,7 @@ public final class Controller implements RawController, BasicController {
     return newUser;
   }
 
-  @Override
-  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime) {
-
+  private Conversation newConversationHelper(Uuid id, String title, Uuid owner, Time creationTime) {
     final User foundOwner = model.userById().first(owner);
 
     Conversation conversation = null;
@@ -175,6 +191,49 @@ public final class Controller implements RawController, BasicController {
     }
 
     return conversation;
+  }
+
+  @Override
+  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime) {
+    return newConversationHelper(id, title, owner, creationTime);
+  }
+
+  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime, List<String> oldMessages) {
+    Conversation conversation = newConversationHelper(id, title, owner, creationTime);
+    addMessagesToConversation(conversation, oldMessages);
+    return conversation;
+  }
+
+  private void addMessagesToConversation(Conversation conversation, List<String> oldMessages) {
+    //Starts at 1 because the first value in the array is info about conversation
+    for (int i = 1; i < oldMessages.size(); i++) {
+
+      String[] messageInfo = oldMessages.get(i).split("\n");
+      String authorIdString = messageInfo[0];
+      String messageSentTime = messageInfo[1];
+      String messageId = messageInfo[2];
+      String messageBody = messageInfo[3];
+
+      Time creationTime = Time.fromMs(Long.parseLong(messageSentTime));
+      Uuid id, authorId;
+
+      try {
+        id = Uuid.parse(messageId);
+      } catch (Exception ex) {
+        LOG.error(ex, "Couldn't load message id while loading past conversation");
+        break;
+      }
+
+      try {
+        authorId = Uuid.parse(authorIdString);
+      } catch (Exception ex) {
+        LOG.error(ex, "Couldn't load message author while loading past convesation");
+        break;
+      }
+
+      newMessage(id, authorId, conversation.id, messageBody, creationTime);
+
+    }
   }
 
   private Uuid createId() {
