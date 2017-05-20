@@ -15,9 +15,6 @@ public final class PasswordReader {
         console = System.console();
         if (console != null) {
           password = new String(console.readPassword(prompt));
-          /******* IMPORTANT!!! GET RID OF THIS LATER *******/
-          System.out.println("Password is: " + password);
-          /**************************************************/
         }
       }
       catch(Exception ex) {

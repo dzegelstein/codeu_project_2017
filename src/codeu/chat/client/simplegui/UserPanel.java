@@ -151,8 +151,8 @@ public final class UserPanel extends JPanel {
       public void actionPerformed(ActionEvent e) {
         if (userList.getSelectedIndex() != -1) {
           final String data = userList.getSelectedValue();
-          clientContext.user.signInUser(data, "");
-          userSignedInLabel.setText("Hello " + data);
+          if (clientContext.user.signInUser(data, ""))
+            userSignedInLabel.setText("Hello " + data);
         }
       }
     });
