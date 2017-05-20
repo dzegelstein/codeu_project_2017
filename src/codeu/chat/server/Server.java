@@ -117,16 +117,17 @@ public final class Server {
         else if (password == null)
           LOG.info("Error: user id with no password");
         else {
+          Uuid id = null;
           try {
-            Uuid id = Uuid.parse(key);
-            long timeInMs = Long.parseLong(timeStr);
-            Time creationTime = new Time(timeInMs);
-
-            User user = controller.newUser(id, name, creationTime, password);
-            model.add(user);
-          } catch (Exception ex) {
-            LOG.error(ex, "Failed to load user");
+            id = Uuid.parse(key);
+          } catch (IOException ex) {
+            LOG.info("Error in parsing id from database");
           }
+          long timeInMs = Long.parseLong(timeStr);
+          Time creationTime = new Time(timeInMs);
+
+          User user = controller.newUser(id, name, creationTime, password);
+          model.add(user);
         }
     }
   }
@@ -397,38 +398,38 @@ public final class Server {
     }
 
     final String idStr = db.hget("nameHashRev", name);
+    Uuid id = null;
     try {
-      Uuid id = Uuid.parse(idStr);
-
-      if (!db.hget("nameHash", idStr).equals(name)) {
-        LOG.info(
-          "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
-          id, name);
-        return false;
-      }
-
-      String timeStr = db.hget("timeHash", idStr);
-      long timeInMs = Long.parseLong(timeStr);
-      Time creationTime = new Time(timeInMs);
-
-      if (!db.hget("timeHash", idStr).equals(timeStr)) {
-        LOG.info(
-          "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-          return false;
-      }
-
-      db.hdel("nameHash", idStr);
-      db.hdel("timeHash", idStr);
-      db.hdel("nameHashRev", name);
-      db.hdel("passwordHash", idStr);
-
-    } catch (Exception ex) {
-      LOG.error(ex, "Exception in deleting user.");
+      id = Uuid.parse(idStr);
+    } catch (IOException ex) {
+      LOG.info("Failure to parse id from database");
       return false;
     }
+
+    if (!db.hget("nameHash", idStr).equals(name)) {
+      LOG.info(
+        "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
+        id, name);
+      return false;
+    }
+
+    String timeStr = db.hget("timeHash", idStr);
+    long timeInMs = Long.parseLong(timeStr);
+    Time creationTime = new Time(timeInMs);
+
+    if (!db.hget("timeHash", idStr).equals(timeStr)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+        id,
+        name,
+        creationTime);
+        return false;
+    }
+
+    db.hdel("timeHash", idStr);
+    db.hdel("nameHash", idStr);
+    db.hdel("nameHashRev", name);
+    db.hdel("passwordHash", idStr);
 
     return true;
   }
@@ -449,7 +450,12 @@ public final class Server {
     }
 
     final String idStr = db.hget("nameHashRev", oldName);
-    Uuid id = Uuid.fromString(idStr);
+    try {
+      Uuid id = Uuid.parse(idStr);
+    } catch (IOException ex) {
+      LOG.info("changeUserName fail - failure in parsing id from database");
+      return false;
+    }
 
     if (!db.hget("nameHash", idStr).equals(oldName)) {
       LOG.info(
@@ -460,8 +466,9 @@ public final class Server {
 
     db.hdel("nameHashRev", oldName);
     db.hset("nameHashRev", newName, idStr);
-
     db.hset("nameHash", idStr, newName);
+
+    return true;
   }
 
   private void onBundle(Relay.Bundle bundle) {
