@@ -74,6 +74,10 @@ public final class Server {
 
     try {
       db = pool.getResource();
+<<<<<<< HEAD
+=======
+      // db.flushAll();
+>>>>>>> conversation-persistence
       loadUsers();
       reloadPastConversations();
     } catch (Exception e) {
@@ -117,6 +121,7 @@ public final class Server {
         else if (password == null)
           LOG.info("Error: user id with no password");
         else {
+<<<<<<< HEAD
           Uuid id = null;
           try {
             id = Uuid.parse(key);
@@ -128,6 +133,18 @@ public final class Server {
 
           User user = controller.newUser(id, name, creationTime, password);
           model.add(user);
+=======
+          try {
+            Uuid id = Uuid.parse(key);
+            long timeInMs = Long.parseLong(timeStr);
+            Time creationTime = new Time(timeInMs);
+
+            User user = controller.newUser(id, name, creationTime);
+            model.add(user);
+          } catch (Exception ex) {
+            LOG.error(ex, "Failed to load user");
+          }
+>>>>>>> conversation-persistence
         }
     }
   }
@@ -398,6 +415,7 @@ public final class Server {
     }
 
     final String idStr = db.hget("nameHashRev", name);
+<<<<<<< HEAD
     Uuid id = null;
     try {
       id = Uuid.parse(idStr);
@@ -405,27 +423,32 @@ public final class Server {
       LOG.info("Failure to parse id from database");
       return false;
     }
+=======
+    try {
+      Uuid id = Uuid.parse(idStr);
+>>>>>>> conversation-persistence
 
-    if (!db.hget("nameHash", idStr).equals(name)) {
-      LOG.info(
-        "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
-        id, name);
-      return false;
-    }
-
-    String timeStr = db.hget("timeHash", idStr);
-    long timeInMs = Long.parseLong(timeStr);
-    Time creationTime = new Time(timeInMs);
-
-    if (!db.hget("timeHash", idStr).equals(timeStr)) {
-      LOG.info(
-        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
-        id,
-        name,
-        creationTime);
+      if (!db.hget("nameHash", idStr).equals(name)) {
+        LOG.info(
+          "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
+          id, name);
         return false;
-    }
+      }
 
+      String timeStr = db.hget("timeHash", idStr);
+      long timeInMs = Long.parseLong(timeStr);
+      Time creationTime = new Time(timeInMs);
+
+      if (!db.hget("timeHash", idStr).equals(timeStr)) {
+        LOG.info(
+          "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+          id,
+          name,
+          creationTime);
+          return false;
+      }
+
+<<<<<<< HEAD
     db.hdel("timeHash", idStr);
     db.hdel("nameHash", idStr);
     db.hdel("nameHashRev", name);
@@ -467,8 +490,18 @@ public final class Server {
     db.hdel("nameHashRev", oldName);
     db.hset("nameHashRev", newName, idStr);
     db.hset("nameHash", idStr, newName);
+=======
+      db.hdel("nameHash", idStr);
+      db.hdel("timeHash", idStr);
+      db.hdel("nameHashRev", name);
 
-    return true;
+      return true;
+    } catch (Exception ex) {
+      LOG.error(ex, "Couldn't delete user");
+      return false;
+    }
+>>>>>>> conversation-persistence
+
   }
 
   private void onBundle(Relay.Bundle bundle) {
