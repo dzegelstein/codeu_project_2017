@@ -14,8 +14,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_MACHINE="localhost@2007"
-
+LOCAL_MACHINE=$1
+PORT=$2
 cd './bin'
 
-java codeu.chat.SimpleGuiClientMain "$LOCAL_MACHINE"
+java codeu.chat.SimpleGuiClientMain "${LOCAL_MACHINE}@${PORT}"
