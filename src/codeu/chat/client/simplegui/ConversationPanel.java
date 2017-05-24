@@ -111,6 +111,7 @@ public final class ConversationPanel extends JPanel {
     // User clicks Conversations Update button.
     updateButton.addActionListener(new ActionListener() {
       @Override
+      //Maybe change this to be a timer actions
       public void actionPerformed(ActionEvent e) {
         ConversationPanel.this.getAllConversations(listModel);
       }

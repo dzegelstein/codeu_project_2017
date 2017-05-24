@@ -39,6 +39,7 @@ public final class MessagePanel extends JPanel {
   public MessagePanel(ClientContext clientContext) {
     super(new GridBagLayout());
     this.clientContext = clientContext;
+ 
     initialize();
   }
 
@@ -154,9 +155,24 @@ public final class MessagePanel extends JPanel {
         } else if (!clientContext.conversation.hasCurrent()) {
           JOptionPane.showMessageDialog(MessagePanel.this, "You must select a conversation.");
         } else {
-          final String messageText = (String) JOptionPane.showInputDialog(
-              MessagePanel.this, "Enter message:", "Add Message", JOptionPane.PLAIN_MESSAGE,
-              null, null, "");
+        	String messageText = null;
+        	JTextArea area = new JTextArea(5, 10);
+        	JScrollPane pane = new JScrollPane(area);
+        	int result = JOptionPane.showOptionDialog(
+        	                 MessagePanel.this,
+        	                 new Object[] {"Enter Message", pane},
+        	                 "Title",
+        	                 JOptionPane.OK_CANCEL_OPTION,
+        	                 JOptionPane.PLAIN_MESSAGE,
+        	                 null, null, "");
+
+        	if (result == JOptionPane.OK_OPTION) {
+        	    messageText = area.getText();
+        	    
+        	} 
+//          final String messageText = (String) JOptionPane.showInputDialog(
+//              MessagePanel.this, "Enter message:", "Add Message", JOptionPane.PLAIN_MESSAGE,
+//              null, null, "");
           if (messageText != null && messageText.length() > 0) {
             clientContext.message.addMessage(
                 clientContext.user.getCurrent().id,
