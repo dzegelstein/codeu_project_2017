@@ -45,12 +45,14 @@ if [ "$RELAY_ADDRESS" == "" ] ; then
   java -cp ./third_party/jedis-2.9.0.jar:./bin codeu.chat.ServerMain \
       "$TEAM_ID" \
       "$TEAM_SECRET" \
-      "$PORT"
+      "$PORT" \
+      "$PERSISTENT_DIR"
 else
   java -cp ./third_party/jedis-2.9.0.jar:./bin codeu.chat.ServerMain \
       "$TEAM_ID" \
       "$TEAM_SECRET" \
       "$PORT" \
+      "$PERSISTENT_DIR" \
       "$RELAY_ADDRESS"
 fi
 

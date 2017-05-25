@@ -57,6 +57,7 @@ public final class Chat {
     System.out.println("   c-select <index> - select conversation from list.");
     System.out.println("Message commands:");
     System.out.println("   m-add <body>     - add a new message to the current conversation.");
+    System.out.println("                    - end line with \\ to create a multiline message.");
     System.out.println("   m-list-all       - list all messages in the current conversation.");
     System.out.println("   m-next <index>   - index of next message to view.");
     System.out.println("   m-show <count>   - show next <count> messages.");
@@ -149,14 +150,14 @@ public final class Chat {
         } else {
         	//check to see if it's a multi-line message.
         	String current_message = tokenScanner.nextLine().trim();
-        	String slashes = "\\\\";
+        	String slashes = "\\";
         	String whole_message = "";
-        	if((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()).equals(slashes))){
+        	if((current_message.length() >= 1) && (current_message.substring(current_message.length() - 1, current_message.length()).equals(slashes))){
         		//It is a multiline message. 
         		while ((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()).equals(slashes))){
         			//Append the next line to the message.
         			
-        			System.out.println("Write the next line of the message. End with \\\\ to add an additional line.");
+        			System.out.println("Write the next line of the message. End with \\ to add an additional line.");
         			whole_message += current_message.substring(0, current_message.length()-2) + "\n";
         			//Grab next line. 
         			current_message = lineScanner.nextLine().trim();
