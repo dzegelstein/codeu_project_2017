@@ -196,11 +196,14 @@ public final class MessagePanel extends JPanel {
     for (final Message m : clientContext.message.getConversationContents(conversation)) {
       // Display author name if available.  Otherwise display the author UUID.
       final String authorName = clientContext.user.getName(m.author);
-
+      String content_html = m.content.replace("\n", "<br>") + "<br>";
+      String author_html = (authorName == null) ? m.author.toString() + "<br>" : authorName + "<br>";
+      String jlabel_content = "<html>" + author_html + m.creation + "<br>" + content_html + "<br></html>";
+      
       final String displayString = String.format("%s: [%s]: %s",
-          ((authorName == null) ? m.author : authorName), m.creation, m.content);
-
-      messageListModel.addElement(displayString);
+          ((authorName == null) ? m.author : authorName), m.creation, content_html);
+      JLabel single_message = new JLabel(jlabel_content, SwingConstants.CENTER);
+      messageListModel.addElement(jlabel_content);
     }
   }
 }
