@@ -158,9 +158,10 @@ public final class MessagePanel extends JPanel {
         	String messageText = null;
         	JTextArea area = new JTextArea(5, 10);
         	JScrollPane pane = new JScrollPane(area);
+        	// Displays a text area for a paragraph of input / multiple lines of input. 
         	int result = JOptionPane.showOptionDialog(
         	                 MessagePanel.this,
-        	                 new Object[] {"Enter Message", pane},
+        	                 new Object[] {"Enter Message:", pane},
         	                 "Title",
         	                 JOptionPane.OK_CANCEL_OPTION,
         	                 JOptionPane.PLAIN_MESSAGE,
@@ -170,9 +171,6 @@ public final class MessagePanel extends JPanel {
         	    messageText = area.getText();
         	    
         	} 
-//          final String messageText = (String) JOptionPane.showInputDialog(
-//              MessagePanel.this, "Enter message:", "Add Message", JOptionPane.PLAIN_MESSAGE,
-//              null, null, "");
           if (messageText != null && messageText.length() > 0) {
             clientContext.message.addMessage(
                 clientContext.user.getCurrent().id,
@@ -196,14 +194,12 @@ public final class MessagePanel extends JPanel {
     for (final Message m : clientContext.message.getConversationContents(conversation)) {
       // Display author name if available.  Otherwise display the author UUID.
       final String authorName = clientContext.user.getName(m.author);
+      //Convert the message to an HTML message so that multi-line messages are possible. 
       String content_html = m.content.replace("\n", "<br>") + "<br>";
       String author_html = (authorName == null) ? m.author.toString() + "<br>" : authorName + "<br>";
-      String jlabel_content = "<html>" + author_html + m.creation + "<br>" + content_html + "<br></html>";
-      
-      final String displayString = String.format("%s: [%s]: %s",
-          ((authorName == null) ? m.author : authorName), m.creation, content_html);
-      JLabel single_message = new JLabel(jlabel_content, SwingConstants.CENTER);
-      messageListModel.addElement(jlabel_content);
+      String displayString = "<html>" + author_html + m.creation + "<br>" + content_html + "<br></html>";
+  
+      messageListModel.addElement(displayString);
     }
   }
 }
