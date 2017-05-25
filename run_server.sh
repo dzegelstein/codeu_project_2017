@@ -39,6 +39,7 @@ if [[ "${TEAM_ID}" == "" || "${TEAM_SECRET}" == "" || "${PORT}" == "" || "${PERS
   exit 1
 fi
 
+
 # cd './bin'
 if [ "$RELAY_ADDRESS" == "" ] ; then
   java -cp ./third_party/jedis-2.9.0.jar:./bin codeu.chat.ServerMain \
@@ -51,3 +52,5 @@ else
       "$TEAM_SECRET" \
       "$PORT" \
       "$RELAY_ADDRESS"
+fi
+
