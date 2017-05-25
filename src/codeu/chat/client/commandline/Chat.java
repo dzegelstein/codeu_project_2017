@@ -157,7 +157,6 @@ public final class Chat {
         		while ((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()).equals(slashes))){
         			//Append the next line to the message.
         			
-        			System.out.println("Write the next line of the message. End with \\ to add an additional line.");
         			whole_message += current_message.substring(0, current_message.length()-2) + "\n";
         			//Grab next line. 
         			current_message = lineScanner.nextLine().trim();
