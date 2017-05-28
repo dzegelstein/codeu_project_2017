@@ -98,11 +98,17 @@ public final class UserPanel extends JPanel {
 
     final JButton userUpdateButton = new JButton("Update");
     final JButton userSignInButton = new JButton("Sign In");
+    final JButton userSignOutButton = new JButton("Sign Out");
     final JButton userAddButton = new JButton("Add");
+    final JButton userDeleteButton = new JButton("Delete");
+    final JButton userChangeNameButton = new JButton("Change Username");
 
     buttonPanel.add(userUpdateButton);
     buttonPanel.add(userSignInButton);
+    buttonPanel.add(userSignOutButton);
     buttonPanel.add(userAddButton);
+    buttonPanel.add(userDeleteButton);
+    buttonPanel.add(userChangeNameButton);
 
     // Placement of title, list panel, buttons, and current user panel.
     titlePanelC.gridx = 0;
@@ -151,9 +157,23 @@ public final class UserPanel extends JPanel {
       public void actionPerformed(ActionEvent e) {
         if (userList.getSelectedIndex() != -1) {
           final String data = userList.getSelectedValue();
-          if (clientContext.user.signInUser(data, ""))
+          String password = getPasswordFromDialog("Please enter your password:");
+          if (clientContext.user.signInUser(data, password))
             userSignedInLabel.setText("Hello " + data);
+          else
+            JOptionPane.showMessageDialog(UserPanel.this,
+                                          "Sign in failure",
+                                          "Error",
+                                          JOptionPane.ERROR_MESSAGE);
         }
+      }
+    });
+
+    userSignOutButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        clientContext.user.signOutUser();
+        userSignedInLabel.setText("not signed in");
       }
     });
 
@@ -164,8 +184,44 @@ public final class UserPanel extends JPanel {
             UserPanel.this, "Enter user name:", "Add User", JOptionPane.PLAIN_MESSAGE,
             null, null, "");
         if (s != null && s.length() > 0) {
-          clientContext.user.addUser(s, "");
+          String password = getPasswordFromDialog("Please enter a new password:");
+          String confirmPwd = getPasswordFromDialog("Please confirm your password:");
+          if (!confirmPwd.equals(password)) {
+            JOptionPane.showMessageDialog(UserPanel.this,
+                                          "Passwords do not match",
+                                          "Password Confirmation Error",
+                                          JOptionPane.ERROR_MESSAGE);
+          }
+          clientContext.user.addUser(s, password);
           UserPanel.this.getAllUsers(listModel);
+        }
+      }
+    });
+
+    userDeleteButton.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+          if (userList.getSelectedIndex() != -1) {
+            final String data = userList.getSelectedValue();
+            clientContext.user.deleteUser(data);
+            UserPanel.this.getAllUsers(listModel);
+          }
+        }
+    });
+
+    userChangeNameButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (userList.getSelectedIndex() != -1) {
+          final String data = userList.getSelectedValue();
+          final String s = (String) JOptionPane.showInputDialog(
+            UserPanel.this, "Enter a new username:", "Change Username", JOptionPane.PLAIN_MESSAGE,
+            null, null, "");
+          if (s != null && s.length() > 0) {
+            clientContext.user.changeUserName(data, s);
+            UserPanel.this.getAllUsers(listModel);
+            userSignedInLabel.setText("not signed in");
+          }
         }
       }
     });
@@ -181,6 +237,23 @@ public final class UserPanel extends JPanel {
     });
 
     getAllUsers(listModel);
+  }
+
+  // Takes in dialog message as argument
+  // Returns password from password field as string
+  private String getPasswordFromDialog(String prompt) {
+    JTextField passwordField = new JPasswordField();
+    String passwordValue = null;
+    Object[] objectArray = {new JLabel(prompt), passwordField};
+    int result = JOptionPane.showConfirmDialog(UserPanel.this,
+                                               objectArray,
+                                               "Password",
+                                               JOptionPane.OK_CANCEL_OPTION);
+
+    if (result == JOptionPane.OK_OPTION)
+      passwordValue = passwordField.getText();
+
+    return passwordValue;
   }
 
   // Swing UI: populate ListModel object - updates display objects.
