@@ -22,5 +22,5 @@ if [[ "${HOST}" == "" || "${PORT}" == "" ]] ; then
   exit 1
 fi
 
-cd './bin'
-java codeu.chat.ClientMain "${HOST}@${PORT}"
+# cd './bin'
+java -cp ./bin:./third_party/*:./bin codeu.chat.ClientMain "${HOST}@${PORT}"

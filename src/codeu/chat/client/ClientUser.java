@@ -24,6 +24,8 @@ import codeu.chat.util.Logger;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.store.Store;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public final class ClientUser {
 
   private final static Logger.Log LOG = Logger.newLog(ClientUser.class);
@@ -44,9 +46,9 @@ public final class ClientUser {
     this.view = view;
   }
 
-  // Validate the username string
   static public boolean isValidName(String userName) {
     boolean clean = true;
+    // Validate the username string
     if (userName.length() == 0) {
       clean = false;
     } else {
@@ -91,7 +93,9 @@ public final class ClientUser {
   public void addUser(String name, String password) {
     final boolean validInputs = isValidName(name);
 
-    final User user = (validInputs) ? controller.newUser(name, password) : null;
+    String hashedPwd = BCrypt.hashpw(password, BCrypt.gensalt());
+
+    final User user = (validInputs) ? controller.newUser(name, hashedPwd) : null;
 
     if (user == null) {
       System.out.format("Error: user not created - %s.\n",
@@ -160,7 +164,7 @@ public final class ClientUser {
   }
 
   private boolean validatePassword(User user, String password) {
-    return user != null && password.equals(user.password);
+    return user != null && BCrypt.checkpw(password, user.password);
   }
 
   public void showAllUsers() {
