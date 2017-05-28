@@ -133,12 +133,15 @@ public final class Chat {
       if (!tokenScanner.hasNext()) {
         System.out.println("ERROR: Username not supplied.");
       } else {
-        deleteUser(tokenScanner.nextLine().trim());
+        String name = tokenScanner.nextLine().trim();
+        String pwd = passwordReader.read("Enter password: ");
+
+        deleteUser(name, pwd);
       }
     } else if (token.equals("u-change-name")){
       if (!tokenScanner.hasNext()) {
-        tokenScanner.close();
         System.out.println("ERROR: Old username not supplied.");
+        tokenScanner.close();
         return;
       }
       String oldName = tokenScanner.next();
@@ -148,7 +151,9 @@ public final class Chat {
         return;
       }
       String newName = tokenScanner.nextLine().trim();
-      changeUserName(oldName, newName);
+
+      String pwd = passwordReader.read("Enter password: ");
+      changeUserName(oldName, newName, pwd);
 
     } else if (token.equals("u-list-all")) {
 
@@ -309,13 +314,13 @@ public final class Chat {
   }
 
   // Delete a user.
-  private void deleteUser(String name) {
-    clientContext.user.deleteUser(name);
+  private void deleteUser(String name, String password) {
+    clientContext.user.deleteUser(name, password);
   }
 
   // Change the name of a user.
-  private void changeUserName(String oldName, String newName) {
-    clientContext.user.changeUserName(oldName, newName);
+  private void changeUserName(String oldName, String newName, String password) {
+    clientContext.user.changeUserName(oldName, newName, password);
   }
 
   // Display all users known to server.

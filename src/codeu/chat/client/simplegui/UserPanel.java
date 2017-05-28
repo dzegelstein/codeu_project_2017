@@ -186,7 +186,8 @@ public final class UserPanel extends JPanel {
         if (s != null && s.length() > 0) {
           String password = getPasswordFromDialog("Please enter a new password:");
           String confirmPwd = getPasswordFromDialog("Please confirm your password:");
-          if (!confirmPwd.equals(password)) {
+          if (password != null && confirmPwd != null &&
+              !confirmPwd.equals(password)) {
             JOptionPane.showMessageDialog(UserPanel.this,
                                           "Passwords do not match",
                                           "Password Confirmation Error",
@@ -203,7 +204,9 @@ public final class UserPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
           if (userList.getSelectedIndex() != -1) {
             final String data = userList.getSelectedValue();
-            clientContext.user.deleteUser(data);
+            String password = getPasswordFromDialog("Please enter your password:");
+            if (password != null)
+              clientContext.user.deleteUser(data, password);
             UserPanel.this.getAllUsers(listModel);
           }
         }
@@ -217,8 +220,10 @@ public final class UserPanel extends JPanel {
           final String s = (String) JOptionPane.showInputDialog(
             UserPanel.this, "Enter a new username:", "Change Username", JOptionPane.PLAIN_MESSAGE,
             null, null, "");
-          if (s != null && s.length() > 0) {
-            clientContext.user.changeUserName(data, s);
+          String password = getPasswordFromDialog("Please enter your password:");
+
+          if (s != null && s.length() > 0 && password != null) {
+            clientContext.user.changeUserName(data, s, password);
             UserPanel.this.getAllUsers(listModel);
             userSignedInLabel.setText("not signed in");
           }

@@ -71,7 +71,7 @@ public final class ClientUser {
     final User prev = current;
     if (name != null) {
       final User newCurrent = usersByName.first(name);
-      if (newCurrent != null && password.equals(newCurrent.password)) {
+      if (newCurrent != null && validatePassword(newCurrent, password)) {
         current = newCurrent;
       }
     }
@@ -102,14 +102,20 @@ public final class ClientUser {
     }
   }
 
-  public void deleteUser(String name) {
-    final boolean validInputs = isValidName(name);
+  public void deleteUser(String name, String password) {
+    User user = usersByName.first(name);
+    final boolean validUser = (user != null);
+    final boolean validPassword = validatePassword(user, password);
 
-    final User user = (validInputs) ? controller.deleteUser(name) : null;
+    user = null;
+
+    if (validUser && validPassword) user = controller.deleteUser(name);
 
     if (user == null) {
-      System.out.format("Error: user not deleted - %s.\n",
-          (validInputs) ? "server failure" : "bad input value");
+      String errorMessage = "server failure";
+      if (!validUser) errorMessage = "user does not exist";
+      else if (!validPassword) errorMessage = "incorrect password";
+      System.out.format("Error: user not deleted - %s.\n", errorMessage);
     } else {
       if (hasCurrent() && user.id.equals(current.id)) {
         System.out.println("You are currently signed in as this user. " +
@@ -118,20 +124,27 @@ public final class ClientUser {
           System.out.println("Error: sign out failed (not signed in?)");
         }
       }
-      LOG.info("User name changed, Name= \"%s\" UUID=%s", user.name, user.id);
+      LOG.info("User deleted, Name= \"%s\" UUID=%s", user.name, user.id);
       updateUsers();
     }
   }
 
-  public void changeUserName(String oldName,String newName) {
-    final boolean validInputs = isValidName(newName) && isValidName(oldName);
+  public void changeUserName(String oldName, String newName, String password) {
+    final boolean validInputs = isValidName(newName);
+    User user = usersByName.first(oldName);
+    final boolean validOldUser = (user != null);
+    final boolean validPassword = validatePassword(user, password);
 
-    final User user =
-      (validInputs) ? controller.changeUserName(oldName, newName) : null;
+    user = null;
+
+    if (validInputs && validPassword) user = controller.changeUserName(oldName, newName);
 
     if (user == null) {
-      System.out.format("Error: username not changed - %s.\n",
-          (validInputs) ? "server failure" : "bad input value");
+      String errorMessage = "server failure";
+      if (!validInputs) errorMessage = "bad input value";
+      else if (!validOldUser) errorMessage = "user does not exist";
+      else if (!validPassword) errorMessage = "incorrect password";
+      System.out.format("Error: user not deleted - %s.\n", errorMessage);
     } else {
       if (hasCurrent() && user.id.equals(current.id)) {
         System.out.println("You are currently signed in as this user." +
@@ -144,6 +157,10 @@ public final class ClientUser {
                 user.name, oldName, user.id);
       updateUsers();
     }
+  }
+
+  private boolean validatePassword(User user, String password) {
+    return user != null && password.equals(user.password);
   }
 
   public void showAllUsers() {
