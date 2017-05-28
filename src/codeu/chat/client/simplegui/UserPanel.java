@@ -239,8 +239,7 @@ public final class UserPanel extends JPanel {
     getAllUsers(listModel);
   }
 
-  // Takes in dialog message as argument
-  // Returns password from password field as string
+  // Takes in dialog message as argument, returns password as string
   private String getPasswordFromDialog(String prompt) {
     JTextField passwordField = new JPasswordField();
     String passwordValue = null;
