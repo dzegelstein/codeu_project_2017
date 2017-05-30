@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 import java.util.Map;
+import java.util.List;
 
 import codeu.chat.common.Conversation;
 import codeu.chat.common.ConversationSummary;
@@ -160,10 +161,23 @@ public final class Server {
 
   private void reloadPastConversations() {
     Set<String> idList = db.smembers(CONVERSATION_HASH);
+    //Iterates through a list of conversations to restore that conversation
     for (String convoId: idList) {
         String[] convoDetails = db.lindex(convoId, 0).split("\n");
         try {
-          controller.newConversation(convoId, db.lrange(convoId, 0, db.llen(convoId)));
+          Conversation convo = controller.restoreConversation(convoId, convoDetails);
+          List<String> messageIds = db.lrange(convoId, 1, db.llen(convoId));
+          //Iterates through each message to add it to a conversation
+          for (String id: messageIds) {
+            List<String> messageDetails = db.lrange(id, 0, db.llen(id));
+            try {
+              Uuid messageId = Uuid.parse(id);
+              controller.restoreMessageToConversation(convo, messageId, messageDetails);
+            } catch (Exception ex) {
+              LOG.error(ex, "Exception while loading messages");
+            }
+
+          }
         } catch (Exception ex) {
           LOG.error(ex, "Could not load conversation " + convoId);
         }
@@ -190,17 +204,7 @@ public final class Server {
           conversation,
           message.id));
 
-      /*
-        Adds to Jedis database. Key = conversation title, Value = List of all messages
-        Each message has an author, message content, time (all separated on different lines)
-      */
-      // final String authorName = model.userById().at(author).iterator().next().name;
-      final long timeInMs = message.creation.inMs();
-      final String timeStr = Long.toString(timeInMs);
-      final String id = conversation.toStrippedString();
-
-      //Update db (Conversation id -> author, creation time, message id, message body)
-      db.rpush(id, author.toStrippedString() + "\n" + timeStr + "\n" + message.id.toStrippedString() + "\n" + content + "\n");
+      return addMessageToDB(message, conversation, author, content);
 
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
@@ -266,18 +270,11 @@ public final class Server {
 
       final String title = Serializers.STRING.read(in);
       final Uuid owner = Uuid.SERIALIZER.read(in);
-
       final Conversation conversation = controller.newConversation(title, owner);
-      final long timeInMs = Time.now().inMs();
-      final String timeStr = Long.toString(timeInMs);
-      final String conversationId = conversation.id.toStrippedString() + "";
-
-      //UPDATE DB
-      db.sadd(CONVERSATION_HASH, conversationId);
-      db.rpush(conversationId, owner.toStrippedString() + "\n" + timeStr + "\n" + title);
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_CONVERSATION_RESPONSE);
       Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);
+      return addNewConversationToDB(title, owner, conversation);
 
     } else if (type == NetworkCode.GET_USERS_BY_ID_REQUEST) {
 
@@ -443,6 +440,35 @@ public final class Server {
       return false;
     }
 
+  }
+
+  private boolean addMessageToDB(Message message, Uuid conversation, Uuid author, String content) {
+
+    final long timeInMs = message.creation.inMs();
+    final String timeStr = Long.toString(timeInMs);
+    final String id = conversation.toStrippedString();
+
+    final String messageId = message.id.toStrippedString();
+
+    //Update db (Conversation id -> author, creation time, message id)
+    db.rpush(id, message.id.toStrippedString());
+
+    //Update db (Message id -> message content)
+    db.rpush(messageId, author.toStrippedString());
+    db.rpush(messageId, timeStr);
+    db.rpush(messageId, content);
+    return true;
+  }
+
+  private boolean addNewConversationToDB(String title, Uuid owner, Conversation conversation) {
+    final long timeInMs = conversation.creation.inMs();
+    final String timeStr = Long.toString(timeInMs);
+    final String conversationId = conversation.id.toStrippedString() + "";
+
+    //UPDATE DB
+    db.sadd(CONVERSATION_HASH, conversationId);
+    db.rpush(conversationId, owner.toStrippedString() + "\n" + timeStr + "\n" + title);
+    return true;
   }
 
   private void onBundle(Relay.Bundle bundle) {
