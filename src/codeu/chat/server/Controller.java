@@ -208,16 +208,13 @@ public final class Controller implements RawController, BasicController {
       String messageSentTime = message.get(1);
       String messageBody = message.get(2);
       Time creationTime = Time.fromMs(Long.parseLong(messageSentTime));
-      Uuid authorId;
 
       try {
-        authorId = Uuid.parse(authorIdString);
+        Uuid authorId = Uuid.parse(authorIdString);
+        restoreMessage(messageId, authorId, conversation.id, messageBody, creationTime);
       } catch (Exception ex) {
-        authorId = userNotFound().id;
         LOG.error(ex, "Couldn't load message author while loading past convesation.");
       }
-
-      restoreMessage(messageId, authorId, conversation.id, messageBody, creationTime);
   }
 
   private Conversation restoreConversation(Uuid id, String title, Uuid owner, Time creationTime) {
@@ -229,7 +226,6 @@ public final class Controller implements RawController, BasicController {
   }
 
   public Message restoreMessage(Uuid id, Uuid author, Uuid conversation, String body, Time creationTime) {
-
     User foundUser = model.userById().first(author);
     final Conversation foundConversation = model.conversationById().first(conversation);
 
@@ -239,7 +235,7 @@ public final class Controller implements RawController, BasicController {
       foundUser = userNotFound();
     }
 
-    if (foundConversation != null) {
+    if (foundUser != null && foundConversation != null && isIdFree(id)) {
 
       message = new Message(id, Uuid.NULL, Uuid.NULL, creationTime, author, body);
       model.add(message);
