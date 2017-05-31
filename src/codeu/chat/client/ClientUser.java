@@ -148,7 +148,7 @@ public final class ClientUser {
       if (!validInputs) errorMessage = "bad input value";
       else if (!validOldUser) errorMessage = "user does not exist";
       else if (!validPassword) errorMessage = "incorrect password";
-      System.out.format("Error: user not deleted - %s.\n", errorMessage);
+      System.out.format("Error: username not changed - %s.\n", errorMessage);
     } else {
       if (hasCurrent() && user.id.equals(current.id)) {
         System.out.println("You are currently signed in as this user." +
