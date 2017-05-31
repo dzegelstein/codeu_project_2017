@@ -33,6 +33,7 @@ public final class Controller implements RawController, BasicController {
 
   private Model model;
   private final Uuid.Generator uuidGenerator;
+  private User USER_NOT_FOUND;
 
   public Controller(Uuid serverId, Model model) {
     this.model = model;
@@ -54,20 +55,31 @@ public final class Controller implements RawController, BasicController {
     return newConversation(createId(), title, owner, Time.now());
   }
 
-  public Conversation newConversation(String convoId, List<String> pastConversationInfo) throws Exception {
+  public Conversation restoreConversation(String convoId, String[] conversationInfo) throws Exception {
+    Uuid ownerId;
+    Uuid conversationId;
+    String title;
+    Time creationTime;
+
     try {
-      String[] parsedConversation = pastConversationInfo.get(0).split("\n");
-      String owner = parsedConversation[0];
-      Uuid ownerId = Uuid.parse(owner);
-      Long time = Long.parseLong(parsedConversation[1]);
-      Time creationTime = Time.fromMs(time);
-      String title = parsedConversation[2];
-      Uuid id = Uuid.parse(convoId);
-      return newConversation(id, title, ownerId, creationTime, pastConversationInfo);
+      Long time = Long.parseLong(conversationInfo[1]);
+      creationTime = Time.fromMs(time);
+      title = conversationInfo[2];
+      conversationId = Uuid.parse(convoId);
     } catch (Exception ex) {
-      LOG.error(ex, "Couldn't load messages in past conversation");
+      LOG.error(ex, "Error parsing past conversation information");
       throw new Exception("Couldn't load past conversation");
     }
+
+    try {
+      String owner = conversationInfo[0];
+      ownerId = Uuid.parse(owner);
+    } catch (Exception ex) {
+      ownerId = userNotFound().id;
+      LOG.error(ex, "Couldn't load an author that created past conversation");
+    }
+
+    return restoreConversation(conversationId, title, ownerId, creationTime);
   }
 
   @Override
@@ -178,7 +190,8 @@ public final class Controller implements RawController, BasicController {
     return newUser;
   }
 
-  private Conversation newConversationHelper(Uuid id, String title, Uuid owner, Time creationTime) {
+  @Override
+  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime) {
     final User foundOwner = model.userById().first(owner);
 
     Conversation conversation = null;
@@ -193,47 +206,84 @@ public final class Controller implements RawController, BasicController {
     return conversation;
   }
 
-  @Override
-  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime) {
-    return newConversationHelper(id, title, owner, creationTime);
+  public void restoreMessageToConversation(Conversation conversation, Uuid messageId, List<String> message) {
+      String authorIdString = message.get(0);
+      String messageSentTime = message.get(1);
+      String messageBody = message.get(2);
+      Time creationTime = Time.fromMs(Long.parseLong(messageSentTime));
+
+      try {
+        Uuid authorId = Uuid.parse(authorIdString);
+        restoreMessage(messageId, authorId, conversation.id, messageBody, creationTime);
+      } catch (Exception ex) {
+        LOG.error(ex, "Couldn't load message author while loading past convesation.");
+      }
   }
 
-  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime, List<String> oldMessages) {
-    Conversation conversation = newConversationHelper(id, title, owner, creationTime);
-    addMessagesToConversation(conversation, oldMessages);
+  private Conversation restoreConversation(Uuid id, String title, Uuid owner, Time creationTime) {
+    final User foundOwner = model.userById().first(owner);
+    Conversation conversation = new Conversation(id, owner, creationTime, title);
+    model.add(conversation);
+    LOG.info("Conversation restored: " + conversation.id);
     return conversation;
   }
 
-  private void addMessagesToConversation(Conversation conversation, List<String> oldMessages) {
-    //Starts at 1 because the first value in the array is info about conversation
-    for (int i = 1; i < oldMessages.size(); i++) {
+  public Message restoreMessage(Uuid id, Uuid author, Uuid conversation, String body, Time creationTime) {
+    User foundUser = model.userById().first(author);
+    final Conversation foundConversation = model.conversationById().first(conversation);
 
-      String[] messageInfo = oldMessages.get(i).split("\n");
-      String authorIdString = messageInfo[0];
-      String messageSentTime = messageInfo[1];
-      String messageId = messageInfo[2];
-      String messageBody = messageInfo[3];
+    Message message = null;
 
-      Time creationTime = Time.fromMs(Long.parseLong(messageSentTime));
-      Uuid id, authorId;
-
-      try {
-        id = Uuid.parse(messageId);
-      } catch (Exception ex) {
-        LOG.error(ex, "Couldn't load message id while loading past conversation");
-        break;
-      }
-
-      try {
-        authorId = Uuid.parse(authorIdString);
-      } catch (Exception ex) {
-        LOG.error(ex, "Couldn't load message author while loading past convesation");
-        break;
-      }
-
-      newMessage(id, authorId, conversation.id, messageBody, creationTime);
-
+    if (foundUser == null) {
+      foundUser = userNotFound();
     }
+
+    if (foundUser != null && foundConversation != null && isIdFree(id)) {
+
+      message = new Message(id, Uuid.NULL, Uuid.NULL, creationTime, author, body);
+      model.add(message);
+      LOG.info("Message added: %s", message.id);
+
+      // Find and update the previous "last" message so that it's "next" value
+      // will point to the new message.
+
+      if (Uuid.equals(foundConversation.lastMessage, Uuid.NULL)) {
+
+        // The conversation has no messages in it, that's why the last message is NULL (the first
+        // message should be NULL too. Since there is no last message, then it is not possible
+        // to update the last message's "next" value.
+
+      } else {
+        final Message lastMessage = model.messageById().first(foundConversation.lastMessage);
+        lastMessage.next = message.id;
+      }
+
+      // If the first message points to NULL it means that the conversation was empty and that
+      // the first message should be set to the new message. Otherwise the message should
+      // not change.
+
+      foundConversation.firstMessage =
+          Uuid.equals(foundConversation.firstMessage, Uuid.NULL) ?
+          message.id :
+          foundConversation.firstMessage;
+
+      // Update the conversation to point to the new last message as it has changed.
+
+      foundConversation.lastMessage = message.id;
+
+      if (!foundConversation.users.contains(foundUser)) {
+        foundConversation.users.add(foundUser.id);
+      }
+    }
+
+    return message;
+  }
+
+  private final User userNotFound() {
+    if (USER_NOT_FOUND == null) {
+      USER_NOT_FOUND = new User(createId(), "USER NOT FOUND", Time.now(), "********");
+    }
+    return USER_NOT_FOUND;
   }
 
   private Uuid createId() {
