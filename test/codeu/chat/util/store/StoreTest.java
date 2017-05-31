@@ -35,7 +35,7 @@ public final class StoreTest {
   }
 
   @Test
-  public void testOrderInOrderInsert() {
+  public void testOrderInOrderInsertDelete() {
 
     store.insert(0, 0);
     store.insert(1, 10);
@@ -45,10 +45,21 @@ public final class StoreTest {
 
     final int[] order = { 0, 10, 20, 30, 40 };
     assertOrder(store.all(), order);
+
+    store.delete(0);
+    assertSize(store.all(), 4);
+    store.delete(1);
+    assertSize(store.all(), 3);
+    store.delete(2);
+    assertSize(store.all(), 2);
+    store.delete(3);
+    assertSize(store.all(), 1);
+    store.delete(4);
+    assertSize(store.all(), 0);
   }
 
   @Test
-  public void testOrderReverseOrderInsert() {
+  public void testOrderReverseOrderInsertDelete() {
 
     store.insert(4, 40);
     store.insert(3, 30);
@@ -58,11 +69,21 @@ public final class StoreTest {
 
     final int[] order = { 0, 10, 20, 30, 40 };
     assertOrder(store.all(), order);
+
+    store.delete(0);
+    assertSize(store.all(), 4);
+    store.delete(1);
+    assertSize(store.all(), 3);
+    store.delete(2);
+    assertSize(store.all(), 2);
+    store.delete(3);
+    assertSize(store.all(), 1);
+    store.delete(4);
+    assertSize(store.all(), 0);
   }
 
   @Test
   public void testOrderPingPongOrderInsert() {
-
     store.insert(0, 0);
     store.insert(4, 40);
     store.insert(1, 10);
@@ -71,6 +92,32 @@ public final class StoreTest {
 
     final int[] order = { 0, 10, 20, 30, 40 };
     assertOrder(store.all(), order);
+
+  }
+
+  @Test
+  public void testOrderPingPongOrderInsertDelete() {
+
+    store.insert(0, 0);
+    store.delete(0);
+    assertSize(store.all(), 0);
+    store.insert(4, 40);
+    assertSize(store.all(), 1);
+    store.insert(1, 10);
+    assertSize(store.all(), 2);
+    store.delete(0);
+    assertSize(store.all(), 2);
+    store.delete(4);
+    assertSize(store.all(), 1);
+    store.insert(3, 30);
+    assertSize(store.all(), 2);
+    store.insert(2, 20);
+    assertSize(store.all(), 3);
+    store.delete(1);
+    store.delete(2);
+    store.delete(3);
+    assertSize(store.all(), 0);
+
   }
 
   @Test
@@ -145,6 +192,14 @@ public final class StoreTest {
     assertTrue(store.first(2) == 20);
     assertTrue(store.first(3) == 30);
     assertTrue(store.first(4) == 40);
+
+    store.delete(2);
+    assertTrue(store.first(2) == null);
+
+    store.insert(2, 22);
+    store.insert(2, 23);
+
+    assertTrue(store.first(2) == 22);
   }
 
   private static void assertOrder(Iterable<Integer> actual, int[] expected) {
@@ -157,5 +212,16 @@ public final class StoreTest {
     }
 
     assertTrue(at == expected.length);
+  }
+
+  private static void assertSize(Iterable<Integer> actual, int expected) {
+
+    int count = 0;
+
+    for (final Integer i : actual) {
+      count++;
+    }
+
+    assertTrue(count == expected);
   }
 }

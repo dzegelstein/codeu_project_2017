@@ -22,6 +22,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Set;
+import java.util.Map;
 
 import codeu.chat.common.Conversation;
 import codeu.chat.common.ConversationSummary;
@@ -37,6 +39,8 @@ import codeu.chat.util.Timeline;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.connections.Connection;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 public final class Server {
 
@@ -54,9 +58,11 @@ public final class Server {
   private final Controller controller;
 
   private final Relay relay;
-  //should have access to database
-  private Jedis db;
   private Uuid lastSeen = Uuid.NULL;
+
+  private Jedis db;
+  private JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
+  private final String CONVERSATION_HASH = "CONVERSATION_HASH";
 
   public Server(final Uuid id, final byte[] secret, final Relay relay) {
 
@@ -65,6 +71,14 @@ public final class Server {
 
     this.controller = new Controller(id, model);
     this.relay = relay;
+
+    try {
+      db = pool.getResource();
+      loadUsers();
+      reloadPastConversations();
+    } catch (Exception e) {
+      LOG.error(e, "Could not load Jedis database");
+    }
 
     timeline.scheduleNow(new Runnable() {
       @Override
@@ -87,6 +101,35 @@ public final class Server {
         timeline.scheduleIn(RELAY_REFRESH_MS, this);
       }
     });
+  }
+
+  // add previously stored users to model
+  private void loadUsers() {
+    Set<String> idKeys = db.hkeys("nameHash");
+
+    for (String key : idKeys) {
+        String name = db.hget("nameHash", key);
+        String timeStr = db.hget("timeHash", key);
+        String password = db.hget("passwordHash", key);
+
+        if (timeStr == null)
+          LOG.info("Error: user id with no creation time");
+        else if (password == null)
+          LOG.info("Error: user id with no password");
+        else {
+          Uuid id = null;
+          try {
+            id = Uuid.parse(key);
+          } catch (IOException ex) {
+            LOG.info("Error in parsing id from database");
+          }
+          long timeInMs = Long.parseLong(timeStr);
+          Time creationTime = new Time(timeInMs);
+
+          User user = controller.newUser(id, name, creationTime, password);
+          model.add(user);
+        }
+    }
   }
 
   public void handleConnection(final Connection connection) {
@@ -112,9 +155,23 @@ public final class Server {
           connection.close();
         } catch (Exception ex) {
           LOG.error(ex, "Exception while closing connection.");
+
         }
       }
     });
+  }
+
+  private void reloadPastConversations() {
+    Set<String> idList = db.smembers(CONVERSATION_HASH);
+    for (String convoId: idList) {
+        String[] convoDetails = db.lindex(convoId, 0).split("\n");
+        try {
+          controller.newConversation(convoId, db.lrange(convoId, 0, db.llen(convoId)));
+        } catch (Exception ex) {
+          LOG.error(ex, "Could not load conversation " + convoId);
+        }
+
+    }
   }
 
   private boolean onMessage(InputStream in, OutputStream out) throws IOException {
@@ -122,7 +179,6 @@ public final class Server {
     final int type = Serializers.INTEGER.read(in);
 
     if (type == NetworkCode.NEW_MESSAGE_REQUEST) {
-
       final Uuid author = Uuid.SERIALIZER.read(in);
       final Uuid conversation = Uuid.SERIALIZER.read(in);
       final String content = Serializers.STRING.read(in);
@@ -137,13 +193,59 @@ public final class Server {
           conversation,
           message.id));
 
+      /*
+        Adds to Jedis database. Key = conversation title, Value = List of all messages
+        Each message has an author, message content, time (all separated on different lines)
+      */
+      // final String authorName = model.userById().at(author).iterator().next().name;
+      final long timeInMs = message.creation.inMs();
+      final String timeStr = Long.toString(timeInMs);
+      final String id = conversation.toStrippedString();
+
+      //Update db (Conversation id -> author, creation time, message id, message body)
+      db.rpush(id, author.toStrippedString() + "\n" + timeStr + "\n" + message.id.toStrippedString() + "\n" + content + "\n");
+
     } else if (type == NetworkCode.NEW_USER_REQUEST) {
 
       final String name = Serializers.STRING.read(in);
+      final String password = Serializers.STRING.read(in);
 
-      final User user = controller.newUser(name);
+      if (db.hexists("nameHashRev", name)) {
+        LOG.info(
+          "addUser fail - username taken (user.name = %s)",
+          name);
+        return false;
+      }
+
+      final User user = controller.newUser(name, password);
+
+      boolean addSuccess = addToDatabase(name, user, password);
+      if (!addSuccess) return false;
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_USER_RESPONSE);
+      Serializers.nullable(User.SERIALIZER).write(out, user);
+
+    } else if (type == NetworkCode.DELETE_USER_REQUEST) {
+      final String name = Serializers.STRING.read(in);
+
+      boolean deleteSuccess = deleteFromDatabase(name);
+      if (!deleteSuccess) return false;
+
+      final User user = controller.deleteUser(name);
+
+      Serializers.INTEGER.write(out, NetworkCode.DELETE_USER_RESPONSE);
+      Serializers.nullable(User.SERIALIZER).write(out, user);
+
+    } else if (type == NetworkCode.CHANGE_USERNAME_REQUEST){
+      final String oldName = Serializers.STRING.read(in);
+      final String newName = Serializers.STRING.read(in);
+
+      boolean changeSuccess = changeNameInDatabase(oldName, newName);
+      if (!changeSuccess) return false;
+
+      final User user = controller.changeUserName(oldName, newName);
+
+      Serializers.INTEGER.write(out, NetworkCode.CHANGE_USERNAME_RESPONSE);
       Serializers.nullable(User.SERIALIZER).write(out, user);
 
     } else if (type == NetworkCode.NEW_CONVERSATION_REQUEST) {
@@ -152,6 +254,13 @@ public final class Server {
       final Uuid owner = Uuid.SERIALIZER.read(in);
 
       final Conversation conversation = controller.newConversation(title, owner);
+      final long timeInMs = Time.now().inMs();
+      final String timeStr = Long.toString(timeInMs);
+      final String conversationId = conversation.id.toStrippedString() + "";
+
+      //UPDATE DB
+      db.sadd(CONVERSATION_HASH, conversationId);
+      db.rpush(conversationId, owner.toStrippedString() + "\n" + timeStr + "\n" + title);
 
       Serializers.INTEGER.write(out, NetworkCode.NEW_CONVERSATION_RESPONSE);
       Serializers.nullable(Conversation.SERIALIZER).write(out, conversation);
@@ -235,23 +344,129 @@ public final class Server {
       Serializers.collection(Message.SERIALIZER).write(out, messages);
 
     } else if (type == NetworkCode.GET_MESSAGES_BY_RANGE_REQUEST) {
-
       final Uuid rootMessage = Uuid.SERIALIZER.read(in);
+
       final int range = Serializers.INTEGER.read(in);
 
       final Collection<Message> messages = view.getMessages(rootMessage, range);
 
       Serializers.INTEGER.write(out, NetworkCode.GET_MESSAGES_BY_RANGE_RESPONSE);
+      // the type "NO_MESSAGE" so that the client still gets something.
       Serializers.collection(Message.SERIALIZER).write(out, messages);
 
     } else {
 
       // In the case that the message was not handled make a dummy message with
-      // the type "NO_MESSAGE" so that the client still gets something.
 
       Serializers.INTEGER.write(out, NetworkCode.NO_MESSAGE);
 
     }
+
+    return true;
+  }
+
+  private boolean addToDatabase(String name, User user, String password) {
+    final Time creationTime = user.creation;
+    final Uuid id = user.id;
+    final String idStr = id.toStrippedString();
+    final long timeInMs = creationTime.inMs();
+    final String timeStr = Long.toString(timeInMs);
+
+    // hash table for storing ids, creation times
+    db.hset("timeHash", idStr, timeStr);
+    // hash table with ids for keys, usernames for values
+    db.hset("nameHash", idStr, name);
+    // hash table with usernames for keys, ids for values
+    db.hset("nameHashRev", name, idStr);
+    // hash table for storing ids, passwords
+    db.hset("passwordHash", idStr, password);
+
+    LOG.info(
+         "newUser success (user.id=%s user.name=%s user.time=%s)",
+         id,
+         name,
+         creationTime);
+    return true;
+  }
+
+  private boolean deleteFromDatabase(String name) {
+    if (!db.hexists("nameHashRev", name)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=NULL user.name=%s)",
+        name);
+      return false;
+    }
+
+    final String idStr = db.hget("nameHashRev", name);
+    Uuid id = null;
+    try {
+      id = Uuid.parse(idStr);
+    } catch (IOException ex) {
+      LOG.info("Failure to parse id from database");
+      return false;
+    }
+
+    if (!db.hget("nameHash", idStr).equals(name)) {
+      LOG.info(
+        "deleteUser fail - database mismatch error (user.id=%s user.name=%s)",
+        id, name);
+      return false;
+    }
+
+    String timeStr = db.hget("timeHash", idStr);
+    long timeInMs = Long.parseLong(timeStr);
+    Time creationTime = new Time(timeInMs);
+
+    if (!db.hget("timeHash", idStr).equals(timeStr)) {
+      LOG.info(
+        "deleteUser fail - user not in database (user.id=%s user.name=%s user.time=%s)",
+        id,
+        name,
+        creationTime);
+        return false;
+    }
+
+    db.hdel("timeHash", idStr);
+    db.hdel("nameHash", idStr);
+    db.hdel("nameHashRev", name);
+    db.hdel("passwordHash", idStr);
+
+    return true;
+  }
+
+  private boolean changeNameInDatabase(String oldName, String newName) {
+    if (db.hexists("nameHashRev", newName)) {
+      LOG.info(
+        "changeUserName fail - username taken (user.name = %s)",
+        newName);
+      return false;
+    }
+
+    if (!db.hexists("nameHashRev", oldName)) {
+      LOG.info(
+        "changeUserName fail - old user not in database (user.id=NULL user.name=%s)",
+        oldName);
+      return false;
+    }
+
+    final String idStr = db.hget("nameHashRev", oldName);
+    try {
+      Uuid id = Uuid.parse(idStr);
+    } catch (IOException ex) {
+      LOG.info("changeUserName fail - failure in parsing id from database");
+      return false;
+    }
+
+    if (!db.hget("nameHash", idStr).equals(oldName)) {
+      LOG.info(
+        "changeUserName fail - database mismatch error (user.id=%s user.name=%s)",
+        id, oldName);
+      return false;
+    }
+
+    db.hdel("nameHashRev", oldName);
+    db.hset("nameHashRev", newName, idStr);
+    db.hset("nameHash", idStr, newName);
 
     return true;
   }
@@ -265,7 +480,7 @@ public final class Server {
     User user = model.userById().first(relayUser.id());
 
     if (user == null) {
-      user = controller.newUser(relayUser.id(), relayUser.text(), relayUser.time());
+      user = controller.newUser(relayUser.id(), relayUser.text(), relayUser.time(), "");
     }
 
     Conversation conversation = model.conversationById().first(relayConversation.id());
@@ -309,4 +524,5 @@ public final class Server {
       }
     };
   }
+
 }

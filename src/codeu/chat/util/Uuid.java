@@ -44,7 +44,7 @@ public final class Uuid {
       }
 
       for (Uuid current = value; current != null; current = current.root()) {
-        Serializers.INTEGER.write(out, current.id());
+        Serializers.LONG.write(out, current.id());
       }
     }
 
@@ -54,10 +54,10 @@ public final class Uuid {
       // "input.read" can only return one by of data so there is no need
       // to check that the bounds of 0 to 255 is respected.
       final int length = in.read();
-      final int[] chain = new int[length];
+      final long[] chain = new long[length];
 
       for (int i = 0; i < length; i++) {
-        chain[i] = Serializers.INTEGER.read(in);
+        chain[i] = Serializers.LONG.read(in);
       }
 
       Uuid head = null;
@@ -86,14 +86,14 @@ public final class Uuid {
   }
 
   private final Uuid root;
-  private final int id;
+  private final long id;
 
-  public Uuid(Uuid root, int id) {
+  public Uuid(Uuid root, long id) {
     this.root = root;
     this.id = id;
   }
 
-  public Uuid(int id) {
+  public Uuid(long id) {
     this.root = null;
     this.id = id;
   }
@@ -102,8 +102,12 @@ public final class Uuid {
     return root;
   }
 
-  public int id() {
+  public long id() {
     return id;
+  }
+
+  public String toStrippedString() {
+    return toStrippedString(this);
   }
 
   @Override
@@ -123,9 +127,9 @@ public final class Uuid {
   public static boolean related(Uuid a, Uuid b) {
     return equals(a.root(), b.root());
   }
-
   // Check if two Uuids represent the same value even if they are different refereces. This
   // means that all ids from the tail to the root have the same ids.
+
   public static boolean equals(Uuid a, Uuid b) {
 
     // First check if 'a' and 'b' refer to the same instance. This also
@@ -171,6 +175,12 @@ public final class Uuid {
     return String.format("[UUID:%s]", build.substring(1));  // index of 1 to skip initial '.'
   }
 
+  private static String toStrippedString(Uuid id) {
+    final StringBuilder build = new StringBuilder();
+    buildString(id, build);
+    return build.substring(1);  // index of 1 to skip initial '.'
+  }
+
   private static void buildString(Uuid current, StringBuilder build) {
     final long mask = (1L << 32) - 1;  // removes sign extension
     if (current != null) {
@@ -183,25 +193,39 @@ public final class Uuid {
   //
   // Create a uuid from a sting.
   public static Uuid parse(String string) throws IOException {
-    return parse(null, string.split("\\."), 0);
+    return fromString(null, string.split("\\."), 0);
+    // return parse(null, string.split("\\."), 0);
   }
 
-  private static Uuid parse(final Uuid root, String[] tokens, int index) throws IOException {
+  // private static Uuid parse(final Uuid root, String[] tokens, int index) throws IOException {
+  //
+  //   final long id = Long.parseLong(tokens[index]);
+  //
+  //   if ((id >> 32) != 0) {
+  //     throw new IOException(String.format(
+  //         "ID value '%s' is too large to be an unsigned 32 bit integer",
+  //         tokens[index]));
+  //   }
+  //
+  //   final Uuid link = new Uuid(root, (int)(id & 0xFFFFFFFF));
+  //
+  //   final int nextIndex = index + 1;
+  //
+  //   return nextIndex < tokens.length ?
+  //       parse(link, tokens, nextIndex) :
+  //       link;
+  // }
+
+  private static Uuid fromString(final Uuid root, String[] tokens, int index) {
 
     final long id = Long.parseLong(tokens[index]);
 
-    if ((id >> 32) != 0) {
-      throw new IOException(String.format(
-          "ID value '%s' is too large to be an unsigned 32 bit integer",
-          tokens[index]));
-    }
-
-    final Uuid link = new Uuid(root, (int)(id & 0xFFFFFFFF));
+    final Uuid link = new Uuid(root, id);
 
     final int nextIndex = index + 1;
 
     return nextIndex < tokens.length ?
-        parse(link, tokens, nextIndex) :
+        fromString(link, tokens, nextIndex) :
         link;
   }
 }

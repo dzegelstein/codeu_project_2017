@@ -24,6 +24,8 @@ import codeu.chat.util.Logger;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.store.Store;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 public final class ClientUser {
 
   private final static Logger.Log LOG = Logger.newLog(ClientUser.class);
@@ -44,9 +46,9 @@ public final class ClientUser {
     this.view = view;
   }
 
-  // Validate the username string
   static public boolean isValidName(String userName) {
     boolean clean = true;
+    // Validate the username string
     if (userName.length() == 0) {
       clean = false;
     } else {
@@ -65,13 +67,13 @@ public final class ClientUser {
     return current;
   }
 
-  public boolean signInUser(String name) {
+  public boolean signInUser(String name, String password) {
     updateUsers();
 
     final User prev = current;
     if (name != null) {
       final User newCurrent = usersByName.first(name);
-      if (newCurrent != null) {
+      if (newCurrent != null && validatePassword(newCurrent, password)) {
         current = newCurrent;
       }
     }
@@ -88,10 +90,12 @@ public final class ClientUser {
     printUser(current);
   }
 
-  public void addUser(String name) {
+  public void addUser(String name, String password) {
     final boolean validInputs = isValidName(name);
 
-    final User user = (validInputs) ? controller.newUser(name) : null;
+    String hashedPwd = BCrypt.hashpw(password, BCrypt.gensalt());
+
+    final User user = (validInputs) ? controller.newUser(name, hashedPwd) : null;
 
     if (user == null) {
       System.out.format("Error: user not created - %s.\n",
@@ -100,6 +104,67 @@ public final class ClientUser {
       LOG.info("New user complete, Name= \"%s\" UUID=%s", user.name, user.id);
       updateUsers();
     }
+  }
+
+  public void deleteUser(String name, String password) {
+    User user = usersByName.first(name);
+    final boolean validUser = (user != null);
+    final boolean validPassword = validatePassword(user, password);
+
+    user = null;
+
+    if (validUser && validPassword) user = controller.deleteUser(name);
+
+    if (user == null) {
+      String errorMessage = "server failure";
+      if (!validUser) errorMessage = "user does not exist";
+      else if (!validPassword) errorMessage = "incorrect password";
+      System.out.format("Error: user not deleted - %s.\n", errorMessage);
+    } else {
+      if (hasCurrent() && user.id.equals(current.id)) {
+        System.out.println("You are currently signed in as this user. " +
+                            "You will now be signed out.");
+        if (!signOutUser()) {
+          System.out.println("Error: sign out failed (not signed in?)");
+        }
+      }
+      LOG.info("User deleted, Name= \"%s\" UUID=%s", user.name, user.id);
+      updateUsers();
+    }
+  }
+
+  public void changeUserName(String oldName, String newName, String password) {
+    final boolean validInputs = isValidName(newName);
+    User user = usersByName.first(oldName);
+    final boolean validOldUser = (user != null);
+    final boolean validPassword = validatePassword(user, password);
+
+    user = null;
+
+    if (validInputs && validPassword) user = controller.changeUserName(oldName, newName);
+
+    if (user == null) {
+      String errorMessage = "server failure";
+      if (!validInputs) errorMessage = "bad input value";
+      else if (!validOldUser) errorMessage = "user does not exist";
+      else if (!validPassword) errorMessage = "incorrect password";
+      System.out.format("Error: user not deleted - %s.\n", errorMessage);
+    } else {
+      if (hasCurrent() && user.id.equals(current.id)) {
+        System.out.println("You are currently signed in as this user." +
+                            "You will now be signed out.");
+        if (!signOutUser()) {
+          System.out.println("Error: sign out failed (not signed in?)");
+        }
+      }
+      LOG.info("Username changed, New name= \"%s\" Old name = \"%s\" UUID=%s",
+                user.name, oldName, user.id);
+      updateUsers();
+    }
+  }
+
+  private boolean validatePassword(User user, String password) {
+    return user != null && BCrypt.checkpw(password, user.password);
   }
 
   public void showAllUsers() {

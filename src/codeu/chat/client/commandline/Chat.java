@@ -35,9 +35,12 @@ public final class Chat {
 
   private final ClientContext clientContext;
 
+  private final PasswordReader passwordReader;
+
   // Constructor - sets up the Chat Application
   public Chat(Controller controller, View view) {
     clientContext = new ClientContext(controller, view);
+    passwordReader = new PasswordReader();
   }
 
   // Print help message.
@@ -50,6 +53,8 @@ public final class Chat {
     System.out.println("   current   - show current user, conversation, message.");
     System.out.println("User commands:");
     System.out.println("   u-add <name>  - add a new user.");
+    System.out.println("   u-del <name>  - delete a user.");
+    System.out.println("   u-change-name <old name> <new name> - change the name of a user.");
     System.out.println("   u-list-all    - list all users known to system.");
     System.out.println("Conversation commands:");
     System.out.println("   c-add <title>    - add a new conversation.");
@@ -90,7 +95,10 @@ public final class Chat {
       if (!tokenScanner.hasNext()) {
         System.out.println("ERROR: No user name supplied.");
       } else {
-        signInUser(tokenScanner.nextLine().trim());
+        String name = tokenScanner.nextLine().trim();
+        String pwd = passwordReader.read("Enter password: ");
+
+        signInUser(name, pwd);
       }
 
     } else if (token.equals("sign-out")) {
@@ -110,8 +118,43 @@ public final class Chat {
       if (!tokenScanner.hasNext()) {
         System.out.println("ERROR: Username not supplied.");
       } else {
-        addUser(tokenScanner.nextLine().trim());
+        String name = tokenScanner.nextLine().trim();
+
+        String pwd = passwordReader.read("Enter a new password: ");
+        String confirmPwd = passwordReader.read("Please confirm your password: ");
+
+        if (!confirmPwd.equals(pwd))
+          System.out.println("ERROR: " +
+                             "Password and confirmed password do not match.");
+        else
+          addUser(name, pwd);
       }
+    } else if (token.equals("u-del")) {
+
+      if (!tokenScanner.hasNext()) {
+        System.out.println("ERROR: Username not supplied.");
+      } else {
+        String name = tokenScanner.nextLine().trim();
+        String pwd = passwordReader.read("Enter password: ");
+
+        deleteUser(name, pwd);
+      }
+    } else if (token.equals("u-change-name")){
+      if (!tokenScanner.hasNext()) {
+        System.out.println("ERROR: Old username not supplied.");
+        tokenScanner.close();
+        return;
+      }
+      String oldName = tokenScanner.next();
+      if (!tokenScanner.hasNext()) {
+        System.out.println("ERROR: New username not supplied.");
+        tokenScanner.close();
+        return;
+      }
+      String newName = tokenScanner.nextLine().trim();
+
+      String pwd = passwordReader.read("Enter password: ");
+      changeUserName(oldName, newName, pwd);
 
     } else if (token.equals("u-list-all")) {
 
@@ -213,9 +256,9 @@ public final class Chat {
   }
 
   // Sign in a user.
-  private void signInUser(String name) {
-    if (!clientContext.user.signInUser(name)) {
-      System.out.println("Error: sign in failed (invalid name?)");
+  private void signInUser(String name, String password) {
+    if (!clientContext.user.signInUser(name, password)) {
+      System.out.println("Error: sign in failed (invalid name/password?)");
     }
   }
 
@@ -286,8 +329,18 @@ public final class Chat {
   }
 
   // Add a new user.
-  private void addUser(String name) {
-    clientContext.user.addUser(name);
+  private void addUser(String name, String password) {
+    clientContext.user.addUser(name, password);
+  }
+
+  // Delete a user.
+  private void deleteUser(String name, String password) {
+    clientContext.user.deleteUser(name, password);
+  }
+
+  // Change the name of a user.
+  private void changeUserName(String oldName, String newName, String password) {
+    clientContext.user.changeUserName(oldName, newName, password);
   }
 
   // Display all users known to server.

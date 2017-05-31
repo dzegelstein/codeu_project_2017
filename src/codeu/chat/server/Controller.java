@@ -15,6 +15,7 @@
 package codeu.chat.server;
 
 import java.util.Collection;
+import java.util.List;
 
 import codeu.chat.common.BasicController;
 import codeu.chat.common.Conversation;
@@ -30,7 +31,7 @@ public final class Controller implements RawController, BasicController {
 
   private final static Logger.Log LOG = Logger.newLog(Controller.class);
 
-  private final Model model;
+  private Model model;
   private final Uuid.Generator uuidGenerator;
 
   public Controller(Uuid serverId, Model model) {
@@ -44,13 +45,29 @@ public final class Controller implements RawController, BasicController {
   }
 
   @Override
-  public User newUser(String name) {
-    return newUser(createId(), name, Time.now());
+  public User newUser(String name, String password) {
+    return newUser(createId(), name, Time.now(), password);
   }
 
   @Override
   public Conversation newConversation(String title, Uuid owner) {
     return newConversation(createId(), title, owner, Time.now());
+  }
+
+  public Conversation newConversation(String convoId, List<String> pastConversationInfo) throws Exception {
+    try {
+      String[] parsedConversation = pastConversationInfo.get(0).split("\n");
+      String owner = parsedConversation[0];
+      Uuid ownerId = Uuid.parse(owner);
+      Long time = Long.parseLong(parsedConversation[1]);
+      Time creationTime = Time.fromMs(time);
+      String title = parsedConversation[2];
+      Uuid id = Uuid.parse(convoId);
+      return newConversation(id, title, ownerId, creationTime, pastConversationInfo);
+    } catch (Exception ex) {
+      LOG.error(ex, "Couldn't load messages in past conversation");
+      throw new Exception("Couldn't load past conversation");
+    }
   }
 
   @Override
@@ -102,37 +119,66 @@ public final class Controller implements RawController, BasicController {
     return message;
   }
 
+  public User newUser(Uuid id, String name, Time creationTime, String password) {
+
+     User user = null;
+
+     if (isIdInUse(id)) {
+       LOG.info(
+           "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
+           id,
+           name,
+           creationTime);
+     }
+     else {
+       user = new User(id, name, creationTime, password);
+       model.add(user);
+     }
+
+     return user;
+  }
+
   @Override
-  public User newUser(Uuid id, String name, Time creationTime) {
+  public User deleteUser(String name) {
+    User user = model.getUserByName(name);
+    user = deleteUser(user);
+    return user;
+  }
 
-    User user = null;
-
-    if (isIdFree(id)) {
-
-      user = new User(id, name, creationTime);
-      model.add(user);
-
-      LOG.info(
-          "newUser success (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-
-    } else {
-
-      LOG.info(
-          "newUser fail - id in use (user.id=%s user.name=%s user.time=%s)",
-          id,
-          name,
-          creationTime);
-    }
-
+  // delete user from model, database
+  @Override
+  public User deleteUser(User user){
+    // update model
+    boolean deleteSuccess = model.delete(user);
+    if (!deleteSuccess) return null;
     return user;
   }
 
   @Override
-  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime) {
+  public User changeUserName(String oldName, String newName) {
+    User oldUser = model.getUserByName(oldName);
+    User newUser = null;
+    if (oldUser != null)
+      newUser = changeUserName(oldUser, newName);
+    return newUser;
+  }
 
+  @Override
+  public User changeUserName(User oldUser, String newName) {
+    // update model
+    User newUser = new User(oldUser.id,
+                            newName,
+                            oldUser.creation,
+                            oldUser.password);
+
+    boolean deleteSuccess = model.delete(oldUser);
+    if (!deleteSuccess) return null;
+    model.add(newUser);
+
+    return newUser;
+  }
+
+  private Conversation newConversationHelper(Uuid id, String title, Uuid owner, Time creationTime) {
     final User foundOwner = model.userById().first(owner);
 
     Conversation conversation = null;
@@ -145,6 +191,49 @@ public final class Controller implements RawController, BasicController {
     }
 
     return conversation;
+  }
+
+  @Override
+  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime) {
+    return newConversationHelper(id, title, owner, creationTime);
+  }
+
+  public Conversation newConversation(Uuid id, String title, Uuid owner, Time creationTime, List<String> oldMessages) {
+    Conversation conversation = newConversationHelper(id, title, owner, creationTime);
+    addMessagesToConversation(conversation, oldMessages);
+    return conversation;
+  }
+
+  private void addMessagesToConversation(Conversation conversation, List<String> oldMessages) {
+    //Starts at 1 because the first value in the array is info about conversation
+    for (int i = 1; i < oldMessages.size(); i++) {
+
+      String[] messageInfo = oldMessages.get(i).split("\n");
+      String authorIdString = messageInfo[0];
+      String messageSentTime = messageInfo[1];
+      String messageId = messageInfo[2];
+      String messageBody = messageInfo[3];
+
+      Time creationTime = Time.fromMs(Long.parseLong(messageSentTime));
+      Uuid id, authorId;
+
+      try {
+        id = Uuid.parse(messageId);
+      } catch (Exception ex) {
+        LOG.error(ex, "Couldn't load message id while loading past conversation");
+        break;
+      }
+
+      try {
+        authorId = Uuid.parse(authorIdString);
+      } catch (Exception ex) {
+        LOG.error(ex, "Couldn't load message author while loading past convesation");
+        break;
+      }
+
+      newMessage(id, authorId, conversation.id, messageBody, creationTime);
+
+    }
   }
 
   private Uuid createId() {

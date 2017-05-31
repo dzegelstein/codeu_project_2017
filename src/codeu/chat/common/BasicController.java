@@ -40,7 +40,19 @@ public interface BasicController {
   //   successful, a User object will be returned representing the full
   //   state of the user on the server. Whether user names can be shared
   //   is undefined.
-  User newUser(String name);
+  User newUser(String name, String password);
+
+  // DELETE USER
+  //
+  // Remove a specific user from the database.  If the user does not match
+  // a user in the database, the call will fail.
+  User deleteUser(String name);
+
+  // CHANGE USERNAME
+  //
+  // Change the name of a user in the database.  If the old user does not match
+  // a user in the database, the call will fail.
+  User changeUserName(String oldName, String newName);
 
   // NEW CONVERSATION
   //

@@ -34,7 +34,19 @@ public interface RawController {
   //
   // Add a new user to the model with a specific id. If the id is already in
   // use, the call will fail and null will be returned.
-  User newUser(Uuid id, String name, Time creationTime);
+  User newUser(Uuid id, String name, Time creationTime, String password);
+
+  // CHANGE USER NAME
+  //
+  // Change the name of a user in the database.  If the old user does not match
+  // a user in the database, the call will fail.
+  User changeUserName(User oldUser, String newName);
+
+  // DELETE USER
+  //
+  // Remove a specific user from the database.
+  // If the user does not match a user in the database, the call will fail.
+  User deleteUser(User user);
 
   // NEW CONVERSATION
   //
