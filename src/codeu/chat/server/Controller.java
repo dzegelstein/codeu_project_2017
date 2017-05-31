@@ -281,7 +281,7 @@ public final class Controller implements RawController, BasicController {
 
   private final User userNotFound() {
     if (USER_NOT_FOUND == null) {
-      USER_NOT_FOUND = new User(createId(), "USER NOT FOUND", Time.now(), "notrealuser");
+      USER_NOT_FOUND = new User(createId(), "USER NOT FOUND", Time.now(), "********");
     }
     return USER_NOT_FOUND;
   }
