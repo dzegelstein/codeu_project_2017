@@ -17,6 +17,6 @@
 
 LOCAL_MACHINE=$1
 PORT=$2
-cd './bin'
+# cd './bin'
 
-java codeu.chat.SimpleGuiClientMain "${LOCAL_MACHINE}@${PORT}"
+java -cp ./bin:./third_party/*:./bin codeu.chat.SimpleGuiClientMain "${LOCAL_MACHINE}@${PORT}"
