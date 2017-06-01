@@ -159,6 +159,7 @@ public final class MessagePanel extends JPanel {
         	JTextArea area = new JTextArea(5, 10);
         	JScrollPane pane = new JScrollPane(area);
         	// Displays a text area for a paragraph of input / multiple lines of input. 
+        	//Using the enter key goes to the next line rather than creating message.  
         	int result = JOptionPane.showOptionDialog(
         	                 MessagePanel.this,
         	                 new Object[] {"Enter Message:", pane},
