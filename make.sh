@@ -16,17 +16,6 @@
 
 set -e
 
-hamcrest_jar_path="third_party/hamcrest-core-1.3.jar"
-junit_jar_path="third_party/junit4-4.11.jar"
-
-if [ -f $hamcrest_jar_path ] ; then
-        mv $hamcrest_jar_path third_party/hamcrest-core.jar
-fi
-
-if [ -f $junit_jar_path ] ; then
-        mv $junit_jar_path third_party/junit4.jar
-fi
-
 mkdir -p bin
 
 javac -Xlint $(find * | grep "\\.java$") -d ./bin -sourcepath ./src -cp ./bin:./third_party/*
