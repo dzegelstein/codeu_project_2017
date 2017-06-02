@@ -162,7 +162,7 @@ public final class UserPanel extends JPanel {
             userSignedInLabel.setText("Hello " + data);
           else
             JOptionPane.showMessageDialog(UserPanel.this,
-                                          "Sign in failure",
+                                          "Sign in failure (incorrect name/password?)",
                                           "Error",
                                           JOptionPane.ERROR_MESSAGE);
         }

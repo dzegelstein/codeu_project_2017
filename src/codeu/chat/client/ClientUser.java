@@ -24,6 +24,8 @@ import codeu.chat.util.Logger;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.store.Store;
 
+// This third-party library is used for salted hashing of passwords.
+// More info can be found here: http://www.mindrot.org/projects/jBCrypt/
 import org.mindrot.jbcrypt.BCrypt;
 
 public final class ClientUser {
@@ -110,6 +112,8 @@ public final class ClientUser {
     }
   }
 
+  // This method deletes a specified user if the password inputted is correct.
+  // Otherwise, an error message is printed.
   public void deleteUser(String name, String password) {
     User user = usersByName.first(name);
     final boolean validUser = (user != null);
@@ -118,9 +122,9 @@ public final class ClientUser {
     user = null;
 
     if (validUser && validPassword) user = controller.deleteUser(name);
+    String errorMessage = "server failure";
 
     if (user == null) {
-      String errorMessage = "server failure";
       if (!validUser) errorMessage = "user does not exist";
       else if (!validPassword) errorMessage = "incorrect password";
       System.out.format("Error: user not deleted - %s.\n", errorMessage);
@@ -137,6 +141,8 @@ public final class ClientUser {
     }
   }
 
+  // This method changes the username of a specified user if the password
+  // inputted is correct.  Otherwise, an error message is printed.
   public void changeUserName(String oldName, String newName, String password) {
     final boolean validInputs = isValidName(newName);
     User user = usersByName.first(oldName);
@@ -167,6 +173,9 @@ public final class ClientUser {
     }
   }
 
+  // An unencrypted version of the inputted password is compared against
+  // the hashed version of the user's actual password, which is
+  // stored in the user object.
   private boolean validatePassword(User user, String password) {
     return user != null && BCrypt.checkpw(password, user.password);
   }

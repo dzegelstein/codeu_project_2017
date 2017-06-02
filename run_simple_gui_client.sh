@@ -19,4 +19,9 @@ LOCAL_MACHINE=$1
 PORT=$2
 # cd './bin'
 
+if [[ "${LOCAL_MACHINE}" == "" || "${PORT}" == "" ]] ; then
+	echo 'usage: <LOCAL MACHINE> <PORT>'
+	exit 1
+fi
+
 java -cp ./bin:./third_party/*:./bin codeu.chat.SimpleGuiClientMain "${LOCAL_MACHINE}@${PORT}"
