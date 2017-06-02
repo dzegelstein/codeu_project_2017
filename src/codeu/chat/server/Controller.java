@@ -33,6 +33,7 @@ public final class Controller implements RawController, BasicController {
 
   private Model model;
   private final Uuid.Generator uuidGenerator;
+  private static final String NOT_FOUND = "USER_NOT_FOUND";
   private User USER_NOT_FOUND;
 
   public Controller(Uuid serverId, Model model) {
@@ -85,10 +86,15 @@ public final class Controller implements RawController, BasicController {
   @Override
   public Message newMessage(Uuid id, Uuid author, Uuid conversation, String body, Time creationTime) {
 
-    final User foundUser = model.userById().first(author);
+    User foundUser = model.userById().first(author);
     final Conversation foundConversation = model.conversationById().first(conversation);
 
     Message message = null;
+
+    // allows messages from deleted users to be restored
+    if (foundUser == null) {
+      foundUser = userNotFound();
+    }
 
     if (foundUser != null && foundConversation != null && isIdFree(id)) {
 
@@ -214,7 +220,7 @@ public final class Controller implements RawController, BasicController {
 
       try {
         Uuid authorId = Uuid.parse(authorIdString);
-        restoreMessage(messageId, authorId, conversation.id, messageBody, creationTime);
+        newMessage(messageId, authorId, conversation.id, messageBody, creationTime);
       } catch (Exception ex) {
         LOG.error(ex, "Couldn't load message author while loading past convesation.");
       }
@@ -228,60 +234,10 @@ public final class Controller implements RawController, BasicController {
     return conversation;
   }
 
-  public Message restoreMessage(Uuid id, Uuid author, Uuid conversation, String body, Time creationTime) {
-    User foundUser = model.userById().first(author);
-    final Conversation foundConversation = model.conversationById().first(conversation);
-
-    Message message = null;
-
-    if (foundUser == null) {
-      foundUser = userNotFound();
-    }
-
-    if (foundUser != null && foundConversation != null && isIdFree(id)) {
-
-      message = new Message(id, Uuid.NULL, Uuid.NULL, creationTime, author, body);
-      model.add(message);
-      LOG.info("Message added: %s", message.id);
-
-      // Find and update the previous "last" message so that it's "next" value
-      // will point to the new message.
-
-      if (Uuid.equals(foundConversation.lastMessage, Uuid.NULL)) {
-
-        // The conversation has no messages in it, that's why the last message is NULL (the first
-        // message should be NULL too. Since there is no last message, then it is not possible
-        // to update the last message's "next" value.
-
-      } else {
-        final Message lastMessage = model.messageById().first(foundConversation.lastMessage);
-        lastMessage.next = message.id;
-      }
-
-      // If the first message points to NULL it means that the conversation was empty and that
-      // the first message should be set to the new message. Otherwise the message should
-      // not change.
-
-      foundConversation.firstMessage =
-          Uuid.equals(foundConversation.firstMessage, Uuid.NULL) ?
-          message.id :
-          foundConversation.firstMessage;
-
-      // Update the conversation to point to the new last message as it has changed.
-
-      foundConversation.lastMessage = message.id;
-
-      if (!foundConversation.users.contains(foundUser)) {
-        foundConversation.users.add(foundUser.id);
-      }
-    }
-
-    return message;
-  }
-
+  //creates new instance of USER_NOT_FOUND if it doesn't exist or returns existing user
   private final User userNotFound() {
     if (USER_NOT_FOUND == null) {
-      USER_NOT_FOUND = new User(createId(), "USER NOT FOUND", Time.now(), "********");
+      USER_NOT_FOUND = new User(createId(), NOT_FOUND, Time.now(), "********");
     }
     return USER_NOT_FOUND;
   }

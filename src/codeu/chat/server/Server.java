@@ -39,6 +39,8 @@ import codeu.chat.util.Time;
 import codeu.chat.util.Timeline;
 import codeu.chat.util.Uuid;
 import codeu.chat.util.connections.Connection;
+
+// Jedis is used as the database for this system
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -163,27 +165,30 @@ public final class Server {
   }
 
   private void reloadPastConversations() {
-    Set<String> idList = db.smembers(CONVERSATION_HASH);
+    Set<String> idList = db.smembers(CONVERSATION_HASH); //CONVERSATION_HASH is a set of all conversation ids
     //Iterates through a list of conversations to restore that conversation
     for (String convoId: idList) {
-        String[] convoDetails = db.lindex(convoId, 0).split("\n");
-        try {
-          Conversation convo = controller.restoreConversation(convoId, convoDetails);
-          List<String> messageIds = db.lrange(convoId, 1, db.llen(convoId));
-          //Iterates through each message to add it to a conversation
-          for (String id: messageIds) {
-            List<String> messageDetails = db.lrange(id, 0, db.llen(id));
-            try {
-              Uuid messageId = Uuid.parse(id);
-              controller.restoreMessageToConversation(convo, messageId, messageDetails);
-            } catch (Exception ex) {
-              LOG.error(ex, "Exception while loading messages");
-            }
-
+      //lindex returns the index of a list stored in the database
+      String[] convoDetails = db.lindex(convoId, 0).split("\n");
+      try {
+        Conversation convo = controller.restoreConversation(convoId, convoDetails);
+        //lrange returns a range of indices stored in a list in the database
+        //llen returns the length of a list stored in the database
+        List<String> messageIds = db.lrange(convoId, 1, db.llen(convoId));
+        //Iterates through each message to add it to a conversation
+        for (String id: messageIds) {
+          List<String> messageDetails = db.lrange(id, 0, db.llen(id));
+          try {
+            Uuid messageId = Uuid.parse(id);
+            controller.restoreMessageToConversation(convo, messageId, messageDetails);
+          } catch (Exception ex) {
+            LOG.error(ex, "Exception while loading messages");
           }
-        } catch (Exception ex) {
-          LOG.error(ex, "Could not load conversation " + convoId);
+
         }
+      } catch (Exception ex) {
+        LOG.error(ex, "Could not load conversation " + convoId);
+      }
 
     }
   }
@@ -476,10 +481,11 @@ public final class Server {
 
     final String messageId = message.id.toStrippedString();
 
-    //Update db (Conversation id -> author, creation time, message id)
+    //Update db (Conversation id -> [author, creation time, message id] + new message id)
     db.rpush(id, message.id.toStrippedString());
 
     //Update db (Message id -> message content)
+    //rpush appends a string to the end of a list stored in the database
     db.rpush(messageId, author.toStrippedString());
     db.rpush(messageId, timeStr);
     db.rpush(messageId, content);
@@ -492,7 +498,9 @@ public final class Server {
     final String conversationId = conversation.id.toStrippedString() + "";
 
     //UPDATE DB
+    //sadd adds the conversation id to the set of conversation ids
     db.sadd(CONVERSATION_HASH, conversationId);
+    //rpush adds a list named the conversation id in the database and adds conversation data as the first entry
     db.rpush(conversationId, owner.toStrippedString() + "\n" + timeStr + "\n" + title);
     return true;
   }

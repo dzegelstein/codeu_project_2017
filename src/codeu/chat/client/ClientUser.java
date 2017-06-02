@@ -35,6 +35,7 @@ public final class ClientUser {
   private final View view;
 
   private User current = null;
+  private static final String USER_NOT_FOUND = "USER_NOT_FOUND";
 
   private final Map<Uuid, User> usersById = new HashMap<>();
 
@@ -68,16 +69,19 @@ public final class ClientUser {
   }
 
   public boolean signInUser(String name, String password) {
-    updateUsers();
+    if (!name.equals(USER_NOT_FOUND)) {
+      updateUsers();
 
-    final User prev = current;
-    if (name != null) {
-      final User newCurrent = usersByName.first(name);
-      if (newCurrent != null && validatePassword(newCurrent, password)) {
-        current = newCurrent;
+      final User prev = current;
+      if (name != null) {
+        final User newCurrent = usersByName.first(name);
+        if (newCurrent != null && validatePassword(newCurrent, password)) {
+          current = newCurrent;
+        }
       }
+      return (prev != current);
     }
-    return (prev != current);
+    return false;
   }
 
   public boolean signOutUser() {

@@ -195,15 +195,18 @@ public final class Chat {
         	String current_message = tokenScanner.nextLine().trim();
         	String slashes = "\\";
         	String whole_message = "";
+        	//Make sure that that we have a string. Check that the last character is a slash. 
         	if((current_message.length() >= 1) && (current_message.substring(current_message.length() - 1, current_message.length()).equals(slashes))){
         		//It is a multiline message. 
-        		while ((current_message.length() >= 2) && (current_message.substring(current_message.length() - 2, current_message.length()).equals(slashes))){
+        		while ((current_message.length() >= 1) && (current_message.substring(current_message.length() - 1, current_message.length()).equals(slashes))){
         			//Append the next line to the message.
-        			
-        			whole_message += current_message.substring(0, current_message.length()-2) + "\n";
+        			whole_message += current_message.substring(0, current_message.length()-1) + "\n";
         			//Grab next line. 
+        			//Print prompt with a tab.
+        			System.out.print(">>\t");
         			current_message = lineScanner.nextLine().trim();
         		}
+        		//Add the last line
         		whole_message += current_message;
         	}
         	else{
